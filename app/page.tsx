@@ -85,10 +85,10 @@ export default function Home() {
             </div>
           </AnimatedSection>
         </div>
-        <div className="absolute inset-x-0 bottom-0 z-10" aria-label="Technology partners">
+        <section className="absolute inset-x-0 bottom-0 z-10" aria-label="Technology partners">
           <PartnerRow />
           <PartnerRow reverse />
-        </div>
+        </section>
       </section>
 
       <Section className="border-y border-[var(--border-subtle)] bg-zinc-50 dark:bg-zinc-900/30">

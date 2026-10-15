@@ -204,9 +204,9 @@ a {
   color: var(--ink, currentColor);
   white-space: nowrap;
   overflow: hidden;
-  width: 18ch; /* "not with real money" = 18 characters */
+  width: 19ch; /* "not with real money" = 19 characters */
   border-right: 0.15em solid var(--avalanche-red);
-  animation: fx-type 4s steps(18) infinite,
+  animation: fx-type 4s steps(19) infinite,
              fx-caret 0.65s steps(1) infinite;
   display: inline-block;
   vertical-align: bottom;
@@ -214,7 +214,7 @@ a {
 
 @keyframes fx-type {
   0%, 10%   { width: 0; }
-  60%, 100% { width: 18ch; }
+  60%, 100% { width: 19ch; }
 }
 
 @keyframes fx-caret {

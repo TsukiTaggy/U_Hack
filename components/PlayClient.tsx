@@ -378,7 +378,7 @@ export default function PlayClient() {
         </section>
       </div>
 
-      <aside className="h-fit space-y-3 rounded-2xl border border-zinc-200 p-5 lg:sticky lg:top-6 dark:border-zinc-800">
+      <aside className="h-fit space-y-3 rounded-2xl border border-zinc-200 p-5 lg:sticky lg:top-20 dark:border-zinc-800">
         <h2 className="text-lg font-semibold">AI coach</h2>
         <p className="text-xs text-zinc-500">The coach reads your real Fuji transactions before answering.</p>
         <div className="flex flex-wrap gap-2">
