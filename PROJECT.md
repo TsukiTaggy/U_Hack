@@ -68,6 +68,7 @@ Working (local chain):
 
 Partial:
 - Coach agent tool loop, text scam call and scam evaluator: mechanics verified with a mock LLM only.
+- Frontend landing page and shared navigation are integrated from `frontend`; desktop DOM verification passed locally, with deployed browser validation still pending.
 - `/play` page: missions 1–4, coach panel and certificate; not yet tested in a browser with a real wallet.
 - ElevenLabs private-agent voice flow: signed URL route, Voice/Text toggle and transcript-to-evaluator integration are implemented; a full microphone call still needs testing on the deployed site with Core wallet connected.
 
