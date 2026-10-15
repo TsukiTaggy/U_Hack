@@ -33,6 +33,8 @@ In code use `avalancheFuji` from `viem/chains`.
 | Receipts | `lib/receipt.ts` | HMAC sign/verify pass receipts |
 | Minter | `lib/minter.ts` | Server wallet client from `MINTER_PRIVATE_KEY` |
 | Decoys | `lib/decoys.ts` | Look-alike addresses for mission 3 |
+| Send checks | `lib/send.ts` | Wallet-style warnings before signing: known / look-alike / first-time recipient, gas reserve, base fee + tip split. Warnings only; never a pass |
+| Mission UI | `components/missions/` | Landing-style mission cards, practice chat (`PhoneFrame`), simulated wallet history, explain-before-sign card, fee breakdown, coach agent steps |
 | API helpers | `lib/api.ts` | JSON body parsing, errors, in-memory rate limit |
 | Content | `content/missions/`, `content/lessons/`, `content/scam-personas.json` | Mission text; localized standalone lessons and quizzes; scam personas |
 | Contracts | `contracts/SafeStart.sol` | TestUSDC, FakeAirdrop, SafeStartCert |
@@ -57,8 +59,8 @@ Each lesson has four multiple-choice or true/false questions answerable from its
 |---|---|---|---|
 | 1 | Connect wallet on Fuji, then take a practice "support call" | `chainId === 43113`; scam evaluation has `sharedSecret === false` and `followedLink === false` | AI scammer adapts tactics; AI evaluator returns the scam evaluation JSON |
 | 2 | Get test AVAX from the Avalanche Fuji faucet | `getBalance(address) > 0` | Coach explains testnet and gas; agent diagnoses if balance is zero |
-| 3 | Send 0.01 AVAX to the correct address chosen from look-alikes | Receipt `status === "success"`, `from === learner`, `to === tutorAddress`, `value >= 0.01 AVAX` | Writes the scenario message; if wrong, agent opens the real tx and shows which characters differ |
-| 4 | Answer how much gas the mission 3 tx cost | `abs(answer - gasUsed * effectiveGasPrice) <= 1%` | Agent reads the receipt and explains the fee |
+| 3 | Tutor asks for 0.01 AVAX in a practice chat; a simulated, labelled wallet history holds two newer 0 AVAX look-alike transfers. Learner copies an address, reviews it, sends with Core | Receipt `status === "success"`, `from === learner`, `to === tutorAddress`, `value >= 0.01 AVAX` | Explain-before-sign card before Core opens (rules in `lib/send.ts` set the risk; AI writes one sentence). If wrong, the coach opens the real tx and shows which characters differ |
+| 4 | Read gas used and effective gas price from the real mission 3 receipt and work out the fee | `abs(answer - gasUsed * effectiveGasPrice) <= 1%` | After passing: breakdown of max fee shown before signing vs fee paid, base fee + tip; the coach explains the difference from the receipt |
 | 5 | Face a "free tUSDC" site asking for unlimited approval | `allowance(learner, FakeAirdrop) === 0` after the trap was shown; records whether learner approved | Explain-before-sign card; if approved, guides the revoke |
 | Bonus | Answer questions about a real upcoming unlock | Answer matches the value computed from the Tokenomist response | Generates the question and explanation from real data |
 
@@ -73,7 +75,7 @@ All LLM calls go through `lib/llm.ts` (OpenAI-compatible API, primary then fallb
 | Component | Route | Input | Output | Notes |
 |---|---|---|---|---|
 | Coach agent | `/api/coach` | Learner question + address + mission id | Answer text + list of tool calls made | Tool-calling loop, max 5 tool calls per turn |
-| Transaction explainer | `/api/explain-tx` | Unsigned tx `{ to, data, value }` | One-sentence explanation + risk level | Risk level comes from rules in code; AI only explains |
+| Transaction explainer | `/api/explain-tx` | Unsigned tx `{ to, data, value, knownRecipients? }` | One-sentence explanation + risk level, `source` (`ai` or `rules`) and, for AVAX transfers, `recipient` (`known`, `look-alike` or `new`, plus differing positions) | Risk level comes from rules in code (`lib/send.ts`, `lib/tools.ts`); AI only explains |
 | Scammer (text mode) | `/api/scam/turn` | Persona id + transcript | Next scammer line | Max 8 turns; persona from `content/scam-personas.json` |
 | Scam evaluator | `/api/scam/evaluate` | Transcript | Scam evaluation JSON | Separate prompt from scammer; parse with zod; on parse failure → fail closed and ask to retry |
 | Report writer | `/api/report` | Mission results + learner tx list | Short personal safety report | Uses only provided facts |

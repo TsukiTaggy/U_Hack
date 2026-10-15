@@ -1,7 +1,8 @@
 {
   "id": "4",
   "title": "Read your own fee",
-  "lesson": "The fee (gas) is paid on top of what you send, and it changes with network demand. You can always check the exact fee of a transaction on the block explorer.",
-  "task": "Open your mission 3 transaction on the explorer and enter how much AVAX you paid as the transaction fee.",
+  "lesson": "Before you sign, a wallet shows a maximum fee. What you actually pay is the gas your transaction used multiplied by the price per unit of gas in that block (base fee plus tip). The fee is paid even if a transaction fails, so always keep some AVAX for gas.",
+  "task": "Use the receipt of your mission 3 transaction to work out the fee you paid, in AVAX.",
+  "hint": "fee = gas used × effective gas price. 1 nAVAX = 0.000000001 AVAX.",
   "verify": { "type": "fee-answer", "params": { "tolerancePct": 1 } }
 }

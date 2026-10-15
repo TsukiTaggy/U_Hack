@@ -62,7 +62,9 @@ Done when: missions 1–4 → certificate works end-to-end on the public URL. Le
 - [x] VOICE — ElevenLabs voice call with `@elevenlabs/react` behind a toggle; transcript → `/api/scam/evaluate`. Text mode stays as fallback.
 - [x] VOICE — Full microphone call passed on the deployed URL with a connected Core wallet; signed URL, transcript and evaluation flow confirmed.
 - [x] `/api/explain-tx` with `decodeCall` and rule-based risk level.
-- [ ] AI — Show the explain-before-sign card in mission 3 before sending.
+- [x] AI — Show the explain-before-sign card in mission 3 before sending (branch `missions-ui`).
+- [x] FRONTEND — `/play` restyled with landing components; mission 3 practice chat + poisoned history + look-alike warning; mission 4 receipt-based fee breakdown and Max/gas-reserve check (branch `missions-ui`).
+- [ ] OPS — On the deployed preview of `missions-ui`: run missions 3–4 with a real Core wallet, once to the decoy and once to the tutor; check the AI explanation with the real LLM.
 - [ ] Everyone — sleep.
 
 ## M3 · Differentiators — Fri 10:00–12:30

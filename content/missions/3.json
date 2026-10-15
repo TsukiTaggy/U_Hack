@@ -1,7 +1,26 @@
 {
   "id": "3",
   "title": "Send to the right person",
-  "lesson": "Scammers create addresses that start and end like one you trust, hoping you copy the wrong one from your history. Always compare the whole address, not just the first and last characters.",
-  "task": "Your tutor asked you to send 0.01 AVAX. Pick the tutor's real address from the list and send it.",
-  "verify": { "type": "tx-to-tutor", "params": { "minAvax": "0.01" } }
+  "lesson": "Address poisoning: a scammer sends you a 0 AVAX transfer from an address that starts and ends like one you trust, so it appears in your history. Wallets shorten addresses, so the fake looks identical. Copy addresses from the person, never from your history, and check the middle characters.",
+  "task": "Your tutor has asked for 0.01 AVAX. Choose where to copy the address from, review the transaction, then send it with Core.",
+  "verify": { "type": "tx-to-tutor", "params": { "minAvax": "0.01" } },
+  "story": {
+    "contact": "Ploy · your tutor",
+    "status": "Practice scenario",
+    "amountAvax": "0.01",
+    "messages": {
+      "en": [
+        "Hi! Thanks for joining today's crypto safety class 🙏",
+        "Could you send the 0.01 AVAX practice fee on Fuji? Same address as last week:"
+      ],
+      "th": [
+        "สวัสดีค่ะ ขอบคุณที่มาเรียนคลาสความปลอดภัยคริปโตวันนี้นะคะ 🙏",
+        "รบกวนโอนค่าฝึก 0.01 AVAX บน Fuji ให้หน่อยนะคะ ใช้ address เดิมเหมือนอาทิตย์ที่แล้วค่ะ:"
+      ]
+    },
+    "history": {
+      "sent": "7 days ago",
+      "poison": ["2 hours ago", "Yesterday"]
+    }
+  }
 }
