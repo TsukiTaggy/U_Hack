@@ -1,7 +1,7 @@
 # SafeStart Standalone Learning Center Design
 
-**Date:** 2026-10-15  
-**Status:** Draft for written review  
+**Date:** 2026-10-15
+**Status:** Draft for written review
 **Branch:** `codex/lesson-learning-ui`
 
 ## Goal
@@ -184,4 +184,3 @@ Browser acceptance checks `/`, `/play`, and `/learn` at desktop and phone widths
 ## Documentation Updates
 
 After implementation, update only the relevant sections of `PROJECT.md`, `TODO.md`, and `docs/architecture.md` to describe `/learn`, its content contract, and the fact that local learning progress is not mission authority.
-

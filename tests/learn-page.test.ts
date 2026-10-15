@@ -9,8 +9,9 @@ describe("learning route", () => {
     const markup = renderToStaticMarkup(createElement(LearnPage));
 
     expect(metadata.title).toBe("Learn · SafeStart");
-    expect(markup).toContain("<main");
-    expect(markup).toContain("เรียนรู้ก่อนลงมือจริง");
+    expect(markup).toContain('<main class="flex-1" lang="th"');
+    const heading = markup.match(/<h1[^>]*>(.*?)<\/h1>/)?.[1].replace(/<[^>]+>/g, "");
+    expect(heading).toBe("เรียนรู้ก่อนลงมือจริง");
     expect(markup).toContain("เส้นทางการเรียนรู้");
     expect(markup.match(/<h1(?:\s|>)/g)).toHaveLength(1);
   });

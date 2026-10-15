@@ -48,27 +48,27 @@
 - Produces: `lessons`, `lessonById(id: string): LessonContent | undefined`, `localizedText(value: LocalizedText, locale: Locale): string`.
 - Produces: `evaluateLearningAnswer(question: QuizQuestion, optionId: string): { correct: boolean; explanation: LocalizedText }` and `isLearningQuizPassed(lesson: LessonContent, answers: QuizAnswers): boolean`.
 
-- [ ] **Step 1: Write failing content-contract tests**
+- [x] **Step 1: Write failing content-contract tests**
 
 Add tests that assert there are four lessons with IDs `1`–`4`; each localized field has non-empty `th` and `en`; each lesson has at least three key points and exactly three questions; question and option IDs are unique in their scope; and each `correctOptionId` matches exactly one option.
 
 Add literal behavior tests asserting `localizedText({ th: "", en: "Fallback" }, "th") === "Fallback"`, unknown lesson lookup returns `undefined`, an unknown option is incorrect, a missing answer prevents completion, and only three correct answers pass a lesson.
 
-- [ ] **Step 2: Run the focused test and verify RED**
+- [x] **Step 2: Run the focused test and verify RED**
 
 Run: `npm test -- tests/learning.test.ts`
 
 Expected: FAIL because `lib/learning.ts` and the lesson JSON files do not exist.
 
-- [ ] **Step 3: Implement the four lesson JSON files**
+- [x] **Step 3: Implement the four lesson JSON files**
 
 Write Thai and English copy for the approved topics: recovery phrase protection, fake websites and links, transaction review before signing, and social engineering. Make every question traceable to a statement in its lesson or key points and include a localized explanation.
 
-- [ ] **Step 4: Implement `lib/learning.ts`**
+- [x] **Step 4: Implement `lib/learning.ts`**
 
 Import and expose the four lessons through the exact interfaces above. Normalize imported JSON IDs to `LessonId`, use English fallback for missing requested-locale text, reject unknown options, and require every question to be answered correctly.
 
-- [ ] **Step 5: Run the focused and full suites and verify GREEN**
+- [x] **Step 5: Run the focused and full suites and verify GREEN**
 
 Run: `npm test -- tests/learning.test.ts`
 
@@ -78,7 +78,7 @@ Run: `npm test`
 
 Expected: all existing 34 tests plus the new learning tests pass.
 
-- [ ] **Step 6: Review the task diff without staging or committing**
+- [x] **Step 6: Review the task diff without staging or committing**
 
 Run: `git diff --check`
 
@@ -97,21 +97,21 @@ Expected: no whitespace errors; only Task 1 files are new.
 - Produces: `defaultLearningProgress(): LearningProgress`, `parseLearningProgress(value: unknown): LearningProgress`, `markLessonCompleted(progress: LearningProgress, lessonId: string): LearningProgress`, `isLessonCompleted(progress: LearningProgress, lessonId: string): boolean`, `canOpenLesson(progress: LearningProgress, lessonId: string): boolean`, and `nextLessonId(progress: LearningProgress): LessonId | undefined`.
 - Produces: `readLearningProgress(storage: Pick<Storage, "getItem">): LearningProgress` and `writeLearningProgress(storage: Pick<Storage, "setItem">, progress: LearningProgress): boolean`.
 
-- [ ] **Step 1: Write failing progress tests**
+- [x] **Step 1: Write failing progress tests**
 
 Assert the exact Thai-first default; JSON-like malformed values and `version: 0` reset; unknown locale resets to `th`; duplicate IDs are deduplicated in lesson order; unknown IDs are removed; unknown IDs passed to `markLessonCompleted` are ignored; completion is immutable and idempotent; lesson 1 is initially open; lesson `n` opens only when every previous lesson is complete; and `nextLessonId` returns the first incomplete lesson or `undefined` after all four. Use minimal fake storage objects to assert a throwing `getItem` returns the default, a throwing `setItem` returns `false`, and a successful write stores JSON under `safestart.learning.v1` and returns `true`.
 
-- [ ] **Step 2: Run the focused test and verify RED**
+- [x] **Step 2: Run the focused test and verify RED**
 
 Run: `npm test -- tests/learning-progress.test.ts`
 
 Expected: FAIL because `lib/learning-progress.ts` does not exist.
 
-- [ ] **Step 3: Implement `lib/learning-progress.ts`**
+- [x] **Step 3: Implement `lib/learning-progress.ts`**
 
 Use the canonical lesson order from `lib/learning.ts`; never trust array order or IDs from stored input. Return new objects from update functions and never mutate caller-owned arrays. Catch storage and JSON errors inside the read/write helpers so UI code does not duplicate persistence policy.
 
-- [ ] **Step 4: Run the focused and full suites and verify GREEN**
+- [x] **Step 4: Run the focused and full suites and verify GREEN**
 
 Run: `npm test -- tests/learning-progress.test.ts`
 
@@ -121,7 +121,7 @@ Run: `npm test`
 
 Expected: all tests pass with no warnings or errors.
 
-- [ ] **Step 5: Review the task diff without staging or committing**
+- [x] **Step 5: Review the task diff without staging or committing**
 
 Run: `git diff --check`
 
@@ -142,21 +142,21 @@ Expected: no whitespace errors.
 - Produces: `LessonPanel({ lesson, locale, review, onStartQuiz })`.
 - Produces: `LearningQuiz({ lesson, locale, questionIndex, selectedOptionId, checked, onSelect, onCheck, onRetry, onNext })`; it renders native radio inputs and localized explanation after checking.
 
-- [ ] **Step 1: Write failing accessible-markup tests**
+- [x] **Step 1: Write failing accessible-markup tests**
 
 Use `react-dom/server` with `createElement` to assert that `LessonPath` renders a navigation landmark, disables locked lessons, labels completed status, and sets `aria-current="step"` on the selected lesson. Assert that `LessonPanel` renders localized lesson and key-point text, and that `LearningQuiz` renders one radiogroup with the current question's options and no feedback before checking.
 
-- [ ] **Step 2: Run the focused test and verify RED**
+- [x] **Step 2: Run the focused test and verify RED**
 
 Run: `npm test -- tests/learning-ui.test.ts`
 
 Expected: FAIL because the three components do not exist.
 
-- [ ] **Step 3: Implement the presentation components**
+- [x] **Step 3: Implement the presentation components**
 
 Use existing Tailwind tokens and patterns from `Navigation`, `Section`, and `BentoCard`. Keep components controlled and presentation-focused. Ensure buttons and option labels meet the 44-by-44 CSS-pixel target, visible text accompanies status color, and locked items use native disabled behavior.
 
-- [ ] **Step 4: Run focused checks and verify GREEN**
+- [x] **Step 4: Run focused checks and verify GREEN**
 
 Run: `npm test -- tests/learning-ui.test.ts`
 
@@ -166,7 +166,7 @@ Run: `npm run typecheck`
 
 Expected: no TypeScript errors.
 
-- [ ] **Step 5: Review the task diff without staging or committing**
+- [x] **Step 5: Review the task diff without staging or committing**
 
 Run: `git diff --check`
 
@@ -185,25 +185,25 @@ Expected: no whitespace errors.
 - Produces: a static `/learn` Server Component page with metadata title `Learn · SafeStart`.
 - Produces: a client-only course runner with phase `"lesson" | "quiz" | "completed"`, Thai-first locale, sequential lesson selection, quiz answer state, and defensive localStorage persistence.
 
-- [ ] **Step 1: Write failing route and navigation tests**
+- [x] **Step 1: Write failing route and navigation tests**
 
 Use `react-dom/server` to assert that `Navigation` still contains Home and Missions links and adds desktop/mobile links to `/learn`. Render the learn page without wallet or mission props and assert it includes a main landmark and the Thai course heading.
 
-- [ ] **Step 2: Run the focused test and verify RED**
+- [x] **Step 2: Run the focused test and verify RED**
 
 Run: `npm test -- tests/learn-page.test.ts`
 
 Expected: FAIL because the `/learn` page and navigation link do not exist.
 
-- [ ] **Step 3: Implement `LearningClient.tsx`**
+- [x] **Step 3: Implement `LearningClient.tsx`**
 
 Initialize server and first-client render from `defaultLearningProgress()` to avoid hydration differences. In a mount effect, call `readLearningProgress(window.localStorage)`; persist through `writeLearningProgress` while preserving in-memory state when storage fails. Reset question state when changing lessons or retrying. Call `markLessonCompleted` only after `isLearningQuizPassed` returns true.
 
-- [ ] **Step 4: Implement `app/learn/page.tsx` and update navigation**
+- [x] **Step 4: Implement `app/learn/page.tsx` and update navigation**
 
 Keep the route page as a Server Component that exports metadata and renders `LearningClient`. Add `Learn` to both desktop and mobile navigation with the existing link classes; do not alter landing or mission page components.
 
-- [ ] **Step 5: Run focused and repository checks**
+- [x] **Step 5: Run focused and repository checks**
 
 Run: `npm test -- tests/learn-page.test.ts`
 
@@ -221,11 +221,11 @@ Run: `npm test`
 
 Expected: the complete test suite passes.
 
-- [ ] **Step 6: Browser acceptance on the development server**
+- [x] **Step 6: Browser acceptance on the development server**
 
 Open `/`, `/play`, and `/learn` at desktop and phone widths. Verify `/` and `/play` retain their existing content and interactions. On `/learn`, verify Thai default, English switching, lesson 1 available without a wallet, locked lessons disabled, wrong-answer explanation and retry, all-correct completion, sequential unlock, completed-lesson review, refresh persistence, keyboard operation, visible focus, and usable behavior when localStorage reads and writes throw.
 
-- [ ] **Step 7: Review the task diff without staging or committing**
+- [x] **Step 7: Review the task diff without staging or committing**
 
 Run: `git diff --check`
 
@@ -242,11 +242,11 @@ Expected: no whitespace errors and no changes under `app/play`, `components/Play
 - Consumes: the verified `/learn` implementation from Tasks 1–4.
 - Produces: durable project state describing the route, content contract, browser-local progress, and explicit separation from mission authority.
 
-- [ ] **Step 1: Update only relevant documentation sections**
+- [x] **Step 1: Update only relevant documentation sections**
 
 Update `PROJECT.md` Current State and canonical data formats, the relevant frontend task in `TODO.md`, and route/component/data-flow sections in `docs/architecture.md`. Record the actual date and checks run; mark browser states or environments not exercised as unverified.
 
-- [ ] **Step 2: Run the complete verification matrix**
+- [x] **Step 2: Run the complete verification matrix**
 
 Run: `npm test -- tests/learning.test.ts tests/learning-progress.test.ts tests/learning-ui.test.ts tests/learn-page.test.ts`
 
@@ -272,11 +272,10 @@ Run: `git diff --check`
 
 Expected: pass.
 
-- [ ] **Step 3: Perform final browser regression review**
+- [x] **Step 3: Perform final browser regression review**
 
 Recheck `/`, `/play`, and `/learn` at desktop and phone widths after the production build. Confirm keyboard focus and reduced-motion behavior, and distinguish verified local behavior from unverified deployment, wallet, Fuji, and external-service behavior.
 
-- [ ] **Step 4: Report the final branch state without committing**
+- [x] **Step 4: Report the final branch state without committing**
 
 List changed files, check results, unverified items, and any warning. Leave `codex/lesson-learning-ui` uncommitted until the user explicitly requests a commit, push, or pull request.
-

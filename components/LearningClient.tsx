@@ -36,7 +36,8 @@ type CourseState = {
 const copy = {
   th: {
     eyebrow: "SAFESTART LEARNING CENTER",
-    title: "เรียนรู้ก่อนลงมือจริง",
+    titleLead: "เรียนรู้ก่อน",
+    titleAccent: "ลงมือจริง",
     intro: "บทเรียนสั้น ๆ ที่ช่วยให้คุณสังเกตความเสี่ยง ตัดสินใจช้าลง และปกป้องกระเป๋าของตัวเอง",
     testnet: "เรียนได้โดยไม่ต้องเชื่อม wallet",
     pathTitle: "เส้นทางการเรียนรู้",
@@ -52,7 +53,8 @@ const copy = {
   },
   en: {
     eyebrow: "SAFESTART LEARNING CENTER",
-    title: "Learn before you act",
+    titleLead: "Learn before you",
+    titleAccent: "act",
     intro: "Short lessons that help you spot risk, slow down decisions, and protect your wallet.",
     testnet: "No wallet connection required",
     pathTitle: "Learning path",
@@ -196,15 +198,16 @@ export default function LearningClient() {
   }
 
   return (
-    <main className="flex-1">
+    <main className="flex-1" lang={locale}>
       <section className="relative overflow-hidden bg-black text-white">
         <div className="hero-rain absolute inset-0" aria-hidden="true" />
         <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-14 sm:px-8 sm:py-20">
           <div className="max-w-4xl space-y-4">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">{text.eyebrow}</p>
             <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
-              {text.title.split(" ").slice(0, -1).join(" ")} {" "}
-              <span className="text-[var(--avalanche-red)]">{text.title.split(" ").at(-1)}</span>
+              {text.titleLead}
+              {locale === "en" ? " " : ""}
+              <span className="text-[var(--avalanche-red)]">{text.titleAccent}</span>
             </h1>
             <p className="max-w-3xl text-base leading-relaxed text-zinc-300 sm:text-lg">{text.intro}</p>
           </div>
