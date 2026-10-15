@@ -10,7 +10,7 @@ Roles (owners below):
 - **FRONTEND** — pages and UI polish (can be the same person as WEB3)
 - **OPS** — content, testing, registration, submission, deck
 
-Rule: missions 1–4, the coach agent and the certificate are never cut. If time runs short, cut in this order: live board → bonus mission → voice call (text mode stays).
+Rule: missions 1–4 and the coach agent are never cut. The certificate is optional (`docs/decisions.md`, 2026-10-16). If time runs short, cut in this order: live board → bonus mission → voice call (text mode stays).
 
 ---
 
@@ -49,9 +49,10 @@ Done when: on the deployed URL a fresh Core wallet passes missions 2 and 3, and 
 - [x] FRONTEND — Integrate the `frontend` landing design and shared navigation into `main`.
 - [x] FRONTEND — Add standalone `/learn` lessons and linked quizzes with Thai/English copy, sequential local progress and landing-page visual language; keep `/play` missions unchanged.
 - [x] CONTENT — Expand `/learn` to 13 lessons in three chapters from the research question bank, four questions each with hints (Thai translation done in-repo).
+- [ ] AI — On the deployed URL, ask the `/learn` lesson tutor 2–3 questions (Thai and English, one asking for a quiz answer) and check the real-LLM replies stay on topic and give hints, not answers.
 - [ ] OPS — Native Thai speaker reviews the new Thai lesson and quiz copy (lessons 1–8, 13 and the added questions in 9–12).
 - [ ] FRONTEND — Polish `/play` (layout, mission map/progress, Thai UI text, mobile). Logic stays in `lib/`.
-- [ ] OPS — End-to-end test on the deployed URL with fresh Core wallets; log bugs below.
+- [x] OPS — End-to-end test on the deployed URL with a fresh Core wallet: missions 1–3 passed (2026-10-16); `/play` and `/learn` checked on the deployed URL.
 - [x] OPS — Update "Current State" in `PROJECT.md`.
 
 Done when: missions 1–4 → certificate works end-to-end on the public URL. Leave the venue by 18:00.
@@ -99,4 +100,4 @@ Done when: missions 1–5, report and certificate run on the deployed URL.
 
 (Add items here during testing. Move resolved items into Git history, not this list.)
 
-- [ ] WEB3 — Certificate mint fails on the deployed URL: "Minting failed: invalid private key, expected hex or 32 bytes, got string" (2026-10-16, all 4 missions passed). `MINTER_PRIVATE_KEY` on Vercel is not a 64-hex-character key (check for quotes, spaces, a newline or a wrong value), then redeploy and mint again.
+- [ ] WEB3 (optional, not planned before submission) — Certificate mint fails on the deployed URL: "Minting failed: invalid private key, expected hex or 32 bytes, got string" (2026-10-16, all 4 missions passed). `MINTER_PRIVATE_KEY` on Vercel is not a 64-hex-character key (check for quotes, spaces, a newline or a wrong value), then redeploy and mint again.

@@ -51,6 +51,12 @@
 - แก้ environment variables แล้วต้อง Redeploy
 - ค่า `NEXT_PUBLIC_*` ถูกฝังตอน build จึงต้อง Redeploy หลังเปลี่ยน
 
+## 2026-10-16 — Certificate ไม่บังคับสำหรับการส่งงาน
+
+- Certificate (mint `SafeStartCert`) เป็น optional ไม่ใช่ส่วนบังคับของ demo หรือ submission
+- Core demo คือ missions 1–4, AI coach และ `/learn`
+- การ mint บน deployed URL ล้มเหลวเพราะ `MINTER_PRIVATE_KEY` ไม่ใช่ key ที่ถูกต้อง ทีมเลือกไม่แก้ก่อนส่งงาน
+
 ## สิ่งที่ไม่เปลี่ยนใน core demo
 
 - Mission pass/fail ต้องตัดสินด้วย deterministic code ไม่ใช่ LLM

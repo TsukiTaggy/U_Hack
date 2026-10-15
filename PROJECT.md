@@ -49,10 +49,10 @@ Out of scope:
 ## Current Milestone
 
 Milestone: M0 Setup → M2 Core loop (Thursday 15 Oct)
-Objective: missions 1–4 and certificate mint work end-to-end on the public deployment by 18:00.
+Objective: missions 1–4 work end-to-end on the public deployment by 18:00. The certificate is optional (2026-10-16).
 Completion criteria:
 - Contracts deployed on Fuji; addresses set in env vars and the README.
-- Deployed URL completes missions 1–4 with a fresh Core wallet; certificate mint follows the selected demo path.
+- Deployed URL completes missions 1–4 with a fresh Core wallet; the certificate mint is optional.
 
 Active tasks: see `TODO.md`.
 
@@ -72,8 +72,8 @@ Partial:
 - Missions 3–4 interactive flow (merged to `main` 2026-10-16): practice chat, labelled simulated wallet history with look-alike transfers, explain-before-sign card with gas-reserve check, receipt-based fee breakdown, landing-style `/play`. Evidence: unit tests, lint, typecheck and production build pass; on 2026-10-16 one Core wallet passed missions 3 and 4 on the deployed URL with a real Fuji transaction. Gaps: the tested wallet was the configured tutor address itself and the decoy (look-alike) path was not run on Fuji. Mission 4 now compares the fee paid with the max fee Core signed (`gas × maxFeePerGas` from the transaction), not with SafeStart's earlier estimate.
 - Coach agent tool loop: answered on the deployed URL with the real LLM after a read-only transaction lookup (2026-10-16). Text scam call and scam evaluator: mechanics verified with a mock LLM only; mission 1 passed on the deployed URL.
 - Frontend landing page and shared navigation are integrated from `frontend`; desktop DOM verification passed locally, with deployed browser validation still pending.
-- `/learn` provides 13 standalone Thai/English lessons in three chapters (blockchain basics, using crypto, Web3 safety), each with a four-question quiz, a hint after a wrong answer, sequential unlocks and versioned local progress; deployment verification remains pending.
-- `/play` page: missions 1–4, coach panel and Core wallet/Fuji flow are working on the deployed URL; certificate minting fails on the deployed URL (invalid `MINTER_PRIVATE_KEY` format, 2026-10-16); broader multi-wallet smoke testing remains.
+- `/learn` provides 13 standalone Thai/English lessons in three chapters (blockchain basics, using crypto, Web3 safety), each with a four-question quiz, a hint after a wrong answer, sequential unlocks and versioned local progress, plus an AI lesson tutor per lesson (`/api/learn-coach`, added 2026-10-16; checked locally without LLM keys only, real-LLM answers unverified); deployment verification remains pending.
+- `/play` page: missions 1–4, coach panel and Core wallet/Fuji flow are working on the deployed URL; a fresh Core wallet passed missions 1–3 on the deployed URL (2026-10-16); certificate minting fails there (invalid `MINTER_PRIVATE_KEY`) and is optional.
 - ElevenLabs private-agent voice flow: signed URL route, Voice/Text toggle, published authenticated agent, 120-second limit and transcript-to-evaluator integration are implemented; a full deployed microphone call has passed.
 
 Not implemented:
@@ -88,6 +88,7 @@ Browser (Next.js pages)
  └─ calls API routes
 API routes (Next.js, server)
  ├─ /api/coach        AI agent + read-only chain tools
+ ├─ /api/learn-coach AI lesson tutor for /learn (no tools, no wallet)
  ├─ /api/explain-tx   decode calldata (viem) + AI plain-language explanation
  ├─ /api/scam/*       AI scammer turns (text) + AI evaluator → structured JSON
  ├─ /api/elevenlabs/* server-only signed URL for the private voice agent
