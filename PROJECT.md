@@ -73,7 +73,7 @@ Partial:
 - Coach agent tool loop: answered on the deployed URL with the real LLM after a read-only transaction lookup (2026-10-16). Text scam call and scam evaluator: mechanics verified with a mock LLM only; mission 1 passed on the deployed URL.
 - Frontend landing page and shared navigation are integrated from `frontend`; desktop DOM verification passed locally, with deployed browser validation still pending.
 - `/learn` provides 13 standalone Thai/English lessons in three chapters (blockchain basics, using crypto, Web3 safety), each with a four-question quiz, a hint after a wrong answer, sequential unlocks and versioned local progress, plus an AI lesson tutor per lesson (`/api/learn-coach`, added 2026-10-16; checked locally without LLM keys only, real-LLM answers unverified); deployment verification remains pending.
-- `/play` page: missions 1–4, coach panel and Core wallet/Fuji flow are working on the deployed URL; a fresh Core wallet passed missions 1–3 on the deployed URL (2026-10-16); certificate minting fails there (invalid `MINTER_PRIVATE_KEY`) and is optional.
+- `/play` page: missions 1–4, coach panel and Core wallet/Fuji flow are working on the deployed URL; a fresh Core wallet passed missions 1–3 on the deployed URL (2026-10-16); certificate minting fails there (invalid `MINTER_PRIVATE_KEY`), is optional, and its card is hidden on `/play` (`SHOW_CERTIFICATE` in `components/PlayClient.tsx`).
 - ElevenLabs private-agent voice flow: signed URL route, Voice/Text toggle, published authenticated agent, 120-second limit and transcript-to-evaluator integration are implemented; a full deployed microphone call has passed.
 
 Not implemented:

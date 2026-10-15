@@ -100,4 +100,4 @@ Done when: missions 1–5, report and certificate run on the deployed URL.
 
 (Add items here during testing. Move resolved items into Git history, not this list.)
 
-- [ ] WEB3 (optional, not planned before submission) — Certificate mint fails on the deployed URL: "Minting failed: invalid private key, expected hex or 32 bytes, got string" (2026-10-16, all 4 missions passed). `MINTER_PRIVATE_KEY` on Vercel is not a 64-hex-character key (check for quotes, spaces, a newline or a wrong value), then redeploy and mint again.
+- [ ] WEB3 (optional, not planned before submission; card hidden on `/play` via `SHOW_CERTIFICATE`) — Certificate mint fails on the deployed URL: "Minting failed: invalid private key, expected hex or 32 bytes, got string" (2026-10-16, all 4 missions passed). `MINTER_PRIVATE_KEY` on Vercel is not a 64-hex-character key (check for quotes, spaces, a newline or a wrong value), then redeploy and mint again.

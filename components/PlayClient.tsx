@@ -178,6 +178,9 @@ export default function PlayClient() {
   const m3Hash = m3Receipt && isHash(m3Receipt.evidence) ? m3Receipt.evidence : null;
 
   // ---------- Certificate ----------
+  // Hidden for the submission: the certificate is optional (docs/decisions.md, 2026-10-16) and minting
+  // fails on the deployed URL until MINTER_PRIVATE_KEY is fixed. Set to true to show the card again.
+  const SHOW_CERTIFICATE = false;
   const [certTx, setCertTx] = useState("");
   const mint = () =>
     run("mint", async () => {
@@ -408,6 +411,7 @@ export default function PlayClient() {
             />
           </AnimatedSection>
 
+          {SHOW_CERTIFICATE && (
           <PlainCard>
             <p className={eyebrow}>Certificate</p>
             <h2 className="mb-3 mt-1 text-xl font-semibold tracking-tight">Non-transferable safety certificate on Fuji</h2>
@@ -424,6 +428,7 @@ export default function PlayClient() {
               </button>
             )}
           </PlainCard>
+          )}
         </div>
 
         <aside id="coach" className="h-fit scroll-mt-24 lg:sticky lg:top-20">
