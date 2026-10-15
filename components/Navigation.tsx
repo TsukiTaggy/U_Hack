@@ -25,6 +25,9 @@ export function Navigation() {
           <Link href="/play" className="text-sm font-medium text-zinc-300 transition-colors hover:text-white">
             Missions
           </Link>
+          <Link href="/learn" className="text-sm font-medium text-zinc-300 transition-colors hover:text-white">
+            Learn
+          </Link>
         </div>
 
         <button
@@ -59,6 +62,13 @@ export function Navigation() {
               onClick={() => setMobileMenuOpen(false)}
             >
               Missions
+            </Link>
+            <Link
+              href="/learn"
+              className="text-sm font-medium text-zinc-300 transition-colors hover:text-white"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Learn
             </Link>
           </div>
         </div>

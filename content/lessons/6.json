@@ -1,0 +1,208 @@
+{
+  "id": "6",
+  "chapter": {
+    "id": "using",
+    "title": {
+      "th": "ใช้งานคริปโต",
+      "en": "Using crypto"
+    }
+  },
+  "title": {
+    "th": "การส่งและรับคริปโต",
+    "en": "Sending and receiving crypto"
+  },
+  "summary": {
+    "th": "ก่อนส่งให้ตรวจ address, network, สินทรัพย์ และจำนวน เพราะการโอนที่ยืนยันแล้วย้อนกลับไม่ได้",
+    "en": "Check the address, network, asset, and amount before you send, because confirmed transfers cannot be undone."
+  },
+  "lesson": {
+    "th": "การโอนหนึ่งครั้งถูกกำหนดด้วยสี่อย่าง คือ address ผู้รับ, network, สินทรัพย์ และจำนวน ก่อนยืนยันให้ตรวจทั้งสี่อย่างว่าตรงกับที่ตั้งใจ wallet ของคุณอนุมัติการโอนด้วยลายเซ็นที่สร้างจาก private key ของบัญชี ไม่มีใครอนุมัติแทนคุณได้ เมื่อการโอนได้รับการยืนยันบนบล็อกเชนแล้ว ฝ่ายช่วยเหลือของ wallet ย้อนกลับให้ไม่ได้ ความผิดพลาดเรื่อง address หรือ network จึงอาจถาวร เมื่อส่ง test AVAX ใน SafeStart ปลายทางต้องเป็น address 0x ที่ถูกต้องบน C-Chain ของ Avalanche Fuji",
+    "en": "A transfer is defined by four things: the recipient address, the network, the asset, and the amount. Check all four against what you intend before you confirm. Your wallet authorises the transfer with a cryptographic signature made with your account's private key; nobody else can approve it for you. Once a transfer is confirmed on-chain, wallet support cannot reverse it, so a mistake with the address or network can be permanent. When you send test AVAX in SafeStart, the destination must be a valid 0x address on the Avalanche Fuji C-Chain."
+  },
+  "keyPoints": [
+    {
+      "th": "ตรวจ address ผู้รับ, network, สินทรัพย์ และจำนวนก่อนยืนยัน",
+      "en": "Check the recipient address, network, asset, and amount before confirming."
+    },
+    {
+      "th": "การโอนถูกอนุมัติด้วยลายเซ็นจาก private key ของคุณ",
+      "en": "A transfer is authorised by a signature from your private key."
+    },
+    {
+      "th": "การโอนที่ยืนยันแล้ว ฝ่ายช่วยเหลือของ wallet ย้อนกลับให้ไม่ได้",
+      "en": "Wallet support cannot reverse a confirmed transfer."
+    }
+  ],
+  "quiz": [
+    {
+      "id": "l06q01",
+      "prompt": {
+        "th": "ก่อนยืนยันการโอนคริปโต ควรตรวจชุดข้อมูลใดอย่างละเอียดที่สุด?",
+        "en": "Before confirming a crypto transfer, which combination should you verify most carefully?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "ราคาโทเคนปัจจุบันเท่านั้น",
+            "en": "Only the current token price"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "จำนวนผู้ติดตามโซเชียลของผู้รับ",
+            "en": "The recipient's social-media follower count"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "address ผู้รับ, network, สินทรัพย์ และจำนวน",
+            "en": "Recipient address, network, asset, and amount"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "สีพื้นหลังของ wallet เท่านั้น",
+            "en": "Only the wallet's background color"
+          }
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": {
+        "th": "การโอนถูกกำหนดด้วยปลายทาง, network, สินทรัพย์ และจำนวน ข้อมูลเหล่านี้จึงต้องตรงกับความตั้งใจก่อนลงลายเซ็น",
+        "en": "A transfer is defined by details such as the destination, network, asset, and amount, so those are the fields that must match your intent before signing."
+      },
+      "hint": {
+        "th": "ตรวจส่วนที่กำหนดว่าธุรกรรมจะไปที่ไหน และส่งอะไร",
+        "en": "Check the pieces that determine where the transaction goes and what it sends."
+      }
+    },
+    {
+      "id": "l06q02",
+      "prompt": {
+        "th": "อะไรอนุมัติให้บัญชี EVM ที่ผู้ใช้ควบคุมส่งธุรกรรมได้?",
+        "en": "What authorizes a normal user-controlled EVM account to send a transaction?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "การค้นหาบน block explorer สาธารณะ",
+            "en": "A public block explorer search"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "รหัสผ่าน wallet ของผู้รับ",
+            "en": "The recipient's wallet password"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "ภาพหน้าจอยอดเงินของผู้ส่ง",
+            "en": "A screenshot of the sender's balance"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "ลายเซ็นดิจิทัลที่สร้างจากการควบคุม private key ของบัญชี",
+            "en": "A cryptographic signature produced using control of the account's private key"
+          }
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": {
+        "th": "บัญชี EVM ที่ผู้ใช้ควบคุมอนุมัติธุรกรรมด้วยลายเซ็นดิจิทัลที่ผูกกับ private key",
+        "en": "User-controlled EVM accounts authorize transactions with cryptographic signatures tied to their private keys."
+      },
+      "hint": {
+        "th": "เครือข่ายต้องการหลักฐานว่าเจ้าของบัญชีอนุมัติคำสั่งนี้จริง",
+        "en": "The network needs proof that the account controller approved the instruction."
+      }
+    },
+    {
+      "id": "l06q03",
+      "prompt": {
+        "th": "ถ้าส่งคริปโตไป address ผิดและธุรกรรมได้รับการยืนยันแล้ว ฝ่ายช่วยเหลือของ wallet ย้อนกลับให้ได้เสมอ",
+        "en": "If you send crypto to the wrong address and the transaction is confirmed, wallet support can always reverse it for you."
+      },
+      "options": [
+        {
+          "id": "true",
+          "text": {
+            "th": "จริง",
+            "en": "True"
+          }
+        },
+        {
+          "id": "false",
+          "text": {
+            "th": "เท็จ",
+            "en": "False"
+          }
+        }
+      ],
+      "correctOptionId": "false",
+      "explanation": {
+        "th": "การโอนที่ยืนยันบนบล็อกเชนแล้วไม่ได้อยู่ในการควบคุมของฝ่ายช่วยเหลือ ผู้ให้บริการ wallet แบบดูแลกุญแจเอง (self-custody) ย้อนธุรกรรมบนบล็อกเชนไม่ได้",
+        "en": "Confirmed blockchain transfers are not controlled by wallet support, and self-custody providers cannot simply reverse an on-chain transaction."
+      },
+      "hint": {
+        "th": "ลองถามว่าบริษัท wallet มีอำนาจกลางเหนือบัญชีแยกประเภทของบล็อกเชนหรือไม่",
+        "en": "Ask whether a wallet company has central authority over the blockchain ledger."
+      }
+    },
+    {
+      "id": "l06q04",
+      "prompt": {
+        "th": "คุณจะส่ง test AVAX ใน SafeStart บน Avalanche Fuji C-Chain ปลายทางแบบใดเหมาะสม?",
+        "en": "You want to send test AVAX in SafeStart on Avalanche Fuji C-Chain. Which destination is appropriate?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "transaction hash แบบสุ่ม",
+            "en": "A random transaction hash"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "address 0x ที่ถูกต้องบน C-Chain ที่รองรับ EVM ของเครือข่ายทดสอบที่ตั้งใจ",
+            "en": "A valid EVM-compatible C-Chain address beginning with 0x on the intended test network"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "recovery phrase",
+            "en": "A Secret Recovery Phrase"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "address สำหรับ Bitcoin ที่คัดลอกมาจากอีกเครือข่าย",
+            "en": "A Bitcoin-only address copied from another network"
+          }
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": {
+        "th": "Avalanche C-Chain ใช้ address 0x ที่รองรับ EVM และผู้ส่งต้องแน่ใจว่าอยู่บน Fuji เมื่อฝึกด้วย test AVAX",
+        "en": "Avalanche C-Chain uses EVM-compatible 0x addresses, and the sender should ensure the intended network is Fuji when practicing with test AVAX."
+      },
+      "hint": {
+        "th": "ต้องตรงทั้งเชน และรูปแบบ address ที่เชนนั้นใช้",
+        "en": "Match both the chain and the address format used by that chain."
+      }
+    }
+  ]
+}

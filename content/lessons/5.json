@@ -1,0 +1,226 @@
+{
+  "id": "5",
+  "chapter": {
+    "id": "using",
+    "title": {
+      "th": "ใช้งานคริปโต",
+      "en": "Using crypto"
+    }
+  },
+  "title": {
+    "th": "Wallet บัญชี และ address",
+    "en": "Wallets, accounts, and addresses"
+  },
+  "summary": {
+    "th": "wallet ช่วยควบคุมบัญชีและลงลายเซ็น ส่วน address คือปลายทางที่แชร์ได้",
+    "en": "A wallet helps you control an account and sign; an address is the destination you can share."
+  },
+  "lesson": {
+    "th": "Crypto wallet คือแอปหรืออุปกรณ์ที่ช่วยให้คุณควบคุมบัญชีบนบล็อกเชน ทั้งการลงลายเซ็น ดูยอดเงิน และส่งธุรกรรม สินทรัพย์ไม่ได้ถูกเก็บอยู่ในแอป wallet แต่ถูกบันทึกบนบล็อกเชน และ wallet เป็นผู้ถือกุญแจที่ใช้ควบคุมสินทรัพย์นั้น ดังนั้นเมื่อกู้ wallet ด้วย recovery phrase บนอุปกรณ์ใหม่ คุณจะได้สิทธิ์เข้าถึงบัญชีเดิมกลับมา โดยไม่มีอะไรถูกย้าย public address คือปลายทางที่คนอื่นใช้ส่งคริปโตให้คุณ และแชร์ได้อย่างปลอดภัย ส่วน private key, recovery phrase และรหัสผ่าน wallet ต้องเก็บเป็นความลับ ใน Core การใช้งานปกติบน Avalanche C-Chain จะใช้ address แบบ EVM ที่ขึ้นต้นด้วย 0x",
+    "en": "A crypto wallet is an app or device that helps you control a blockchain account: it manages signing, shows balances, and sends transactions. Your assets are not stored inside the wallet app. They are recorded on the blockchain, and the wallet holds the keys that control them. That is why restoring a recovery-phrase wallet on a new device gives you access to the same accounts again; nothing is moved. Your public address is the destination others use to send you crypto, and it is safe to share. Your private key, recovery phrase, and wallet password must stay secret. In Core, normal Avalanche C-Chain activity uses an EVM address that begins with 0x."
+  },
+  "keyPoints": [
+    {
+      "th": "wallet ช่วยควบคุมบัญชี ลงลายเซ็น ดูยอดเงิน และส่งธุรกรรม",
+      "en": "A wallet controls an account, signs, shows balances, and sends transactions."
+    },
+    {
+      "th": "สินทรัพย์อยู่บนบล็อกเชน ไม่ได้อยู่ในตัวแอป",
+      "en": "Assets live on the blockchain, not inside the app."
+    },
+    {
+      "th": "แชร์ public address ได้ แต่ห้ามแชร์ private key, recovery phrase หรือรหัสผ่าน",
+      "en": "Share your public address; never share your private key, recovery phrase, or password."
+    },
+    {
+      "th": "address บน C-Chain ใน Core ขึ้นต้นด้วย 0x",
+      "en": "C-Chain addresses in Core begin with 0x."
+    }
+  ],
+  "quiz": [
+    {
+      "id": "l05q01",
+      "prompt": {
+        "th": "wallet คริปโตช่วยให้คุณทำอะไรเป็นหลัก?",
+        "en": "What does a crypto wallet primarily help you do?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "เก็บบล็อกเชนทั้งหมดไว้ในโทรศัพท์ของคุณ",
+            "en": "Store the blockchain itself inside your phone"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "ย้อนธุรกรรมที่ยืนยันแล้วได้ทุกรายการ",
+            "en": "Reverse any confirmed transaction"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "สร้างเหรียญหลักบน mainnet ได้ฟรี",
+            "en": "Create free native coins on mainnet"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "ควบคุมบัญชี จัดการการลงลายเซ็น ดูยอดเงิน และส่งธุรกรรม",
+            "en": "Control an account, manage signing, view balances, and send transactions"
+          }
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": {
+        "th": "wallet คือแอปหรืออุปกรณ์ที่ช่วยคุณควบคุมบัญชีบนบล็อกเชน ลงลายเซ็น ดูยอดเงิน และส่งธุรกรรม",
+        "en": "A wallet is an app or device that helps you control blockchain accounts, sign actions, view balances, and send transactions."
+      },
+      "hint": {
+        "th": "wallet คือหน้าต่างสำหรับควบคุมบัญชีและกุญแจ ไม่ใช่ตู้เซฟที่เก็บบล็อกเชนทั้งหมด",
+        "en": "A wallet is mainly an interface for controlling your account and keys, not a vault that stores the entire blockchain."
+      }
+    },
+    {
+      "id": "l05q02",
+      "prompt": {
+        "th": "เมื่อมีคนจะส่งคริปโตให้คุณ ข้อใดแชร์ได้อย่างปลอดภัย?",
+        "en": "Which item is generally safe to share when someone needs to send crypto to you?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "recovery phrase",
+            "en": "Your Secret Recovery Phrase"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "รหัสผ่าน wallet",
+            "en": "Your wallet password"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "public address ของ wallet",
+            "en": "Your public wallet address"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "private key",
+            "en": "Your private key"
+          }
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": {
+        "th": "public address ใช้ระบุบัญชีสำหรับรับสินทรัพย์ ส่วน private key และ recovery phrase ต้องเป็นความลับเสมอ",
+        "en": "A public address is designed to identify an account for receiving assets; private keys and recovery phrases must remain secret."
+      },
+      "hint": {
+        "th": "ข้อไหนออกแบบมาเป็นปลายทางสาธารณะ ไม่ใช่ข้อมูลลับ?",
+        "en": "Which item is meant to function like a public destination rather than a secret credential?"
+      }
+    },
+    {
+      "id": "l05q03",
+      "prompt": {
+        "th": "คุณใช้ Avalanche C-Chain ใน Core การใช้งานปกติบน C-Chain ที่รองรับ EVM ควรเห็น address รูปแบบใด?",
+        "en": "You are using Avalanche C-Chain in Core. Which address format should you expect for normal EVM-compatible C-Chain activity?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "URL ที่ขึ้นต้นด้วย https://",
+            "en": "A URL beginning with https://"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "address ที่ขึ้นต้นด้วย 0x",
+            "en": "An address beginning with 0x"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "อีเมล",
+            "en": "An email address"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "recovery phrase 12 คำ",
+            "en": "A 12-word recovery phrase"
+          }
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": {
+        "th": "Core ใช้ address บน C-Chain ที่รองรับ EVM ซึ่งขึ้นต้นด้วย 0x ส่วน address บน X-Chain และ P-Chain ใช้รูปแบบอื่น",
+        "en": "Core uses an EVM-compatible C-Chain address that begins with 0x; X-Chain and P-Chain addresses use different formats."
+      },
+      "hint": {
+        "th": "C-Chain รองรับ EVM ลองมองหาคำนำหน้า address แบบ EVM ที่คุ้นเคย",
+        "en": "C-Chain is EVM-compatible, so look for the familiar EVM address prefix."
+      }
+    },
+    {
+      "id": "l05q04",
+      "prompt": {
+        "th": "คุณกู้ wallet ที่ใช้ recovery phrase บนอุปกรณ์ใหม่ สินทรัพย์คริปโตจะเป็นอย่างไร?",
+        "en": "You restore a recovery-phrase wallet on a new device. What happens to the crypto assets?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "wallet ได้สิทธิ์เข้าถึงบัญชีเดิมบนบล็อกเชนกลับมา สินทรัพย์ไม่ได้ถูกย้ายมาที่อุปกรณ์ใหม่",
+            "en": "The wallet regains access to the same on-chain accounts; the assets were not moved to the new device"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "สินทรัพย์ทั้งหมดถูกคัดลอกออกจากบล็อกเชนมาไว้ในเครื่อง",
+            "en": "All assets are copied off the blockchain into the device"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "ประวัติบนบล็อกเชนเดิมถูกลบ",
+            "en": "The old blockchain history is deleted"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "ต้องสร้าง address ใหม่ที่ไม่เกี่ยวข้องเสมอ",
+            "en": "A new unrelated address must always be created"
+          }
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": {
+        "th": "การกู้ wallet คือการได้สิทธิ์เข้าถึงบัญชีที่สร้างจาก recovery phrase กลับมา สินทรัพย์ยังถูกบันทึกบนบล็อกเชน ไม่ได้อยู่ในแอป wallet",
+        "en": "Restoring a wallet restores access to accounts derived from the recovery phrase; the assets remain recorded on-chain rather than being stored in the wallet app."
+      },
+      "hint": {
+        "th": "คิดว่าบันทึกความเป็นเจ้าของอยู่ที่ไหน: บนบล็อกเชน ไม่ใช่ในโทรศัพท์เครื่องเดียว",
+        "en": "Think about where ownership records live: on the blockchain, not inside one phone."
+      }
+    }
+  ]
+}

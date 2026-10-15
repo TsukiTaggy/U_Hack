@@ -18,7 +18,8 @@ In code use `avalancheFuji` from `viem/chains`.
 
 | Component | Location | Responsibility |
 |---|---|---|
-| Pages | `app/page.tsx`, `app/play/page.tsx`, `components/PlayClient.tsx` | Landing page; mission flow with wallet panel, missions 1–4, certificate and coach panel |
+| Pages | `app/page.tsx`, `app/play/page.tsx`, `app/learn/page.tsx` | Landing page; existing mission route; standalone learning route |
+| Page clients | `components/PlayClient.tsx`, `components/LearningClient.tsx` | Wallet-backed mission flow; browser-only lesson and quiz flow |
 | Config | `lib/config.ts` | Chain ID, RPC, explorer links, contract addresses from `NEXT_PUBLIC_*` |
 | ABIs | `lib/abi.ts` | Human-readable ABIs for the three contracts |
 | Wallet layer | `lib/wallet.ts` | Connect Core wallet, switch to Fuji, send AVAX |
@@ -33,8 +34,22 @@ In code use `avalancheFuji` from `viem/chains`.
 | Minter | `lib/minter.ts` | Server wallet client from `MINTER_PRIVATE_KEY` |
 | Decoys | `lib/decoys.ts` | Look-alike addresses for mission 3 |
 | API helpers | `lib/api.ts` | JSON body parsing, errors, in-memory rate limit |
-| Content | `content/` | Mission text, scam personas |
+| Content | `content/missions/`, `content/lessons/`, `content/scam-personas.json` | Mission text; localized standalone lessons and quizzes; scam personas |
 | Contracts | `contracts/SafeStart.sol` | TestUSDC, FakeAirdrop, SafeStartCert |
+
+## Standalone learning center
+
+`/learn` is separate from the wallet-backed missions on `/play`. It presents 13 Thai/English lessons in sequence, grouped into three chapters:
+
+| Chapter | Lessons |
+|---|---|
+| Blockchain basics (`basics`) | 1 What is a blockchain · 2 Crypto, coins and tokens · 3 Transactions, blocks and consensus · 4 Smart contracts, networks and testnets |
+| Using crypto (`using`) | 5 Wallets, accounts and addresses · 6 Sending and receiving · 7 Gas fees and transaction status · 8 Block explorers and dapps |
+| Web3 safety (`safety`) | 9 Recovery phrase · 10 Fake websites and links · 11 Reviewing a transaction before signing · 12 Social engineering · 13 Safe habits and scam response |
+
+Each lesson has four multiple-choice or true/false questions answerable from its lesson text. A wrong answer shows the question's hint and a retry; the explanation appears once the answer is right. Lessons 1–8 and 13, and the fourth question of lessons 9–12, come from the team's research question bank (2026-10-15), which states its facts were checked against ethereum.org, Avalanche Builder Hub, MetaMask Help Center, OWASP Smart Contract Security and official explorers; Thai copy was translated for the course. Research questions that repeated lessons 9–12 were left out.
+
+`lib/learning.ts` owns the lesson schema, localization fallback and quiz evaluation. `lib/learning-progress.ts` owns parsing, sequential unlock rules and resilient browser storage under `safestart.learning.v2` (v1 belonged to the earlier four-lesson numbering and is not reused). This progress is a learning aid only: it never creates a pass receipt, affects certificate readiness or replaces any check in `lib/verify.ts`.
 
 ## Missions and verification
 

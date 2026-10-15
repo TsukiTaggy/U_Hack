@@ -1,0 +1,191 @@
+{
+  "id": "12",
+  "chapter": {
+    "id": "safety",
+    "title": {
+      "th": "ความปลอดภัย Web3",
+      "en": "Web3 safety"
+    }
+  },
+  "title": {
+    "th": "รับมือ Social Engineering",
+    "en": "Respond to social engineering"
+  },
+  "summary": {
+    "th": "สังเกตการกดดันด้วยความเร่งด่วน อำนาจ ความกลัว และรางวัล แล้วหยุดเพื่อตรวจสอบ",
+    "en": "Recognize pressure through urgency, authority, fear, and rewards, then pause to verify."
+  },
+  "lesson": {
+    "th": "Social engineering ใช้ความรู้สึกแทนการเจาะระบบ ผู้โจมตีอาจอ้างเป็นหัวหน้า เจ้าหน้าที่ หรือเพื่อน แล้วสร้างความเร่งด่วน ความกลัว หรือรางวัลเพื่อให้คุณทำก่อนคิด สัญญาณสำคัญคือการห้ามตรวจสอบ การขอให้เก็บเป็นความลับ หรือการเปลี่ยนช่องทางและข้อมูลรับเงินกะทันหัน วิธีรับมือคือหยุด ไม่เปิดเผยข้อมูลหรือเซ็นรายการ และยืนยันตัวตนผ่านช่องทางอื่นที่คุณรู้ว่าเชื่อถือได้ เช่น โทรกลับหมายเลขเดิมหรือเปิดเว็บไซต์ทางการเอง คนแปลกหน้าที่รู้ wallet address ของคุณไม่ได้พิสูจน์อะไรเลย เพราะ address และกิจกรรมบนบล็อกเชนเป็นข้อมูลสาธารณะ",
+    "en": "Social engineering attacks emotions instead of software. An attacker may impersonate a manager, support agent, or friend and use urgency, fear, or rewards to make you act before thinking. Warning signs include discouraging verification, demanding secrecy, or suddenly changing the channel or payment details. Pause, do not reveal information or sign anything, and verify identity through a separate channel you already trust, such as calling a known number or opening the official site yourself. A stranger who knows your wallet address has proven nothing: addresses and on-chain activity are public."
+  },
+  "keyPoints": [
+    {
+      "th": "ความเร่งด่วน อำนาจ ความกลัว และรางวัลคือเครื่องมือกดดันที่พบบ่อย",
+      "en": "Urgency, authority, fear, and rewards are common pressure tools."
+    },
+    {
+      "th": "หยุดก่อนตอบ ส่งข้อมูล หรือเซ็นธุรกรรม",
+      "en": "Pause before replying, sharing information, or signing a transaction."
+    },
+    {
+      "th": "ยืนยันตัวตนผ่านช่องทางอื่นที่คุณเชื่อถืออยู่แล้ว",
+      "en": "Verify identity through another channel you already trust."
+    },
+    {
+      "th": "การรู้ address ของคุณไม่ได้พิสูจน์ว่าเป็นเจ้าหน้าที่ตัวจริง",
+      "en": "Knowing your address does not prove someone is real support."
+    }
+  ],
+  "quiz": [
+    {
+      "id": "urgent-manager",
+      "prompt": {
+        "th": "บัญชีใหม่อ้างว่าเป็นหัวหน้าและสั่งให้โอนด่วนพร้อมห้ามโทรกลับ คุณควรทำอย่างไร?",
+        "en": "A new account claims to be your manager, orders an urgent transfer, and says not to call back. What should you do?"
+      },
+      "options": [
+        {
+          "id": "obey-authority",
+          "text": {
+            "th": "ทำตามเพราะผู้ส่งมีอำนาจมากกว่า",
+            "en": "Comply because the sender has more authority."
+          }
+        },
+        {
+          "id": "verify-known-channel",
+          "text": {
+            "th": "หยุดและยืนยันกับหัวหน้าผ่านหมายเลขหรือช่องทางเดิมที่รู้จัก",
+            "en": "Pause and verify with the manager through a known number or existing channel."
+          }
+        },
+        {
+          "id": "transfer-less",
+          "text": {
+            "th": "โอนจำนวนน้อยลงเพื่อแสดงว่าพยายามทำตามแล้ว",
+            "en": "Transfer a smaller amount to show that you tried to comply."
+          }
+        }
+      ],
+      "correctOptionId": "verify-known-channel",
+      "explanation": {
+        "th": "คำสั่งเร่งด่วนพร้อมห้ามตรวจสอบเป็นสัญญาณอันตราย ให้ยืนยันผ่านช่องทางที่ผู้ส่งควบคุมไม่ได้",
+        "en": "An urgent order that blocks verification is a warning sign. Verify through a channel the sender does not control."
+      },
+      "hint": {
+        "th": "แรงกดดันบวกกับคำว่า 'ห้ามตรวจสอบ' คือรูปแบบที่ต้องสังเกต",
+        "en": "Pressure plus 'don't check' is the pattern to notice."
+      }
+    },
+    {
+      "id": "reward-pressure",
+      "prompt": {
+        "th": "ข้อความว่า “รับ airdrop ภายใน 5 นาที ไม่เช่นนั้นสิทธิ์จะหาย” ใช้กลวิธีใด?",
+        "en": "A message says, “Claim the airdrop within five minutes or lose it.” Which tactic is being used?"
+      },
+      "options": [
+        {
+          "id": "urgency-reward",
+          "text": {
+            "th": "ใช้ความเร่งด่วนและรางวัลให้ตัดสินใจเร็ว",
+            "en": "Urgency and reward pressure to force a quick decision."
+          }
+        },
+        {
+          "id": "technical-audit",
+          "text": {
+            "th": "การตรวจสอบ smart contract ทางเทคนิค",
+            "en": "A technical smart-contract audit."
+          }
+        },
+        {
+          "id": "network-notice",
+          "text": {
+            "th": "ประกาศเปลี่ยน network ตามปกติ",
+            "en": "A routine network-change notice."
+          }
+        }
+      ],
+      "correctOptionId": "urgency-reward",
+      "explanation": {
+        "th": "กำหนดเวลาสั้นและรางวัลถูกใช้เพื่อลดเวลาที่คุณจะตรวจสอบความจริง",
+        "en": "A short deadline and reward reduce the time you feel able to spend verifying the claim."
+      },
+      "hint": {
+        "th": "ดูที่กำหนดเวลาและรางวัล: มันทำให้คุณข้ามขั้นตอนอะไรไป?",
+        "en": "Look at the deadline and the prize: what do they make you skip?"
+      }
+    },
+    {
+      "id": "friend-secret",
+      "prompt": {
+        "th": "เพื่อนส่งข้อความจากบัญชีเดิมแต่ขอข้อมูลลับแบบผิดปกติ การตอบสนองที่ปลอดภัยคืออะไร?",
+        "en": "A friend messages from their usual account but unusually asks for secret information. What is the safe response?"
+      },
+      "options": [
+        {
+          "id": "share-because-known",
+          "text": {
+            "th": "ส่งให้เพราะเป็นบัญชีที่รู้จัก",
+            "en": "Share it because the account is familiar."
+          }
+        },
+        {
+          "id": "ask-security-question",
+          "text": {
+            "th": "ถามคำถามเพิ่มในแชตเดียวกันแล้วเชื่อคำตอบ",
+            "en": "Ask another question in the same chat and trust the answer."
+          }
+        },
+        {
+          "id": "withhold-and-verify",
+          "text": {
+            "th": "ไม่ส่งข้อมูล และติดต่อเพื่อนผ่านโทรศัพท์หรือช่องทางอื่น",
+            "en": "Do not share it; contact the friend by phone or another channel."
+          }
+        }
+      ],
+      "correctOptionId": "withhold-and-verify",
+      "explanation": {
+        "th": "บัญชีที่คุ้นเคยอาจถูกยึด การยืนยันผ่านช่องทางอื่นช่วยแยกเพื่อนจริงออกจากผู้ควบคุมบัญชี",
+        "en": "A familiar account can be compromised. A separate channel distinguishes your friend from whoever controls the account."
+      },
+      "hint": {
+        "th": "บัญชีที่คุ้นเคยอาจถูกคนอื่นควบคุมอยู่",
+        "en": "A familiar account can be controlled by someone else."
+      }
+    },
+    {
+      "id": "public-address-not-proof",
+      "prompt": {
+        "th": "คนแปลกหน้าที่รู้ public wallet address ของคุณ ถือว่าพิสูจน์แล้วว่าเป็นฝ่ายช่วยเหลือตัวจริง",
+        "en": "A stranger knowing your public wallet address is enough proof that they are legitimate support."
+      },
+      "options": [
+        {
+          "id": "true",
+          "text": {
+            "th": "จริง",
+            "en": "True"
+          }
+        },
+        {
+          "id": "false",
+          "text": {
+            "th": "เท็จ",
+            "en": "False"
+          }
+        }
+      ],
+      "correctOptionId": "false",
+      "explanation": {
+        "th": "address และกิจกรรมบนบล็อกเชนเป็นข้อมูลสาธารณะ การรู้ address จึงไม่ได้พิสูจน์ว่าผู้โทรหรือผู้ส่งข้อความน่าเชื่อถือ",
+        "en": "Wallet addresses and on-chain activity are public data, so knowing an address does not prove a caller or message sender is trustworthy."
+      },
+      "hint": {
+        "th": "ข้อมูลสาธารณะไม่ใช่ความลับที่ใช้ยืนยันตัวตน",
+        "en": "Public information is not an authentication secret."
+      }
+    }
+  ]
+}

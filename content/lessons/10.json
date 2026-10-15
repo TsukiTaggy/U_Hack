@@ -1,0 +1,205 @@
+{
+  "id": "10",
+  "chapter": {
+    "id": "safety",
+    "title": {
+      "th": "ความปลอดภัย Web3",
+      "en": "Web3 safety"
+    }
+  },
+  "title": {
+    "th": "ตรวจเว็บและลิงก์ปลอม",
+    "en": "Detect fake websites and links"
+  },
+  "summary": {
+    "th": "ฝึกตรวจ domain และเข้าบริการผ่านช่องทางที่คุณยืนยันเองก่อนเชื่อมกระเป๋า",
+    "en": "Practise checking domains and reaching services independently before connecting a wallet."
+  },
+  "lesson": {
+    "th": "เว็บปลอมมักเลียนแบบชื่อ โลโก้ และหน้าตาของเว็บจริง แต่ใช้ domain ที่สะกดต่างเพียงเล็กน้อย ให้ตรวจชื่อ domain ทั้งชุด ไม่ใช่เฉพาะคำที่คุ้นตา สัญลักษณ์แม่กุญแจบอกเพียงว่าการเชื่อมต่อถูกเข้ารหัส ไม่ได้ยืนยันว่าเจ้าของเว็บน่าเชื่อถือ เมื่อได้รับลิงก์จากข้อความ โฆษณา หรือ DM อย่ากดเพราะความเร่งด่วน ให้เปิด bookmark ที่บันทึกไว้หรือค้นหาช่องทางทางการด้วยตัวเองก่อนเชื่อม wallet หรือกรอกข้อมูล เว็บ 'แจก airdrop ฟรี' ที่ขอสิทธิ์ใช้โทเคนแบบกว้างโดยไม่คาดคิดเป็นสัญญาณอันตราย ให้หยุดและตรวจเว็บ contract และสิทธิ์ที่ขอก่อนลงลายเซ็นใด ๆ",
+    "en": "Fake sites often copy the real name, logo, and layout while using a domain with a tiny spelling difference. Inspect the complete domain, not only the familiar word. A padlock only means the connection is encrypted; it does not prove the site owner is trustworthy. When a link arrives through a message, advertisement, or DM, do not click because of urgency. Open a saved bookmark or reach the official channel independently before connecting a wallet or entering information. A 'free airdrop' site that unexpectedly asks for broad token access is a warning sign: stop and verify the site, the contract, and the permission before signing anything."
+  },
+  "keyPoints": [
+    {
+      "th": "ตรวจ domain ทั้งชุดและระวังตัวอักษรที่คล้ายกัน",
+      "en": "Inspect the complete domain and watch for look-alike characters."
+    },
+    {
+      "th": "แม่กุญแจหรือ HTTPS ไม่ได้พิสูจน์ว่าเว็บเป็นของจริง",
+      "en": "A padlock or HTTPS does not prove a site is legitimate."
+    },
+    {
+      "th": "เข้าผ่าน bookmark หรือช่องทางทางการที่คุณเปิดเอง",
+      "en": "Use a bookmark or an official channel you open independently."
+    },
+    {
+      "th": "ของฟรีที่ขอสิทธิ์ใช้โทเคน ต้องหยุดและตรวจก่อนลงลายเซ็น",
+      "en": "A free offer that asks for token access means stop and verify before signing."
+    }
+  ],
+  "quiz": [
+    {
+      "id": "link-before-connect",
+      "prompt": {
+        "th": "คุณได้รับลิงก์รับรางวัลทาง DM ก่อนเชื่อม wallet ควรทำอะไร?",
+        "en": "You receive a reward link in a DM. What should you do before connecting a wallet?"
+      },
+      "options": [
+        {
+          "id": "open-dm-link",
+          "text": {
+            "th": "เปิดลิงก์ทันทีเพราะรางวัลมีเวลาจำกัด",
+            "en": "Open it immediately because the reward is time-limited."
+          }
+        },
+        {
+          "id": "independent-official",
+          "text": {
+            "th": "ไม่ใช้ลิงก์ใน DM และเข้าหน้าทางการด้วย bookmark หรือช่องทางที่ยืนยันเอง",
+            "en": "Ignore the DM link and use a bookmark or independently verified official channel."
+          }
+        },
+        {
+          "id": "ask-sender",
+          "text": {
+            "th": "ถามผู้ส่งว่าลิงก์ปลอดภัยหรือไม่ แล้วเชื่อคำตอบ",
+            "en": "Ask the sender whether the link is safe and trust their answer."
+          }
+        }
+      ],
+      "correctOptionId": "independent-official",
+      "explanation": {
+        "th": "ผู้ส่ง DM อาจเป็นผู้โจมตีหรือบัญชีที่ถูกยึด ให้เข้าช่องทางทางการด้วยเส้นทางที่คุณควบคุมเอง",
+        "en": "The sender may be an attacker or a compromised account. Reach the official service through a path you control."
+      },
+      "hint": {
+        "th": "ใครควบคุมลิงก์นั้น: คุณ หรือคนที่ส่งมา?",
+        "en": "Who controls the link: you, or the person who sent it?"
+      }
+    },
+    {
+      "id": "padlock-meaning",
+      "prompt": {
+        "th": "สัญลักษณ์แม่กุญแจข้าง URL ยืนยันอะไร?",
+        "en": "What does the padlock beside a URL confirm?"
+      },
+      "options": [
+        {
+          "id": "official-owner",
+          "text": {
+            "th": "เว็บเป็นขององค์กรทางการแน่นอน",
+            "en": "The site definitely belongs to the official organization."
+          }
+        },
+        {
+          "id": "safe-contract",
+          "text": {
+            "th": "smart contract ทุกตัวบนเว็บปลอดภัย",
+            "en": "Every smart contract on the site is safe."
+          }
+        },
+        {
+          "id": "encrypted-connection",
+          "text": {
+            "th": "การเชื่อมต่อถูกเข้ารหัส แต่ยังต้องตรวจเจ้าของและ domain",
+            "en": "The connection is encrypted, but the owner and domain still need verification."
+          }
+        }
+      ],
+      "correctOptionId": "encrypted-connection",
+      "explanation": {
+        "th": "เว็บปลอมก็ใช้ HTTPS ได้ แม่กุญแจจึงไม่ใช่หลักฐานว่าเว็บนั้นเป็นของจริง",
+        "en": "Fake sites can use HTTPS too, so the padlock is not proof that a site is legitimate."
+      },
+      "hint": {
+        "th": "การเข้ารหัสปกป้องการเชื่อมต่อ ไม่ได้รับรองความซื่อสัตย์ของเจ้าของเว็บ",
+        "en": "Encryption protects the connection, not the owner's honesty."
+      }
+    },
+    {
+      "id": "lookalike-domain",
+      "prompt": {
+        "th": "วิธีใดช่วยจับ domain เลียนแบบได้ดีที่สุด?",
+        "en": "Which habit best detects a look-alike domain?"
+      },
+      "options": [
+        {
+          "id": "logo-check",
+          "text": {
+            "th": "ดูว่าโลโก้และสีเหมือนเว็บเดิมหรือไม่",
+            "en": "Check whether the logo and colors match the original site."
+          }
+        },
+        {
+          "id": "full-domain-check",
+          "text": {
+            "th": "อ่านชื่อ domain ทั้งชุดและเปรียบเทียบกับช่องทางทางการ",
+            "en": "Read the entire domain and compare it with an official source."
+          }
+        },
+        {
+          "id": "search-ad",
+          "text": {
+            "th": "เลือกผลการค้นหาที่เป็นโฆษณาอันดับแรก",
+            "en": "Choose the first sponsored search result."
+          }
+        }
+      ],
+      "correctOptionId": "full-domain-check",
+      "explanation": {
+        "th": "หน้าตาเว็บสามารถคัดลอกได้ง่าย แต่การอ่าน domain ทั้งชุดช่วยเห็นการสะกดหรือส่วนต่อท้ายที่ผิด",
+        "en": "A site's appearance is easy to copy, while the complete domain reveals spelling changes and misleading suffixes."
+      },
+      "hint": {
+        "th": "โลโก้คัดลอกได้ง่าย แต่ชื่อ domain ทั้งชุดปลอมให้เหมือนได้ยากกว่า",
+        "en": "Logos are easy to copy; the full domain name is harder to fake."
+      }
+    },
+    {
+      "id": "free-airdrop-approval",
+      "prompt": {
+        "th": "เว็บ 'แจก airdrop ฟรี' ขอสิทธิ์ใช้โทเคนแบบกว้างโดยไม่คาดคิด คุณควรทำอะไรก่อน?",
+        "en": "A 'free airdrop' site unexpectedly asks for broad token access. What should you do first?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "อนุมัติแบบไม่จำกัดเพราะโฆษณาว่าโทเคนแจกฟรี",
+            "en": "Approve unlimited access because the token is advertised as free"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "เปิดเผย recovery phrase เพื่อยืนยันสิทธิ์",
+            "en": "Reveal your recovery phrase to prove eligibility"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "ไม่ต้องดูรายละเอียดธุรกรรมใน wallet แล้วกดเซ็น",
+            "en": "Ignore the wallet's transaction details and sign"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "หยุด และตรวจเว็บ contract และสิทธิ์ที่ขอก่อนลงลายเซ็นใด ๆ",
+            "en": "Stop and verify the site, contract, and requested permission before signing anything"
+          }
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": {
+        "th": "การอนุมัติโทเคนที่ไม่คาดคิดอาจอันตราย โดยเฉพาะเมื่อผู้ได้รับสิทธิ์หรือจำนวนที่ขอไม่ตรงกับความตั้งใจ ให้ตรวจแหล่งที่มาและสิทธิ์ก่อนลงลายเซ็น",
+        "en": "Unexpected token approvals can be dangerous, especially when the spender or requested amount does not match your intent. Verify the source and permission before signing."
+      },
+      "hint": {
+        "th": "ของฟรีไม่ได้ทำให้คุณไม่ต้องตรวจว่ากำลังให้สิทธิ์อะไร",
+        "en": "Free rewards do not remove the need to inspect what permission you are granting."
+      }
+    }
+  ]
+}

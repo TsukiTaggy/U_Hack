@@ -1,0 +1,212 @@
+{
+  "id": "13",
+  "chapter": {
+    "id": "safety",
+    "title": {
+      "th": "ความปลอดภัย Web3",
+      "en": "Web3 safety"
+    }
+  },
+  "title": {
+    "th": "นิสัยปลอดภัยและการรับมือเมื่อโดนหลอก",
+    "en": "Safe habits and scam response"
+  },
+  "summary": {
+    "th": "รู้ว่าต้องทำอะไรเมื่อ recovery phrase หลุด เผลออนุมัติโทเคน หรือ wallet แสดงคำเตือน",
+    "en": "Know what to do when a recovery phrase leaks, you approve a suspicious token, or your wallet warns you."
+  },
+  "lesson": {
+    "th": "นิสัยที่ดีสำคัญที่สุดตอนเกิดปัญหา หากคิดว่า recovery phrase หลุดไปแล้ว ให้ถือว่าทุกบัญชีที่ผูกกับ phrase นั้นไม่ปลอดภัย สร้าง wallet ใหม่ด้วย phrase ใหม่ในสภาพแวดล้อมที่เชื่อถือได้ ย้ายสินทรัพย์ที่เหลือไปเมื่อปลอดภัย และเลิกใช้บัญชีเดิม หากเผลออนุมัติสิทธิ์ให้ dapp ที่น่าสงสัยแต่เงินยังไม่ถูกดูด ให้เพิกถอน (revoke) การอนุมัติโทเคนด้วยเครื่องมือจัดการสิทธิ์ที่เชื่อถือได้ การตัดการเชื่อมต่อเว็บไซต์อย่างเดียวไม่ได้ลบสิทธิ์ที่บันทึกบนบล็อกเชน เมื่อ wallet แสดงคำเตือนด้านความปลอดภัย ให้หยุดอ่านคำเตือนพร้อมรายละเอียดธุรกรรมก่อนตัดสินใจ และอย่าปิดคำเตือนเพื่อรีบทำรายการ ผู้ให้บริการ wallet แบบดูแลกุญแจเองย้อนการขโมยที่ยืนยันแล้วไม่ได้ การป้องกันจึงเป็นเกราะหลักของคุณ",
+    "en": "Good habits matter most when something goes wrong. If you think your recovery phrase has been exposed, treat every account tied to it as unsafe: create a new wallet with a fresh phrase in a trusted environment, move remaining assets there when it is safe, and stop using the old accounts. If you approved a suspicious dapp but have not been drained, revoke the token approval with a trusted approval-management tool; disconnecting the website alone does not remove an on-chain allowance. When your wallet shows a security warning, pause and read it together with the transaction details before deciding, and never switch warnings off to rush through. A self-custody wallet provider cannot reverse a confirmed theft, so prevention is your main protection."
+  },
+  "keyPoints": [
+    {
+      "th": "recovery phrase หลุด: สร้าง wallet ใหม่ ย้ายสินทรัพย์ และเลิกใช้บัญชีเดิม",
+      "en": "Leaked recovery phrase: create a new wallet, move assets, stop using the old accounts."
+    },
+    {
+      "th": "เผลออนุมัติสิทธิ์: revoke ทันที การตัดการเชื่อมต่ออย่างเดียวไม่พอ",
+      "en": "Suspicious approval: revoke it; disconnecting is not enough."
+    },
+    {
+      "th": "คำเตือนจาก wallet คือสัญญาณให้หยุดตรวจ ไม่ใช่สิ่งที่ต้องปิด",
+      "en": "A wallet warning means stop and check, not switch it off."
+    },
+    {
+      "th": "การขโมยที่ยืนยันแล้ว ผู้ให้บริการ wallet ย้อนกลับไม่ได้",
+      "en": "A confirmed theft cannot be reversed by the wallet provider."
+    }
+  ],
+  "quiz": [
+    {
+      "id": "l12q01",
+      "prompt": {
+        "th": "คุณเชื่อว่า recovery phrase ของคุณหลุดไปแล้ว วิธีรับมือที่ปลอดภัยที่สุดโดยทั่วไปคืออะไร?",
+        "en": "You believe your recovery phrase has been exposed. What is the safest general response?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "โพสต์ phrase สาธารณะให้คนอื่นยืนยันว่าหลุดแล้ว",
+            "en": "Post the phrase publicly so others can confirm it is compromised"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "รอให้ฝ่ายช่วยเหลือของ wallet ย้อนการขโมยในอนาคตให้อัตโนมัติ",
+            "en": "Wait for wallet support to reverse any future theft automatically"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "สร้าง wallet ใหม่ด้วย recovery phrase ใหม่ในสภาพแวดล้อมที่เชื่อถือได้ ย้ายสินทรัพย์ที่เหลือเมื่อปลอดภัย และเลิกใช้บัญชีที่ผูกกับ phrase เดิม",
+            "en": "Create a new wallet with a fresh recovery phrase using a trusted environment, move remaining assets when safe to do so, and stop using accounts tied to the compromised phrase"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "ใช้ phrase เดิมต่อ แต่เปลี่ยนธีมของ wallet",
+            "en": "Keep using the same recovery phrase but change the wallet theme"
+          }
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": {
+        "th": "เมื่อ recovery phrase อาจหลุดแล้ว บัญชีที่เกี่ยวข้องไม่ควรถูกเชื่อถืออีก คำแนะนำทางการของ wallet คือย้ายสินทรัพย์ที่เหลือไป wallet ใหม่และเลิกใช้ wallet เดิม",
+        "en": "Once a recovery phrase may be compromised, the associated accounts should no longer be trusted. Official wallet guidance recommends migrating remaining assets to a fresh wallet and discontinuing the compromised one."
+      },
+      "hint": {
+        "th": "ความลับหลักที่หลุดไปแล้ว กลับมาเป็นความลับไม่ได้ด้วยการเปลี่ยนรหัสผ่านในเครื่อง",
+        "en": "A leaked master secret cannot be made secret again by changing a local password."
+      }
+    },
+    {
+      "id": "l12q02",
+      "prompt": {
+        "th": "คุณเผลออนุมัติสิทธิ์ใช้โทเคนให้ dapp ที่น่าสงสัย แต่ wallet ยังไม่ถูกดูดเงิน วิธีใดลบสิทธิ์นั้นได้โดยตรง?",
+        "en": "You accidentally granted a suspicious dapp a token approval, but your wallet has not been drained. What action can directly remove that allowance?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "ตัดการเชื่อมต่อเว็บไซต์อย่างเดียว แล้วถือว่าสิทธิ์บนเชนหายไปเอง",
+            "en": "Only disconnect the website and assume the on-chain approval disappears"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "ลบประวัติเบราว์เซอร์",
+            "en": "Delete the browser history"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "เปลี่ยนชื่อบัญชีใน wallet",
+            "en": "Rename the wallet account"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "เพิกถอน (revoke) การอนุมัติโทเคนด้วยเครื่องมือจัดการสิทธิ์ที่เชื่อถือได้",
+            "en": "Revoke the token approval or spending allowance using a trusted approval-management tool"
+          }
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": {
+        "th": "การ revoke เปลี่ยนสิทธิ์ใช้โทเคนที่บันทึกบนบล็อกเชน ส่วนการตัดการเชื่อมต่อ dapp อย่างเดียวไม่จำเป็นต้องลบการอนุมัติที่มีอยู่",
+        "en": "Revoking an approval changes the on-chain allowance; simply disconnecting a dapp does not necessarily remove existing token approvals."
+      },
+      "hint": {
+        "th": "แยกให้ออกระหว่างการซ่อน address จากเว็บ กับการลบสิทธิ์ใช้โทเคนที่อยู่บนเชน",
+        "en": "Think about the difference between hiding your address from a site and removing its on-chain spending permission."
+      }
+    },
+    {
+      "id": "l12q03",
+      "prompt": {
+        "th": "wallet แสดงคำเตือนด้านความปลอดภัยสำหรับธุรกรรมที่คุณกำลังจะอนุมัติ ขั้นตอนถัดไปที่ดีที่สุดคืออะไร?",
+        "en": "Your wallet displays a security warning for a transaction you were about to approve. What is the best next step?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "ส่ง private key ให้ dapp เพื่อข้ามคำเตือน",
+            "en": "Share your private key with the dapp to bypass the warning"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "หยุด แล้วอ่านคำเตือนและรายละเอียดธุรกรรมก่อนตัดสินใจว่าจะทำต่อหรือไม่",
+            "en": "Pause and inspect the warning and transaction details before deciding whether to continue"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "ปิดการแจ้งเตือนความปลอดภัยเพื่อให้ธุรกรรมผ่านเร็วขึ้น",
+            "en": "Disable security alerts so the transaction goes through faster"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "อนุมัติทันทีเพราะคำเตือนไม่เคยสำคัญ",
+            "en": "Approve immediately because warnings never matter"
+          }
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": {
+        "th": "คำเตือนของ wallet ออกแบบมาเพื่อบอกสัญญาณความเสี่ยงก่อนอนุมัติ ให้ถือเป็นเหตุผลที่ต้องหยุดตรวจ ไม่ใช่สิ่งที่ต้องข้าม",
+        "en": "Wallet security alerts are designed to provide risk signals before an action is approved. Treat the warning as a reason to stop and review the request rather than bypass it."
+      },
+      "hint": {
+        "th": "คำเตือนควรทำให้คุณตรวจสอบ ไม่ใช่รีบร้อน",
+        "en": "A warning should trigger verification, not urgency."
+      }
+    },
+    {
+      "id": "l12q04",
+      "prompt": {
+        "th": "การขโมยบนบล็อกเชนที่ยืนยันแล้ว ผู้ให้บริการ wallet แบบดูแลกุญแจเองย้อนกลับให้ได้เสมอ ถ้ารายงานเร็วพอ",
+        "en": "A confirmed on-chain theft can always be reversed by the self-custody wallet provider if you report it quickly enough."
+      },
+      "options": [
+        {
+          "id": "true",
+          "text": {
+            "th": "จริง",
+            "en": "True"
+          }
+        },
+        {
+          "id": "false",
+          "text": {
+            "th": "เท็จ",
+            "en": "False"
+          }
+        }
+      ],
+      "correctOptionId": "false",
+      "explanation": {
+        "th": "ผู้ให้บริการ wallet แบบดูแลกุญแจเองไม่ได้ควบคุมบล็อกเชน โดยทั่วไปจึงย้อนธุรกรรมที่ไม่ได้รับอนุญาตซึ่งยืนยันแล้ว หรือคืนเงินที่หายไปไม่ได้",
+        "en": "Self-custody wallet providers do not control the blockchain and generally cannot reverse confirmed unauthorized transactions or restore missing funds."
+      },
+      "hint": {
+        "th": "ลองถามว่าผู้ให้บริการ wallet เป็นธนาคารกลางที่มีอำนาจแก้ไขเชนหรือไม่",
+        "en": "Ask whether the wallet provider is a central bank with power to edit the chain."
+      }
+    }
+  ]
+}
