@@ -8,11 +8,12 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import { StatCard, StatsGrid } from "@/components/StatCard";
 import VoicePracticeCall from "@/components/VoicePracticeCall";
 import { AgentSteps } from "@/components/missions/AgentSteps";
+import { CoachText } from "@/components/missions/CoachText";
 import { FeeMission } from "@/components/missions/FeeMission";
 import { MissionCard, PlainCard } from "@/components/missions/MissionCard";
 import { Bubble, PhoneFrame } from "@/components/missions/PhoneFrame";
 import { SendMission } from "@/components/missions/SendMission";
-import { post, short, type CheckResponse, type FeeEstimate, type Lang, type Receipt, type Step } from "@/components/missions/types";
+import { post, short, type CheckResponse, type Lang, type Receipt, type Step } from "@/components/missions/types";
 import { btnChip, btnHero, btnHeroSmall, btnPrimary, btnSecondary, eyebrow, inputClass } from "@/components/missions/ui";
 import { publicClient } from "@/lib/chain";
 import { addressUrl, txUrl } from "@/lib/config";
@@ -61,7 +62,6 @@ export default function PlayClient() {
   const key = wallet ? `safestart.${wallet.address.toLowerCase()}` : "safestart.none";
   const [receipts, setReceipts] = useStored<Receipt[]>(`${key}.receipts`, []);
   const [txHashes, setTxHashes] = useStored<string[]>(`${key}.txs`, []);
-  const [estimates, setEstimates] = useStored<Record<string, FeeEstimate>>(`${key}.estimates`, {});
   const passed = (id: string) => receipts.some((r) => r.missionId === id);
   const passedCount = MISSION_IDS.filter(passed).length;
 
@@ -173,10 +173,7 @@ export default function PlayClient() {
     });
 
   // ---------- Missions 3 and 4 ----------
-  const recordSend = (hash: Hash, estimate: FeeEstimate | null) => {
-    setTxHashes([...txHashes, hash]);
-    if (estimate) setEstimates({ ...estimates, [hash]: estimate });
-  };
+  const recordSend = (hash: Hash) => setTxHashes([...txHashes, hash]);
   const m3Receipt = receipts.find((r) => r.missionId === "3");
   const m3Hash = m3Receipt && isHash(m3Receipt.evidence) ? m3Receipt.evidence : null;
 
@@ -402,7 +399,6 @@ export default function PlayClient() {
             <FeeMission
               wallet={wallet}
               mission3Hash={m3Hash}
-              estimate={m3Hash ? (estimates[m3Hash] ?? null) : null}
               receipts={receipts}
               done={passed("4")}
               busy={busy}
@@ -457,7 +453,7 @@ export default function PlayClient() {
               {busy === "coach" ? "Reading the chain…" : "Ask the coach"}
             </button>
             <AgentSteps steps={steps} />
-            {answer && <p className="whitespace-pre-wrap text-sm leading-relaxed">{answer}</p>}
+            {answer && <CoachText text={answer} />}
           </PlainCard>
         </aside>
       </div>

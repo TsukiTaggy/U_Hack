@@ -64,7 +64,7 @@ Done when: missions 1–4 → certificate works end-to-end on the public URL. Le
 - [x] `/api/explain-tx` with `decodeCall` and rule-based risk level.
 - [x] AI — Show the explain-before-sign card in mission 3 before sending (branch `missions-ui`).
 - [x] FRONTEND — `/play` restyled with landing components; mission 3 practice chat + poisoned history + look-alike warning; mission 4 receipt-based fee breakdown and Max/gas-reserve check (branch `missions-ui`).
-- [ ] OPS — On the deployed preview of `missions-ui`: run missions 3–4 with a real Core wallet, once to the decoy and once to the tutor; check the AI explanation with the real LLM.
+- [ ] OPS — On the deployed URL, run mission 3 to the decoy with a wallet that is not the tutor address, and check the explain-before-sign text from the real LLM. (2026-10-16: the tutor path and mission 4 passed on Fuji; the tested wallet was the tutor address itself.)
 - [ ] Everyone — sleep.
 
 ## M3 · Differentiators — Fri 10:00–12:30
@@ -98,3 +98,5 @@ Done when: missions 1–5, report and certificate run on the deployed URL.
 ## Bugs and notes
 
 (Add items here during testing. Move resolved items into Git history, not this list.)
+
+- [ ] WEB3 — Certificate mint fails on the deployed URL: "Minting failed: invalid private key, expected hex or 32 bytes, got string" (2026-10-16, all 4 missions passed). `MINTER_PRIVATE_KEY` on Vercel is not a 64-hex-character key (check for quotes, spaces, a newline or a wrong value), then redeploy and mint again.

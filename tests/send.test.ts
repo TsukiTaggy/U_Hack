@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { getAddress } from "viem";
 import { makeDecoys } from "@/lib/decoys";
-import { assessRecipient, checkGasReserve, isLookAlike, splitGasPrice } from "@/lib/send";
+import { assessRecipient, checkGasReserve, isLookAlike, signedFeeCeiling, splitGasPrice } from "@/lib/send";
 
 const tutor = getAddress("0x1234567890abcdef1234567890abcdef12345678");
 const stranger = getAddress("0x9999567890abcdef1234567890abcdef12340000");
@@ -46,6 +46,20 @@ describe("checkGasReserve", () => {
 
   it("reports the shortfall when sending everything leaves nothing for gas", () => {
     expect(checkGasReserve(100n, 100n, 7n)).toEqual({ ok: false, shortfallWei: 7n });
+  });
+});
+
+describe("signedFeeCeiling", () => {
+  it("uses the signed max fee per gas, which is never below the fee paid", () => {
+    // Fuji mission 3 transaction from 2026-10-16: paid 21,000 × 167 wei, signed max 177 wei per gas.
+    const ceiling = signedFeeCeiling({ gas: 21_000n, maxFeePerGas: 177n, gasPrice: 167n });
+    expect(ceiling).toBe(3_717_000n);
+    expect(ceiling! >= 21_000n * 167n).toBe(true);
+  });
+
+  it("falls back to the gas price for legacy transactions and returns null without a price", () => {
+    expect(signedFeeCeiling({ gas: 21_000n, gasPrice: 25n })).toBe(525_000n);
+    expect(signedFeeCeiling({ gas: 21_000n })).toBeNull();
   });
 });
 

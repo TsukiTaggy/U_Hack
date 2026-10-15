@@ -58,8 +58,8 @@ Active tasks: see `TODO.md`.
 
 ## Current State
 
-Last verified: 2026-10-15
-Evidence: 55 unit tests; lint, type check and production build pass; end-to-end API test (23 checks) against a local chain with chain ID 43113 running the real contracts; AI routes exercised against a mock OpenAI-compatible server. The standalone `/learn` flow (13 lessons, 52 questions) was exercised on a local production build on 2026-10-16 at desktop and phone widths: all 13 lessons completed in sequence, wrong answers show a hint without revealing the answer, Thai/English switching and persisted progress (26/26 browser checks). Fuji/Core wallet flow and the authenticated ElevenLabs microphone path have been manually verified on the deployed URL; deployed `/learn` verification and broader multi-wallet smoke testing remain pending.
+Last verified: 2026-10-16
+Evidence: 55 unit tests; lint, type check and production build pass; end-to-end API test (23 checks) against a local chain with chain ID 43113 running the real contracts; AI routes exercised against a mock OpenAI-compatible server. The standalone `/learn` flow (13 lessons, 52 questions) was exercised on a local production build on 2026-10-16 at desktop and phone widths: all 13 lessons completed in sequence, wrong answers show a hint without revealing the answer, Thai/English switching and persisted progress (26/26 browser checks). Fuji/Core wallet flow and the authenticated ElevenLabs microphone path have been manually verified on the deployed URL; deployed `/learn` verification and broader multi-wallet smoke testing remain pending. On 2026-10-16 a saved copy of the deployed `/play` showed one Core wallet with missions 1–4 passed on Fuji (mission 3 transaction `0x7d12…6626`, 21,000 gas, fee 3.507e-12 AVAX, matching the explorer) and the coach answering with the real LLM after a read-only transaction tool call; certificate minting failed on the same run (see TODO Bugs).
 
 Working (local chain):
 - Mission checks 2, 3, 4 with signed pass receipts; look-alike address rejected.
@@ -69,11 +69,11 @@ Working (local chain):
 - Core wallet connection and the Fuji mission flow are working on the deployed demo.
 
 Partial:
-- Missions 3–4 interactive flow (merged to `main` 2026-10-16): practice chat, labelled simulated wallet history with look-alike transfers, explain-before-sign card with gas-reserve check, receipt-based fee breakdown, landing-style `/play`. Evidence: 42 unit tests, lint, typecheck and production build pass; UI checked at desktop, phone and dark mode with a simulated wallet and mocked Fuji RPC. Not yet run with a real Core wallet on Fuji or with the real LLM.
-- Coach agent tool loop, text scam call and scam evaluator: mechanics verified with a mock LLM only.
+- Missions 3–4 interactive flow (merged to `main` 2026-10-16): practice chat, labelled simulated wallet history with look-alike transfers, explain-before-sign card with gas-reserve check, receipt-based fee breakdown, landing-style `/play`. Evidence: unit tests, lint, typecheck and production build pass; on 2026-10-16 one Core wallet passed missions 3 and 4 on the deployed URL with a real Fuji transaction. Gaps: the tested wallet was the configured tutor address itself and the decoy (look-alike) path was not run on Fuji. Mission 4 now compares the fee paid with the max fee Core signed (`gas × maxFeePerGas` from the transaction), not with SafeStart's earlier estimate.
+- Coach agent tool loop: answered on the deployed URL with the real LLM after a read-only transaction lookup (2026-10-16). Text scam call and scam evaluator: mechanics verified with a mock LLM only; mission 1 passed on the deployed URL.
 - Frontend landing page and shared navigation are integrated from `frontend`; desktop DOM verification passed locally, with deployed browser validation still pending.
 - `/learn` provides 13 standalone Thai/English lessons in three chapters (blockchain basics, using crypto, Web3 safety), each with a four-question quiz, a hint after a wrong answer, sequential unlocks and versioned local progress; deployment verification remains pending.
-- `/play` page: missions 1–4, coach panel, certificate and Core wallet/Fuji flow are working; broader multi-wallet smoke testing remains.
+- `/play` page: missions 1–4, coach panel and Core wallet/Fuji flow are working on the deployed URL; certificate minting fails on the deployed URL (invalid `MINTER_PRIVATE_KEY` format, 2026-10-16); broader multi-wallet smoke testing remains.
 - ElevenLabs private-agent voice flow: signed URL route, Voice/Text toggle, published authenticated agent, 120-second limit and transcript-to-evaluator integration are implemented; a full deployed microphone call has passed.
 
 Not implemented:

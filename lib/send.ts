@@ -69,6 +69,15 @@ export function checkGasReserve(balanceWei: bigint, valueWei: bigint, maxFeeWei:
   return need <= balanceWei ? { ok: true, shortfallWei: 0n } : { ok: false, shortfallWei: need - balanceWei };
 }
 
+/**
+ * The most a sent transaction could pay in fees: its gas limit × the max fee per gas the wallet signed
+ * (EIP-1559), or × the gas price for a legacy transaction. Null when the price is unknown.
+ */
+export function signedFeeCeiling(tx: { gas: bigint; maxFeePerGas?: bigint | null; gasPrice?: bigint | null }): bigint | null {
+  const price = tx.maxFeePerGas ?? tx.gasPrice;
+  return price == null ? null : tx.gas * price;
+}
+
 /** Split an effective gas price into base fee and priority tip (tip never below zero). */
 export function splitGasPrice(effectiveGasPrice: bigint, baseFeePerGas: bigint | null | undefined) {
   if (baseFeePerGas == null) return { baseFee: null, tip: null };

@@ -5,18 +5,24 @@ import { formatEther, formatUnits, type Hash } from "viem";
 import m4 from "@/content/missions/4.json";
 import { publicClient } from "@/lib/chain";
 import { txUrl } from "@/lib/config";
-import { splitGasPrice } from "@/lib/send";
+import { signedFeeCeiling, splitGasPrice } from "@/lib/send";
 import type { Wallet } from "@/lib/wallet";
 import { MissionCard } from "./MissionCard";
-import { post, type CheckResponse, type FeeEstimate, type Receipt } from "./types";
+import { post, type CheckResponse, type Receipt } from "./types";
 import { btnPrimary, btnSecondary, eyebrow, inputClass, panel } from "./ui";
 
-type ReceiptFacts = { gasUsed: bigint; effectiveGasPrice: bigint; baseFee: bigint | null; tip: bigint | null };
+type ReceiptFacts = {
+  gasUsed: bigint;
+  effectiveGasPrice: bigint;
+  baseFee: bigint | null;
+  tip: bigint | null;
+  /** Gas limit × max fee per gas from the transaction Core signed; null if it could not be read. */
+  ceilingWei: bigint | null;
+};
 
 type Props = {
   wallet: Wallet | null;
   mission3Hash: Hash | null;
-  estimate: FeeEstimate | null;
   receipts: Receipt[];
   done: boolean;
   busy: string;
@@ -27,23 +33,28 @@ type Props = {
 
 const nAvax = (wei: bigint) => `${formatUnits(wei, 9)} nAVAX`;
 
-export function FeeMission({ wallet, mission3Hash, estimate, receipts, done, busy, run, onReceipt, askCoach }: Props) {
+export function FeeMission({ wallet, mission3Hash, receipts, done, busy, run, onReceipt, askCoach }: Props) {
   const [facts, setFacts] = useState<ReceiptFacts | null>(null);
   const [loadError, setLoadError] = useState("");
   const [answer, setAnswer] = useState("");
   const [result, setResult] = useState<{ passed: boolean; reason: string } | null>(null);
 
-  // Read the real receipt (and its block's base fee) of the mission 3 transaction from Fuji.
+  // Read the real receipt, the signed transaction and the block's base fee of the mission 3 transaction from Fuji.
+  // The fee ceiling comes from what Core signed, not from SafeStart's earlier estimate, so it is never below the fee paid.
   useEffect(() => {
     if (!mission3Hash) return;
     let cancelled = false;
     void (async () => {
       try {
         const receipt = await publicClient.getTransactionReceipt({ hash: mission3Hash });
-        const block = await publicClient.getBlock({ blockNumber: receipt.blockNumber }).catch(() => null);
+        const [block, tx] = await Promise.all([
+          publicClient.getBlock({ blockNumber: receipt.blockNumber }).catch(() => null),
+          publicClient.getTransaction({ hash: mission3Hash }).catch(() => null),
+        ]);
         const split = splitGasPrice(receipt.effectiveGasPrice, block?.baseFeePerGas);
+        const ceilingWei = tx ? signedFeeCeiling(tx) : null;
         if (!cancelled) {
-          setFacts({ gasUsed: receipt.gasUsed, effectiveGasPrice: receipt.effectiveGasPrice, ...split });
+          setFacts({ gasUsed: receipt.gasUsed, effectiveGasPrice: receipt.effectiveGasPrice, ...split, ceilingWei });
           setLoadError("");
         }
       } catch {
@@ -64,7 +75,7 @@ export function FeeMission({ wallet, mission3Hash, estimate, receipts, done, bus
     });
 
   const feeWei = facts ? facts.gasUsed * facts.effectiveGasPrice : null;
-  const maxFeeWei = estimate ? BigInt(estimate.maxFeeWei) : null;
+  const maxFeeWei = facts?.ceilingWei ?? null;
   const share = feeWei !== null && maxFeeWei ? Number((feeWei * 1000n) / maxFeeWei) / 10 : null;
 
   return (
@@ -128,7 +139,7 @@ export function FeeMission({ wallet, mission3Hash, estimate, receipts, done, bus
               {maxFeeWei !== null && (
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
-                    <p className="text-sm text-[var(--text-muted)]">Max fee shown before signing (AVAX)</p>
+                    <p className="text-sm text-[var(--text-muted)]">Max fee you signed in Core (AVAX)</p>
                     <p className="text-2xl font-bold tabular-nums">{formatEther(maxFeeWei)}</p>
                   </div>
                   <div>
@@ -137,7 +148,7 @@ export function FeeMission({ wallet, mission3Hash, estimate, receipts, done, bus
                   </div>
                   {share !== null && (
                     <p className="text-sm sm:col-span-2">
-                      You paid <strong>{share}%</strong> of the maximum. The estimate is a ceiling; you only pay for gas used at the block&apos;s price.
+                      You paid <strong>{share}%</strong> of the maximum. The max fee is a ceiling; you only pay for the gas used at the block&apos;s price.
                     </p>
                   )}
                 </div>
@@ -149,7 +160,7 @@ export function FeeMission({ wallet, mission3Hash, estimate, receipts, done, bus
                 onClick={() =>
                   askCoach(
                     maxFeeWei !== null
-                      ? `Explain the fee of my mission 3 transaction ${mission3Hash}. The wallet showed a max fee of ${formatEther(maxFeeWei)} AVAX before I signed. Why did I pay ${formatEther(feeWei)} AVAX?`
+                      ? `Explain the fee of my mission 3 transaction ${mission3Hash}. I signed a max fee of ${formatEther(maxFeeWei)} AVAX in Core. Why did I pay ${formatEther(feeWei)} AVAX?`
                       : `Explain the fee of my mission 3 transaction ${mission3Hash}: gas used, gas price and what I paid.`,
                   )
                 }
