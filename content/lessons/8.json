@@ -1,0 +1,212 @@
+{
+  "id": "8",
+  "chapter": {
+    "id": "using",
+    "title": {
+      "th": "ใช้งานคริปโต",
+      "en": "Using crypto"
+    }
+  },
+  "title": {
+    "th": "Block explorer และ dapp",
+    "en": "Block explorers and dapps"
+  },
+  "summary": {
+    "th": "ใช้ transaction hash ตรวจธุรกรรม และแยกการเชื่อม wallet ออกจากการลงลายเซ็น",
+    "en": "Use a transaction hash to inspect activity, and tell connecting a wallet apart from signing."
+  },
+  "lesson": {
+    "th": "Block explorer คือเครื่องมือค้นหาข้อมูลสาธารณะบนบล็อกเชน วาง transaction hash ซึ่งเป็นรหัสอ้างอิงเฉพาะของธุรกรรม เพื่อดูสถานะ ผู้ส่ง ผู้รับ และจำนวนเงิน การดูข้อมูลสาธารณะไม่ต้องเชื่อม wallet explorer ย้อนธุรกรรมไม่ได้ ไม่ได้ดูแลเงินแทนคุณ กู้ private key ที่หายไม่ได้ และการที่ contract ปรากฏใน explorer ไม่ได้พิสูจน์ว่าปลอดภัย แอปแบบกระจายศูนย์ (dapp) อาจขอให้คุณเชื่อม wallet การเชื่อมแบบปกติทำให้ dapp เห็น public address ของบัญชีที่คุณเลือกและเสนอรายการให้ทำได้ แต่ย้ายโทเคนของคุณไม่ได้ จนกว่าคุณจะลงลายเซ็นธุรกรรมหรืออนุมัติสิทธิ์ใช้โทเคนแยกต่างหาก",
+    "en": "A block explorer is a search tool for public on-chain data. Paste a transaction hash, the unique reference for a transaction, to see its status, sender, recipient, and value. You do not need to connect a wallet to browse public data. An explorer cannot reverse a transaction, take custody of funds, or recover a lost private key, and a contract being listed does not prove it is safe. Decentralised apps (dapps) may ask you to connect your wallet. A normal connection lets the dapp see the public account address you select and suggest actions. It cannot move your tokens until you separately sign a transaction or approve a token allowance."
+  },
+  "keyPoints": [
+    {
+      "th": "transaction hash ใช้ค้นหาธุรกรรมใน explorer",
+      "en": "A transaction hash looks up a transaction in an explorer."
+    },
+    {
+      "th": "ดูข้อมูลสาธารณะใน explorer ได้โดยไม่ต้องเชื่อม wallet",
+      "en": "You can browse public explorer data without connecting a wallet."
+    },
+    {
+      "th": "explorer ย้อนธุรกรรมหรือกู้ private key ไม่ได้",
+      "en": "An explorer cannot reverse transactions or recover keys."
+    },
+    {
+      "th": "การเชื่อม wallet ไม่ได้แปลว่าอนุญาตให้ย้ายโทเคน",
+      "en": "Connecting a wallet is not permission to move your tokens."
+    }
+  ],
+  "quiz": [
+    {
+      "id": "l08q01",
+      "prompt": {
+        "th": "transaction hash ช่วยให้คุณทำอะไรใน block explorer?",
+        "en": "What can a transaction hash help you do in a block explorer?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "เปิดเผย recovery phrase ของผู้ส่ง",
+            "en": "Reveal the sender's Secret Recovery Phrase"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "ย้อนธุรกรรม",
+            "en": "Reverse the transaction"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "เปลี่ยนผู้รับหลังธุรกรรมยืนยันแล้ว",
+            "en": "Change the recipient after confirmation"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "ค้นหาธุรกรรมที่ต้องการ และดูรายละเอียดอย่างสถานะ ผู้ส่ง ผู้รับ และจำนวนเงิน",
+            "en": "Look up a specific transaction and inspect details such as its status, sender, recipient, and value"
+          }
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": {
+        "th": "transaction hash เป็นรหัสอ้างอิงเฉพาะที่ block explorer ใช้ค้นหาและแสดงรายละเอียดธุรกรรมบนบล็อกเชน",
+        "en": "A transaction hash is a unique reference that block explorers use to find and display a transaction's on-chain details."
+      },
+      "hint": {
+        "th": "คิดว่า hash คือรหัสสำหรับค้นหา ไม่ใช่รหัสผ่านหรือปุ่มย้อนกลับ",
+        "en": "Think of the hash as a lookup identifier, not a password or undo button."
+      }
+    },
+    {
+      "id": "l08q02",
+      "prompt": {
+        "th": "ต้องเชื่อม wallet ก่อนจึงจะดูข้อมูลธุรกรรมสาธารณะใน block explorer ได้",
+        "en": "You must connect a wallet before you can browse public transaction data on a block explorer."
+      },
+      "options": [
+        {
+          "id": "true",
+          "text": {
+            "th": "จริง",
+            "en": "True"
+          }
+        },
+        {
+          "id": "false",
+          "text": {
+            "th": "เท็จ",
+            "en": "False"
+          }
+        }
+      ],
+      "correctOptionId": "false",
+      "explanation": {
+        "th": "block explorer สาธารณะเปิดดูได้โดยไม่ต้องเชื่อม wallet การเชื่อมจำเป็นเฉพาะฟีเจอร์ที่ต้องโต้ตอบกับ wallet",
+        "en": "Public block explorers can be browsed without connecting a wallet; connecting is only needed for features that require wallet interaction."
+      },
+      "hint": {
+        "th": "ข้อมูลบนเชนสาธารณะออกแบบให้ค้นหาได้ โดยไม่ต้องให้สิทธิ์ explorer เข้าถึง wallet",
+        "en": "Public chain data is designed to be searchable without giving an explorer permission to your wallet."
+      }
+    },
+    {
+      "id": "l08q03",
+      "prompt": {
+        "th": "dapp ขอเพียงให้คุณกด 'Connect Wallet' การเชื่อมแบบปกตินี้อนุญาตอะไรเป็นหลัก?",
+        "en": "A dapp asks you only to 'Connect Wallet.' What does a normal connection permission primarily allow?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "dapp โอนโทเคนทั้งหมดได้ทันที",
+            "en": "The dapp can immediately transfer every token"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "dapp เป็นเจ้าของบัญชีของคุณถาวร",
+            "en": "The dapp permanently owns your account"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "dapp เห็น public address ของบัญชีที่เลือกและเสนอรายการให้ทำได้ แต่ย้ายโทเคนไม่ได้หากไม่มีการอนุมัติหรือลงลายเซ็นเพิ่ม",
+            "en": "The dapp can see the selected public account address and suggest actions, but it cannot move tokens without additional approval or signing"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "dapp ได้ private key ของคุณโดยอัตโนมัติ",
+            "en": "The dapp receives your private key automatically"
+          }
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": {
+        "th": "การเชื่อม wallet แบบปกติเปิดเผยข้อมูลบัญชีสาธารณะที่เลือกให้ dapp การย้ายสินทรัพย์ต้องมีธุรกรรมที่ลงลายเซ็นหรือการอนุมัติโทเคนแยกต่างหาก",
+        "en": "A normal wallet connection exposes selected public account information to the dapp; moving assets requires a separate signed transaction or token approval."
+      },
+      "hint": {
+        "th": "แยก 'การเชื่อม' ออกจาก 'การลงลายเซ็น' หรือ 'การอนุมัติ' เพราะเป็นสิทธิ์คนละแบบ",
+        "en": "Separate 'connecting' from 'signing' or 'approving.' They are not the same permission."
+      }
+    },
+    {
+      "id": "l08q04",
+      "prompt": {
+        "th": "ข้อใดตีความข้อมูลจาก block explorer ได้ปลอดภัยที่สุด?",
+        "en": "What is the safest interpretation of information shown by a block explorer?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "แก้ไข address ผู้รับที่ยืนยันแล้วได้",
+            "en": "It can edit a confirmed recipient address"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "เป็นเครื่องมือตรวจข้อมูลสาธารณะบนบล็อกเชน ไม่ใช่บริการที่ย้อนธุรกรรมหรือดูแลเงินแทนได้",
+            "en": "It is a tool for inspecting public on-chain data, not a service that can undo or take custody of transactions"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "รับประกันว่า contract ทุกตัวที่แสดงปลอดภัย",
+            "en": "It guarantees every contract listed is safe"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "กู้ private key ที่หายจาก address ได้",
+            "en": "It can recover a lost private key from an address"
+          }
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": {
+        "th": "explorer ช่วยให้ตรวจข้อมูลบล็อกเชนได้ง่ายขึ้น แต่ไม่ได้ดูแลเงิน กู้ private key หรือย้อนธุรกรรม",
+        "en": "Explorers make blockchain data easier to inspect, but they do not provide custody, private-key recovery, or transaction reversal."
+      },
+      "hint": {
+        "th": "มอง explorer เป็นหน้าค้นหาข้อมูลบนเชน ไม่ใช่เคาน์เตอร์บริการของธนาคาร",
+        "en": "Treat an explorer like a search interface for chain data, not like a bank's customer-service desk."
+      }
+    }
+  ]
+}

@@ -48,6 +48,8 @@ Done when: on the deployed URL a fresh Core wallet passes missions 2 and 3, and 
 - [x] VOICE — Play the scam call with the authenticated ElevenLabs agent; text mode remains the fallback and evaluator path is shared.
 - [x] FRONTEND — Integrate the `frontend` landing design and shared navigation into `main`.
 - [x] FRONTEND — Add standalone `/learn` lessons and linked quizzes with Thai/English copy, sequential local progress and landing-page visual language; keep `/play` missions unchanged.
+- [x] CONTENT — Expand `/learn` to 13 lessons in three chapters from the research question bank, four questions each with hints (Thai translation done in-repo).
+- [ ] OPS — Native Thai speaker reviews the new Thai lesson and quiz copy (lessons 1–8, 13 and the added questions in 9–12).
 - [ ] FRONTEND — Polish `/play` (layout, mission map/progress, Thai UI text, mobile). Logic stays in `lib/`.
 - [ ] OPS — End-to-end test on the deployed URL with fresh Core wallets; log bugs below.
 - [x] OPS — Update "Current State" in `PROJECT.md`.

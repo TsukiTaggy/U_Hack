@@ -1,6 +1,7 @@
 import { lessons, type LessonId, type Locale } from "@/lib/learning";
 
-export const LEARNING_STORAGE_KEY = "safestart.learning.v1";
+// v2: the course grew from 4 to 13 lessons and was renumbered, so v1 progress is not reused.
+export const LEARNING_STORAGE_KEY = "safestart.learning.v2";
 
 export type LearningProgress = {
   version: 1;
@@ -45,7 +46,7 @@ export function parseLearningProgress(value: unknown): LearningProgress {
 }
 
 export function markLessonCompleted(progress: LearningProgress, lessonId: string): LearningProgress {
-  if (!lessonIds.includes(lessonId as LessonId) || progress.completedLessonIds.includes(lessonId as LessonId)) {
+  if (!lessonIds.includes(lessonId) || progress.completedLessonIds.includes(lessonId)) {
     return progress;
   }
 
@@ -56,11 +57,11 @@ export function markLessonCompleted(progress: LearningProgress, lessonId: string
 }
 
 export function isLessonCompleted(progress: LearningProgress, lessonId: string): boolean {
-  return lessonIds.includes(lessonId as LessonId) && progress.completedLessonIds.includes(lessonId as LessonId);
+  return lessonIds.includes(lessonId) && progress.completedLessonIds.includes(lessonId);
 }
 
 export function canOpenLesson(progress: LearningProgress, lessonId: string): boolean {
-  const lessonIndex = lessonIds.indexOf(lessonId as LessonId);
+  const lessonIndex = lessonIds.indexOf(lessonId);
   if (lessonIndex < 0) return false;
   return lessonIds.slice(0, lessonIndex).every((id) => isLessonCompleted(progress, id));
 }

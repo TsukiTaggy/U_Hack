@@ -9,10 +9,17 @@ import {
 } from "@/lib/learning";
 
 describe("learning content", () => {
-  it("exposes four ordered bilingual lessons with three questions each", () => {
-    expect(lessons.map((lesson) => lesson.id)).toEqual(["1", "2", "3", "4"]);
+  it("exposes thirteen ordered bilingual lessons in three chapters with four questions each", () => {
+    expect(lessons.map((lesson) => lesson.id)).toEqual(Array.from({ length: 13 }, (_, i) => String(i + 1)));
+    expect(lessons.map((lesson) => lesson.chapter.id)).toEqual([
+      ...Array(4).fill("basics"),
+      ...Array(4).fill("using"),
+      ...Array(5).fill("safety"),
+    ]);
 
     for (const lesson of lessons) {
+      expect(lesson.chapter.title.th.trim()).not.toBe("");
+      expect(lesson.chapter.title.en.trim()).not.toBe("");
       expect(lesson.title.th.trim()).not.toBe("");
       expect(lesson.title.en.trim()).not.toBe("");
       expect(lesson.summary.th.trim()).not.toBe("");
@@ -20,7 +27,7 @@ describe("learning content", () => {
       expect(lesson.lesson.th.trim()).not.toBe("");
       expect(lesson.lesson.en.trim()).not.toBe("");
       expect(lesson.keyPoints.length).toBeGreaterThanOrEqual(3);
-      expect(lesson.quiz).toHaveLength(3);
+      expect(lesson.quiz).toHaveLength(4);
 
       for (const text of lesson.keyPoints) {
         expect(text.th.trim()).not.toBe("");
@@ -34,6 +41,8 @@ describe("learning content", () => {
         expect(question.prompt.en.trim()).not.toBe("");
         expect(question.explanation.th.trim()).not.toBe("");
         expect(question.explanation.en.trim()).not.toBe("");
+        expect(question.hint?.th.trim()).toBeTruthy();
+        expect(question.hint?.en.trim()).toBeTruthy();
         expect(question.options.length).toBeGreaterThanOrEqual(2);
         expect(new Set(question.options.map((option) => option.id)).size).toBe(question.options.length);
         expect(question.options.filter((option) => option.id === question.correctOptionId)).toHaveLength(1);
@@ -63,6 +72,7 @@ describe("learning quiz rules", () => {
     expect(evaluateLearningAnswer(question, question.correctOptionId)).toEqual({
       correct: true,
       explanation: question.explanation,
+      feedback: question.explanation,
     });
   });
 
@@ -70,7 +80,21 @@ describe("learning quiz rules", () => {
     expect(evaluateLearningAnswer(question, "not-an-option")).toEqual({
       correct: false,
       explanation: question.explanation,
+      feedback: question.hint,
     });
+  });
+
+  it("gives a hint, not the explanation, after a wrong answer", () => {
+    const wrong = question.options.find((option) => option.id !== question.correctOptionId)!;
+    const result = evaluateLearningAnswer(question, wrong.id);
+    expect(result.correct).toBe(false);
+    expect(result.feedback).toEqual(question.hint);
+    expect(result.feedback).not.toEqual(question.explanation);
+  });
+
+  it("falls back to the explanation when a question has no hint", () => {
+    const withoutHint = { ...question, hint: undefined };
+    expect(evaluateLearningAnswer(withoutHint, "not-an-option").feedback).toEqual(question.explanation);
   });
 
   it("requires every question to be answered correctly", () => {

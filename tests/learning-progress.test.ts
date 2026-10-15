@@ -57,9 +57,14 @@ describe("learning progression", () => {
     expect(canOpenLesson(afterOne, "3")).toBe(false);
     expect(nextLessonId(afterOne)).toBe("2");
 
-    const completed = ["2", "3", "4"].reduce(markLessonCompleted, afterOne);
+    const rest = Array.from({ length: 12 }, (_, i) => String(i + 2));
+    const almost = rest.slice(0, -1).reduce(markLessonCompleted, afterOne);
+    expect(nextLessonId(almost)).toBe("13");
+    expect(canOpenLesson(almost, "13")).toBe(true);
+
+    const completed = markLessonCompleted(almost, "13");
     expect(nextLessonId(completed)).toBeUndefined();
-    expect(canOpenLesson(completed, "4")).toBe(true);
+    expect(canOpenLesson(completed, "13")).toBe(true);
   });
 });
 
@@ -73,6 +78,10 @@ describe("learning progress storage", () => {
         },
       }),
     ).toEqual(defaultLearningProgress());
+  });
+
+  it("uses a v2 key so progress from the old four-lesson course is not reused", () => {
+    expect(LEARNING_STORAGE_KEY).toBe("safestart.learning.v2");
   });
 
   it("writes canonical JSON under the versioned key", () => {

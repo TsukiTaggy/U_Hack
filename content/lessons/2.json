@@ -1,135 +1,207 @@
 {
   "id": "2",
+  "chapter": {
+    "id": "basics",
+    "title": {
+      "th": "พื้นฐานบล็อกเชน",
+      "en": "Blockchain basics"
+    }
+  },
   "title": {
-    "th": "ตรวจเว็บและลิงก์ปลอม",
-    "en": "Detect fake websites and links"
+    "th": "คริปโต เหรียญ และโทเคน",
+    "en": "Crypto, coins, and tokens"
   },
   "summary": {
-    "th": "ฝึกตรวจ domain และเข้าบริการผ่านช่องทางที่คุณยืนยันเองก่อนเชื่อมกระเป๋า",
-    "en": "Practise checking domains and reaching services independently before connecting a wallet."
+    "th": "แยกเหรียญหลักของเครือข่ายออกจากโทเคนที่สร้างบนเครือข่าย และรู้ว่า AVAX ใช้ทำอะไร",
+    "en": "Tell a network's native coin apart from tokens built on it, and learn what AVAX is for."
   },
   "lesson": {
-    "th": "เว็บปลอมมักเลียนแบบชื่อ โลโก้ และหน้าตาของเว็บจริง แต่ใช้ domain ที่สะกดต่างเพียงเล็กน้อย ให้ตรวจชื่อ domain ทั้งชุด ไม่ใช่เฉพาะคำที่คุ้นตา สัญลักษณ์แม่กุญแจบอกเพียงว่าการเชื่อมต่อถูกเข้ารหัส ไม่ได้ยืนยันว่าเจ้าของเว็บน่าเชื่อถือ เมื่อได้รับลิงก์จากข้อความ โฆษณา หรือ DM อย่ากดเพราะความเร่งด่วน ให้เปิด bookmark ที่บันทึกไว้หรือค้นหาช่องทางทางการด้วยตัวเองก่อนเชื่อม wallet หรือกรอกข้อมูล",
-    "en": "Fake sites often copy the real name, logo, and layout while using a domain with a tiny spelling difference. Inspect the complete domain, not only the familiar word. A padlock only means the connection is encrypted; it does not prove the site owner is trustworthy. When a link arrives through a message, advertisement, or DM, do not click because of urgency. Open a saved bookmark or reach the official channel independently before connecting a wallet or entering information."
+    "th": "ทุกเครือข่ายบล็อกเชนมีเหรียญหลัก (native coin) ที่เป็นของเครือข่ายเอง บน Avalanche C-Chain เหรียญหลักคือ AVAX ใช้ทั้งโอนมูลค่าและจ่ายค่าธรรมเนียมธุรกรรม ส่วนโทเคนต่างออกไป แอปพลิเคชันสร้างโทเคนขึ้นด้วย smart contract ที่ทำตามมาตรฐาน เช่น ERC-20 เครือข่ายหนึ่งจึงมีโทเคนได้มากมายนอกเหนือจากเหรียญหลัก และโทเคนไม่ใช่สิ่งเดียวกับสกุลเงินหลักของเครือข่าย โทเคน ERC-20 เป็นแบบ fungible คือแต่ละหน่วยของโทเคนชนิดเดียวกันแลกแทนกันได้ ต่างจากของสะสมที่มีชิ้นเดียว",
+    "en": "Every blockchain network has a native coin that belongs to the network itself. On Avalanche C-Chain the native asset is AVAX: you use it to transfer value and to pay transaction fees. Tokens are different. Applications create them with smart contracts that follow a token standard such as ERC-20, so one network can host many tokens alongside its native coin, and a token is not the same thing as the native currency. ERC-20 tokens are fungible: every unit of the same token is interchangeable with any other unit, unlike one-of-a-kind collectibles."
   },
   "keyPoints": [
     {
-      "th": "ตรวจ domain ทั้งชุดและระวังตัวอักษรที่คล้ายกัน",
-      "en": "Inspect the complete domain and watch for look-alike characters."
+      "th": "เหรียญหลักเป็นของเครือข่าย ส่วนโทเคนสร้างขึ้นด้วย smart contract",
+      "en": "A native coin belongs to the network; tokens are created by smart contracts."
     },
     {
-      "th": "แม่กุญแจหรือ HTTPS ไม่ได้พิสูจน์ว่าเว็บเป็นของจริง",
-      "en": "A padlock or HTTPS does not prove a site is legitimate."
+      "th": "AVAX ใช้โอนมูลค่าและจ่ายค่าธรรมเนียมบน Avalanche C-Chain",
+      "en": "AVAX transfers value and pays fees on Avalanche C-Chain."
     },
     {
-      "th": "เข้าผ่าน bookmark หรือช่องทางทางการที่คุณเปิดเอง",
-      "en": "Use a bookmark or an official channel you open independently."
+      "th": "แต่ละหน่วยของโทเคน ERC-20 ชนิดเดียวกันแลกแทนกันได้ (fungible)",
+      "en": "Units of the same ERC-20 token are interchangeable (fungible)."
     }
   ],
   "quiz": [
     {
-      "id": "link-before-connect",
+      "id": "l02q01",
       "prompt": {
-        "th": "คุณได้รับลิงก์รับรางวัลทาง DM ก่อนเชื่อม wallet ควรทำอะไร?",
-        "en": "You receive a reward link in a DM. What should you do before connecting a wallet?"
+        "th": "ข้อใดอธิบายความต่างระหว่างเหรียญหลักของเครือข่ายกับโทเคนที่สร้างบนเครือข่ายนั้นได้ชัดที่สุด?",
+        "en": "What is the clearest beginner-level difference between a network's native coin and a token created on that network?"
       },
       "options": [
         {
-          "id": "open-dm-link",
+          "id": "a",
           "text": {
-            "th": "เปิดลิงก์ทันทีเพราะรางวัลมีเวลาจำกัด",
-            "en": "Open it immediately because the reward is time-limited."
+            "th": "เหรียญหลักไม่ได้ใช้จ่ายค่าธรรมเนียมธุรกรรม",
+            "en": "Native coins have no use in transaction fees"
           }
         },
         {
-          "id": "independent-official",
+          "id": "b",
           "text": {
-            "th": "ไม่ใช้ลิงก์ใน DM และเข้าหน้าทางการด้วย bookmark หรือช่องทางที่ยืนยันเอง",
-            "en": "Ignore the DM link and use a bookmark or independently verified official channel."
+            "th": "โทเคนต้องแทนสิ่งของที่จับต้องได้เสมอ",
+            "en": "A token always represents a physical object"
           }
         },
         {
-          "id": "ask-sender",
+          "id": "c",
           "text": {
-            "th": "ถามผู้ส่งว่าลิงก์ปลอดภัยหรือไม่ แล้วเชื่อคำตอบ",
-            "en": "Ask the sender whether the link is safe and trust their answer."
+            "th": "เหรียญหลักเป็นของเครือข่ายเอง ส่วนโทเคนสร้างขึ้นด้วย smart contract หรือมาตรฐานโทเคนบนเครือข่ายนั้น",
+            "en": "A native coin belongs to the network itself, while tokens can be implemented by smart contracts or token standards on that network"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "โทเคนโอนให้ใครไม่ได้เลย",
+            "en": "Tokens can never be transferred"
           }
         }
       ],
-      "correctOptionId": "independent-official",
+      "correctOptionId": "c",
       "explanation": {
-        "th": "ผู้ส่ง DM อาจเป็นผู้โจมตีหรือบัญชีที่ถูกยึด ให้เข้าช่องทางทางการด้วยเส้นทางที่คุณควบคุมเอง",
-        "en": "The sender may be an attacker or a compromised account. Reach the official service through a path you control."
+        "th": "เหรียญหลักถูกสร้างไว้ในเครือข่ายบล็อกเชน ส่วนมาตรฐานโทเคนอย่าง ERC-20 ให้ smart contract กำหนดโทเคนที่โอนได้บนเครือข่าย",
+        "en": "Native assets are built into a blockchain network, while token standards such as ERC-20 let smart contracts define transferable tokens on top of the network."
+      },
+      "hint": {
+        "th": "คิดว่าสินทรัพย์ไหนถูกสร้างมากับเครือข่าย และไหนที่แอปสร้างขึ้นทีหลัง",
+        "en": "Think about which asset is built into the network and which can be created by applications."
       }
     },
     {
-      "id": "padlock-meaning",
+      "id": "l02q02",
       "prompt": {
-        "th": "สัญลักษณ์แม่กุญแจข้าง URL ยืนยันอะไร?",
-        "en": "What does the padlock beside a URL confirm?"
+        "th": "AVAX ใช้ทำอะไรบน Avalanche C-Chain?",
+        "en": "What is AVAX used for on Avalanche C-Chain?"
       },
       "options": [
         {
-          "id": "official-owner",
+          "id": "a",
           "text": {
-            "th": "เว็บเป็นขององค์กรทางการแน่นอน",
-            "en": "The site definitely belongs to the official organization."
+            "th": "เป็น block explorer",
+            "en": "It is a block explorer"
           }
         },
         {
-          "id": "safe-contract",
+          "id": "b",
           "text": {
-            "th": "smart contract ทุกตัวบนเว็บปลอดภัย",
-            "en": "Every smart contract on the site is safe."
+            "th": "ใช้เป็นสินทรัพย์หลักสำหรับโอนมูลค่าและจ่ายค่าธรรมเนียมธุรกรรม",
+            "en": "It can be used as the native asset for value transfer and to pay network transaction fees"
           }
         },
         {
-          "id": "encrypted-connection",
+          "id": "c",
           "text": {
-            "th": "การเชื่อมต่อถูกเข้ารหัส แต่ยังต้องตรวจเจ้าของและ domain",
-            "en": "The connection is encrypted, but the owner and domain still need verification."
+            "th": "เป็นแค่ชื่อผู้ใช้ของบัญชี Avalanche",
+            "en": "It is only a username for Avalanche accounts"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "เป็นรูปแบบหนึ่งของ recovery phrase",
+            "en": "It is a Secret Recovery Phrase format"
           }
         }
       ],
-      "correctOptionId": "encrypted-connection",
+      "correctOptionId": "b",
       "explanation": {
-        "th": "เว็บปลอมก็ใช้ HTTPS ได้ แม่กุญแจจึงไม่ใช่หลักฐานว่าเว็บนั้นเป็นของจริง",
-        "en": "Fake sites can use HTTPS too, so the padlock is not proof that a site is legitimate."
+        "th": "AVAX คือสินทรัพย์หลักของ Avalanche และค่าธรรมเนียมธุรกรรมบน C-Chain คิดเป็น AVAX",
+        "en": "AVAX is Avalanche's native asset, and C-Chain transaction fees are denominated in AVAX."
+      },
+      "hint": {
+        "th": "ถามตัวเองว่าสินทรัพย์ไหนใช้จ่ายค่าประมวลผลธุรกรรมบน Avalanche C-Chain",
+        "en": "Ask yourself which asset pays for computation and transactions on Avalanche C-Chain."
       }
     },
     {
-      "id": "lookalike-domain",
+      "id": "l02q03",
       "prompt": {
-        "th": "วิธีใดช่วยจับ domain เลียนแบบได้ดีที่สุด?",
-        "en": "Which habit best detects a look-alike domain?"
+        "th": "ทุกโทเคนบนเครือข่าย EVM คือสิ่งเดียวกับสกุลเงินหลักของเครือข่ายนั้น",
+        "en": "Every token on an EVM network is the same thing as that network's native currency."
       },
       "options": [
         {
-          "id": "logo-check",
+          "id": "true",
           "text": {
-            "th": "ดูว่าโลโก้และสีเหมือนเว็บเดิมหรือไม่",
-            "en": "Check whether the logo and colors match the original site."
+            "th": "จริง",
+            "en": "True"
           }
         },
         {
-          "id": "full-domain-check",
+          "id": "false",
           "text": {
-            "th": "อ่านชื่อ domain ทั้งชุดและเปรียบเทียบกับช่องทางทางการ",
-            "en": "Read the entire domain and compare it with an official source."
-          }
-        },
-        {
-          "id": "search-ad",
-          "text": {
-            "th": "เลือกผลการค้นหาที่เป็นโฆษณาอันดับแรก",
-            "en": "Choose the first sponsored search result."
+            "th": "เท็จ",
+            "en": "False"
           }
         }
       ],
-      "correctOptionId": "full-domain-check",
+      "correctOptionId": "false",
       "explanation": {
-        "th": "หน้าตาเว็บสามารถคัดลอกได้ง่าย แต่การอ่าน domain ทั้งชุดช่วยเห็นการสะกดหรือส่วนต่อท้ายที่ผิด",
-        "en": "A site's appearance is easy to copy, while the complete domain reveals spelling changes and misleading suffixes."
+        "th": "เครือข่ายหนึ่งมีทั้งสินทรัพย์หลักและโทเคนอีกมากที่สร้างผ่าน smart contract และมาตรฐานอย่าง ERC-20",
+        "en": "Networks can have a native asset as well as many separate tokens created through smart contracts and token standards such as ERC-20."
+      },
+      "hint": {
+        "th": "เครือข่ายหนึ่งรองรับโทเคนที่แอปสร้างได้หลายตัว นอกเหนือจากสินทรัพย์หลัก",
+        "en": "A network can host many application-created tokens in addition to its native asset."
+      }
+    },
+    {
+      "id": "l02q04",
+      "prompt": {
+        "th": "โทเคน ERC-20 ถูกเรียกว่า 'fungible' หมายความว่าอย่างไร?",
+        "en": "An ERC-20 token is described as 'fungible.' What does that mean?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "แต่ละหน่วยต้องมีรูปภาพไม่ซ้ำกัน",
+            "en": "Each unit must have a unique picture"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "โทเคนโอนระหว่างบัญชีไม่ได้",
+            "en": "The token cannot be transferred between accounts"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "โทเคนอยู่ได้เฉพาะนอกบล็อกเชน",
+            "en": "The token can only exist off-chain"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "แต่ละหน่วยของโทเคนชนิดเดียวกันแลกแทนกันได้",
+            "en": "Each unit of the same token type is intended to be interchangeable with another unit of that token type"
+          }
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": {
+        "th": "ERC-20 กำหนดโทเคนแบบ fungible ซึ่งแต่ละหน่วยของโทเคนชนิดเดียวกันมีประเภทและมูลค่าแลกแทนกันได้",
+        "en": "ERC-20 defines fungible tokens, where units of the same token type are interchangeable in type and value."
+      },
+      "hint": {
+        "th": "นึกถึงหน่วยที่เหมือนกันทุกประการ ไม่ใช่ของสะสมที่มีชิ้นเดียว",
+        "en": "Think of identical units rather than one-of-a-kind collectibles."
       }
     }
   ]

@@ -1,135 +1,211 @@
 {
   "id": "1",
+  "chapter": {
+    "id": "basics",
+    "title": {
+      "th": "พื้นฐานบล็อกเชน",
+      "en": "Blockchain basics"
+    }
+  },
   "title": {
-    "th": "ปกป้อง Recovery Phrase",
-    "en": "Protect your recovery phrase"
+    "th": "บล็อกเชนคืออะไร",
+    "en": "What is a blockchain?"
   },
   "summary": {
-    "th": "เรียนรู้ว่าคำ 12–24 คำนี้ควบคุมกระเป๋าของคุณอย่างไร และทำไมจึงห้ามส่งให้ใคร",
-    "en": "Learn why these 12–24 words control your wallet and must never be shared."
+    "th": "รู้จักฐานข้อมูลที่คอมพิวเตอร์จำนวนมากเก็บสำเนาร่วมกัน และทำไมจึงเรียกว่าบล็อกที่ต่อกันเป็นเชน",
+    "en": "Meet the shared database that many computers keep together, and why it is called a chain of blocks."
   },
   "lesson": {
-    "th": "Recovery phrase คือกุญแจสำรองที่สามารถกู้และควบคุมสินทรัพย์ทั้งหมดในกระเป๋าได้ ผู้ที่ได้คำเหล่านี้ไม่ต้องรู้รหัสผ่านอื่นก็สามารถย้ายสินทรัพย์ออกไปได้ เจ้าหน้าที่ช่วยเหลือ เว็บไซต์ และแอปที่ถูกต้องจะไม่ขอให้คุณพิมพ์หรือส่ง recovery phrase หากมีคำขอเช่นนั้น ให้หยุดทันที ปิดช่องทางนั้น และเข้าหาช่องทางทางการด้วยตัวเอง ควรจดคำเหล่านี้แบบออฟไลน์และเก็บในที่ปลอดภัยซึ่งมีเพียงคุณเข้าถึงได้",
-    "en": "A recovery phrase is the backup key that can restore and control every asset in a wallet. Anyone who gets the words can move the assets without another password. Legitimate support staff, websites, and apps will never ask you to type or send the phrase. If anyone asks, stop, close that channel, and reach the official service independently. Record the phrase offline and keep it somewhere secure that only you can access."
+    "th": "บล็อกเชนสาธารณะคือฐานข้อมูลที่ใช้ร่วมกัน แทนที่จะอยู่บนเซิร์ฟเวอร์ของบริษัทเดียว คอมพิวเตอร์จำนวนมากในเครือข่ายจะเก็บสำเนาและอัปเดตไปพร้อมกัน จึงไม่ต้องมีเจ้าของคนเดียวคอยดูแลให้ข้อมูลตรงกัน ธุรกรรมจะถูกรวมเป็นบล็อก และแต่ละบล็อกเชื่อมกับบล็อกก่อนหน้าเป็นเชนของประวัติ เมื่อคุณส่งธุรกรรม ธุรกรรมนั้นจะกลายเป็นส่วนหนึ่งของประวัติก็ต่อเมื่อเครือข่ายยอมรับแล้ว คือถูกใส่ในบล็อกและผู้เข้าร่วมเห็นพ้องตามกฎฉันทามติ (consensus) ของเครือข่าย ไม่มีใคร รวมถึงบริษัท wallet ที่แก้ไขบันทึกเองได้ตามใจ",
+    "en": "A public blockchain is a shared database. Instead of living on one company's server, it is copied and updated by many computers in the network, so no single owner is needed to keep the records consistent. Transactions are grouped into blocks, and each block is linked to the one before it, forming a chain of history. When you send a transaction, it becomes part of that history only after the network accepts it: it is included in a block and the participants agree on it through the network's consensus rules. Nobody, including a wallet company, can simply edit the records by hand."
   },
   "keyPoints": [
     {
-      "th": "ผู้ที่รู้ recovery phrase สามารถควบคุมกระเป๋าได้ทั้งหมด",
-      "en": "Anyone who knows the recovery phrase can control the whole wallet."
+      "th": "บล็อกเชนสาธารณะคือฐานข้อมูลที่คอมพิวเตอร์จำนวนมากเก็บสำเนาและอัปเดตร่วมกัน",
+      "en": "A public blockchain is a database copied and updated by many computers."
     },
     {
-      "th": "ฝ่ายช่วยเหลือที่ถูกต้องจะไม่ขอ recovery phrase",
-      "en": "Legitimate support will never ask for a recovery phrase."
+      "th": "ไม่จำเป็นต้องมีบริษัทเดียวเป็นเจ้าของเพื่อให้ข้อมูลตรงกัน",
+      "en": "No single company has to own it to keep the records consistent."
     },
     {
-      "th": "เก็บแบบออฟไลน์ในที่ปลอดภัย และอย่าถ่ายหรือส่งผ่านแชต",
-      "en": "Store it offline in a secure place; do not photograph or send it through chat."
+      "th": "ธุรกรรมถูกรวมเป็นบล็อกที่เชื่อมต่อกันตามลำดับ",
+      "en": "Transactions are grouped into blocks that are linked in order."
+    },
+    {
+      "th": "ธุรกรรมจะถูกบันทึกเมื่อเครือข่ายยอมรับผ่านฉันทามติ",
+      "en": "A transaction is recorded once the network accepts it through consensus."
     }
   ],
   "quiz": [
     {
-      "id": "recovery-support-request",
+      "id": "l01q01",
       "prompt": {
-        "th": "บัญชีที่อ้างว่าเป็นฝ่ายช่วยเหลือขอ recovery phrase เพื่อปลดล็อกกระเป๋า คุณควรทำอย่างไร?",
-        "en": "An account claiming to be support asks for your recovery phrase to unlock the wallet. What should you do?"
+        "th": "ข้อใดอธิบายบล็อกเชนสาธารณะได้ดีที่สุด?",
+        "en": "Which description best matches a public blockchain?"
       },
       "options": [
         {
-          "id": "send-half",
+          "id": "a",
           "text": {
-            "th": "ส่งครึ่งหนึ่งก่อนเพื่อทดสอบว่าเป็นเจ้าหน้าที่จริง",
-            "en": "Send half of the words first to test whether they are real support."
+            "th": "สเปรดชีตส่วนตัวที่เก็บบนเซิร์ฟเวอร์ของบริษัทเดียว",
+            "en": "A private spreadsheet stored on one company's server"
           }
         },
         {
-          "id": "refuse-and-verify",
+          "id": "b",
           "text": {
-            "th": "ไม่ส่ง ปิดการสนทนา และติดต่อช่องทางทางการด้วยตัวเอง",
-            "en": "Do not send it; close the conversation and contact the official channel independently."
+            "th": "แอปจ่ายเงินที่ใช้ได้เฉพาะเมื่อธนาคารอนุมัติทุกการโอน",
+            "en": "A payment app that works only when a bank approves each transfer"
           }
         },
         {
-          "id": "send-private-message",
+          "id": "c",
           "text": {
-            "th": "ส่งทางข้อความส่วนตัวเพราะปลอดภัยกว่าหน้าเว็บ",
-            "en": "Send it in a private message because that is safer than a website."
+            "th": "โปรแกรมจัดการรหัสผ่านสำหรับบัญชีคริปโต",
+            "en": "A password manager for crypto accounts"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "ฐานข้อมูลที่ใช้ร่วมกัน ซึ่งคอมพิวเตอร์จำนวนมากในเครือข่ายอัปเดตและเก็บสำเนาไว้",
+            "en": "A shared database updated and replicated across many computers in a network"
           }
         }
       ],
-      "correctOptionId": "refuse-and-verify",
+      "correctOptionId": "d",
       "explanation": {
-        "th": "ห้ามส่ง recovery phrase ไม่ว่าผู้ขอจะอ้างตัวอย่างไร ให้หยุดและเปิดช่องทางทางการด้วยตัวเอง",
-        "en": "Never send a recovery phrase, regardless of who asks. Stop and open the official channel yourself."
+        "th": "บล็อกเชนสาธารณะคือฐานข้อมูลที่สถานะถูกอัปเดตและแชร์ไปยังคอมพิวเตอร์จำนวนมากที่เข้าร่วมเครือข่าย",
+        "en": "A public blockchain is a database whose state is updated and shared across many computers participating in the network."
+      },
+      "hint": {
+        "th": "ลองคิดว่าใครเก็บสำเนาข้อมูล: เซิร์ฟเวอร์กลางเครื่องเดียว หรือผู้เข้าร่วมเครือข่ายจำนวนมาก?",
+        "en": "Think about who keeps copies of the data: one central server, or many network participants?"
       }
     },
     {
-      "id": "recovery-storage",
+      "id": "l01q02",
       "prompt": {
-        "th": "วิธีใดเหมาะที่สุดสำหรับเก็บ recovery phrase?",
-        "en": "Which method is safest for storing a recovery phrase?"
+        "th": "บล็อกเชนต้องมีบริษัทเดียวเป็นเจ้าของและดูแล จึงจะรักษาบันทึกให้ตรงกันได้",
+        "en": "A blockchain must be owned and operated by one company to keep its records consistent."
       },
       "options": [
         {
-          "id": "offline-secure",
+          "id": "true",
           "text": {
-            "th": "จดแบบออฟไลน์และเก็บในที่ปลอดภัยที่มีเพียงคุณเข้าถึง",
-            "en": "Write it offline and keep it in a secure place only you can access."
+            "th": "จริง",
+            "en": "True"
           }
         },
         {
-          "id": "cloud-photo",
+          "id": "false",
           "text": {
-            "th": "ถ่ายรูปแล้วเก็บใน cloud เพื่อหาได้ง่าย",
-            "en": "Photograph it and store it in the cloud for easy access."
-          }
-        },
-        {
-          "id": "send-to-friend",
-          "text": {
-            "th": "ส่งให้เพื่อนเก็บสำรองในแชต",
-            "en": "Send it to a friend as a backup in chat."
+            "th": "เท็จ",
+            "en": "False"
           }
         }
       ],
-      "correctOptionId": "offline-secure",
+      "correctOptionId": "false",
       "explanation": {
-        "th": "การเก็บแบบออฟไลน์ลดโอกาสที่บัญชี cloud แชต หรืออุปกรณ์ที่ถูกเจาะจะเปิดเผยคำเหล่านี้",
-        "en": "Offline storage reduces the chance that a compromised cloud account, chat, or device exposes the words."
+        "th": "บล็อกเชนสาธารณะรักษาสถานะร่วมกันได้ผ่านคอมพิวเตอร์อิสระจำนวนมาก ไม่จำเป็นต้องมีบริษัทเดียวเป็นเจ้าของเครือข่าย",
+        "en": "Public blockchains can maintain a shared state across many independent computers; a single company does not have to own the network."
+      },
+      "hint": {
+        "th": "คำว่า 'กระจาย' (distributed) คือเบาะแสสำคัญ",
+        "en": "The word 'distributed' is the key clue here."
       }
     },
     {
-      "id": "recovery-website",
+      "id": "l01q03",
       "prompt": {
-        "th": "เว็บไซต์แจ้งว่ากระเป๋ามีปัญหาและให้กรอก recovery phrase เพื่อซ่อมแซม ขั้นตอนที่ปลอดภัยคืออะไร?",
-        "en": "A website says your wallet is broken and asks for the recovery phrase to repair it. What is the safe response?"
+        "th": "อลิซส่งธุรกรรมโอนคริปโตที่ถูกต้อง ต้องเกิดอะไรขึ้นก่อนการโอนนี้จะกลายเป็นส่วนหนึ่งของประวัติบนบล็อกเชน?",
+        "en": "Alice broadcasts a valid crypto transfer. What must happen for that transfer to become part of the blockchain's recorded history?"
       },
       "options": [
         {
-          "id": "enter-once",
+          "id": "a",
           "text": {
-            "th": "กรอกครั้งเดียวแล้วเปลี่ยนรหัสผ่านภายหลัง",
-            "en": "Enter it once and change the password afterward."
+            "th": "บริษัท wallet ต้องแก้ไขบล็อกเชนด้วยมือ",
+            "en": "A wallet company must manually edit the blockchain"
           }
         },
         {
-          "id": "check-reviews",
+          "id": "b",
           "text": {
-            "th": "อ่านรีวิวของเว็บก่อน แล้วกรอกถ้าคะแนนดี",
-            "en": "Read reviews first, then enter it if the rating is good."
+            "th": "เครือข่ายต้องยอมรับธุรกรรม โดยทั่วไปคือถูกใส่ในบล็อกและผ่านฉันทามติ",
+            "en": "The transaction must be included in the blockchain's accepted state, typically through block inclusion and consensus"
           }
         },
         {
-          "id": "close-site",
+          "id": "c",
           "text": {
-            "th": "ปิดเว็บทันที และตรวจสถานะผ่านแอปหรือเว็บไซต์ทางการที่เปิดเอง",
-            "en": "Close the site and check through the official app or a site you open independently."
+            "th": "อลิซต้องอีเมลสำเนาการโอนให้ผู้ใช้ทุกคน",
+            "en": "Alice must email a copy of the transfer to every user"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "ผู้รับต้องเปิดเผย private key",
+            "en": "The recipient must reveal a private key"
           }
         }
       ],
-      "correctOptionId": "close-site",
+      "correctOptionId": "b",
       "explanation": {
-        "th": "เว็บไซต์ที่ขอ recovery phrase เป็นอันตราย ควรปิดและกลับไปยังช่องทางทางการที่คุณเข้าถึงเอง",
-        "en": "A site asking for a recovery phrase is dangerous. Close it and return to an official channel you reached yourself."
+        "th": "เครือข่ายบล็อกเชนประมวลผลธุรกรรมเข้าสู่สถานะที่ยอมรับแล้ว โดยทั่วไปคือการใส่ไว้ในบล็อกและเห็นพ้องกันผ่านกลไกฉันทามติ",
+        "en": "Blockchain networks process transactions into accepted state, commonly by including them in blocks and reaching agreement through their consensus mechanism."
+      },
+      "hint": {
+        "th": "มองหาตัวเลือกที่เครือข่ายเป็นผู้ยอมรับธุรกรรม ไม่ใช่บริษัทแก้ข้อมูลเอง",
+        "en": "Look for the choice that involves the network accepting the transaction, not a company editing data manually."
+      }
+    },
+    {
+      "id": "l01q04",
+      "prompt": {
+        "th": "ทำไมจึงเรียกว่า 'บล็อกเชน'?",
+        "en": "Why is the term 'blockchain' used?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "ผู้ใช้ทุกคนได้รับบล็อกที่จับต้องได้",
+            "en": "Every user receives a physical block"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "มีบล็อกได้เพียงบล็อกเดียวเท่านั้น",
+            "en": "Only one block can ever exist"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "ธุรกรรมถูกเก็บไว้ในแอป wallet เท่านั้น",
+            "en": "Transactions are stored only inside wallet apps"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "ข้อมูลถูกรวมเป็นบล็อกที่เชื่อมต่อกันตามลำดับ",
+            "en": "Data is grouped into blocks that are linked in sequence"
+          }
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": {
+        "th": "ข้อมูลบนบล็อกเชนถูกจัดเป็นบล็อกต่อเนื่องกัน และแต่ละบล็อกเชื่อมกับประวัติของเชน",
+        "en": "Blockchain data is grouped into consecutive blocks, and each block is linked to the chain's history."
+      },
+      "hint": {
+        "th": "ลองแยกคำออกเป็นสองส่วน: 'บล็อก' และ 'เชน'",
+        "en": "Break the word into two parts: 'block' and 'chain'."
       }
     }
   ]

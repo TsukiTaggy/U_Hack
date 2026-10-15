@@ -14,7 +14,8 @@ const copy = {
     next: "คำถามถัดไป",
     finish: "ดูผลลัพธ์",
     correct: "ตอบถูก",
-    incorrect: "ยังไม่ถูก",
+    incorrect: "ยังไม่ถูก ลองอีกครั้ง",
+    hint: "คำใบ้",
   },
   en: {
     quiz: "Quiz",
@@ -24,7 +25,8 @@ const copy = {
     next: "Next question",
     finish: "See result",
     correct: "Correct",
-    incorrect: "Not quite",
+    incorrect: "Not quite. Try again",
+    hint: "Hint",
   },
 } as const;
 
@@ -110,7 +112,10 @@ export function LearningQuiz({
           }`}
         >
           <p className="font-semibold">{result.correct ? text.correct : text.incorrect}</p>
-          <p className="mt-1 text-sm leading-relaxed">{localizedText(result.explanation, locale)}</p>
+          <p className="mt-1 text-sm leading-relaxed">
+            {!result.correct && question.hint && <span className="font-semibold">{text.hint}: </span>}
+            {localizedText(result.feedback, locale)}
+          </p>
         </section>
       )}
 

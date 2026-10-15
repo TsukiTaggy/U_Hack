@@ -2,14 +2,14 @@ import { localizedText, type LessonContent, type Locale } from "@/lib/learning";
 
 const copy = {
   th: {
-    eyebrow: "บทเรียนความปลอดภัย",
+    lessonLabel: "บทที่",
     keyPoints: "สิ่งสำคัญที่ต้องจำ",
     start: "เริ่มทำแบบทดสอบ",
     review: "ทบทวนแบบทดสอบ",
     reviewed: "บทนี้เรียนจบแล้ว คุณสามารถทบทวนเนื้อหาและทำแบบทดสอบอีกครั้งได้",
   },
   en: {
-    eyebrow: "Safety lesson",
+    lessonLabel: "Lesson",
     keyPoints: "What to remember",
     start: "Start the quiz",
     review: "Review the quiz",
@@ -34,7 +34,7 @@ export function LessonPanel({
     <article className="rounded-3xl border border-[var(--border-subtle)] bg-white p-6 shadow-sm dark:bg-zinc-950 sm:p-8">
       <header className="max-w-3xl space-y-3">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--avalanche-red)]">
-          {text.eyebrow} {lesson.id}
+          {localizedText(lesson.chapter.title, locale)} · {text.lessonLabel} {lesson.id}
         </p>
         <h3 className="text-3xl font-bold tracking-tight sm:text-4xl">{localizedText(lesson.title, locale)}</h3>
         <p className="text-base leading-relaxed text-[var(--text-muted)] sm:text-lg">

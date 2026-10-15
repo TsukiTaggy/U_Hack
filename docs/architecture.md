@@ -39,9 +39,17 @@ In code use `avalancheFuji` from `viem/chains`.
 
 ## Standalone learning center
 
-`/learn` is separate from the wallet-backed missions on `/play`. It presents four Thai/English safety lessons in sequence: recovery phrase protection, fake links, transaction review and social engineering. Each lesson has three multiple-choice questions whose explanations reference the lesson content directly.
+`/learn` is separate from the wallet-backed missions on `/play`. It presents 13 Thai/English lessons in sequence, grouped into three chapters:
 
-`lib/learning.ts` owns the lesson schema, localization fallback and quiz evaluation. `lib/learning-progress.ts` owns parsing, sequential unlock rules and resilient browser storage under `safestart.learning.v1`. This progress is a learning aid only: it never creates a pass receipt, affects certificate readiness or replaces any check in `lib/verify.ts`.
+| Chapter | Lessons |
+|---|---|
+| Blockchain basics (`basics`) | 1 What is a blockchain · 2 Crypto, coins and tokens · 3 Transactions, blocks and consensus · 4 Smart contracts, networks and testnets |
+| Using crypto (`using`) | 5 Wallets, accounts and addresses · 6 Sending and receiving · 7 Gas fees and transaction status · 8 Block explorers and dapps |
+| Web3 safety (`safety`) | 9 Recovery phrase · 10 Fake websites and links · 11 Reviewing a transaction before signing · 12 Social engineering · 13 Safe habits and scam response |
+
+Each lesson has four multiple-choice or true/false questions answerable from its lesson text. A wrong answer shows the question's hint and a retry; the explanation appears once the answer is right. Lessons 1–8 and 13, and the fourth question of lessons 9–12, come from the team's research question bank (2026-10-15), which states its facts were checked against ethereum.org, Avalanche Builder Hub, MetaMask Help Center, OWASP Smart Contract Security and official explorers; Thai copy was translated for the course. Research questions that repeated lessons 9–12 were left out.
+
+`lib/learning.ts` owns the lesson schema, localization fallback and quiz evaluation. `lib/learning-progress.ts` owns parsing, sequential unlock rules and resilient browser storage under `safestart.learning.v2` (v1 belonged to the earlier four-lesson numbering and is not reused). This progress is a learning aid only: it never creates a pass receipt, affects certificate readiness or replaces any check in `lib/verify.ts`.
 
 ## Missions and verification
 

@@ -1,0 +1,212 @@
+{
+  "id": "7",
+  "chapter": {
+    "id": "using",
+    "title": {
+      "th": "ใช้งานคริปโต",
+      "en": "Using crypto"
+    }
+  },
+  "title": {
+    "th": "ค่า gas และสถานะธุรกรรม",
+    "en": "Gas fees and transaction status"
+  },
+  "summary": {
+    "th": "gas คือค่าประมวลผลที่จ่ายเป็น AVAX บน C-Chain และอ่านผลธุรกรรมได้จาก explorer",
+    "en": "Gas pays for computation, it is paid in AVAX on C-Chain, and an explorer shows you the result."
+  },
+  "lesson": {
+    "th": "Gas คือหน่วยวัดงานประมวลผลที่ต้องใช้ในการทำงานบนเครือข่าย EVM คุณจ่ายค่าธรรมเนียมตามปริมาณ gas ที่ธุรกรรมใช้คูณราคาของ gas บน Avalanche C-Chain ค่าธรรมเนียมนี้จ่ายเป็น AVAX เครือข่ายทำงานประมวลผลไปแล้วไม่ว่าผลลัพธ์สุดท้ายจะสำเร็จหรือไม่ ธุรกรรมที่ล้มเหลวหลังเริ่มประมวลผลจึงยังใช้ gas และเสียค่าธรรมเนียมได้ หากต้องการดูว่าเกิดอะไรขึ้น ให้เปิดธุรกรรมใน block explorer หน้าที่แสดง 'Status: Success' จำนวนเงิน และค่าธรรมเนียม หมายความว่าเครือข่ายบันทึกธุรกรรมนั้นว่าสำเร็จ explorer เพียงแสดงข้อมูลบนบล็อกเชน ไม่ได้ย้ายหรือแก้ไขอะไร",
+    "en": "Gas measures the computational work needed to run operations on an EVM network. You pay a network fee based on the gas a transaction uses and the price of gas. On Avalanche C-Chain that fee is paid in AVAX. The network does the work whether or not the final result succeeds, so a transaction that fails after execution begins can still use gas and charge a fee. To check what happened, open the transaction in a block explorer: a page showing 'Status: Success', a value, and a fee means the network recorded the transaction as successful. The explorer only displays on-chain data; it does not move or edit anything."
+  },
+  "keyPoints": [
+    {
+      "th": "gas วัดงานประมวลผล และค่าธรรมเนียมคิดจาก gas ที่ใช้คูณราคา gas",
+      "en": "Gas measures computation; the fee is gas used times the gas price."
+    },
+    {
+      "th": "ค่าธรรมเนียมบน Avalanche C-Chain จ่ายเป็น AVAX",
+      "en": "Fees on Avalanche C-Chain are paid in AVAX."
+    },
+    {
+      "th": "ธุรกรรมที่ล้มเหลวยังเสียค่าธรรมเนียมได้",
+      "en": "A failed transaction can still cost a fee."
+    },
+    {
+      "th": "explorer แสดงสถานะและค่าธรรมเนียม แต่ไม่ได้ควบคุมธุรกรรม",
+      "en": "An explorer shows status and fees but does not control the transaction."
+    }
+  ],
+  "quiz": [
+    {
+      "id": "l07q01",
+      "prompt": {
+        "th": "'gas' บนเครือข่าย EVM คืออะไร?",
+        "en": "What is 'gas' on an EVM network?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "การรับประกันว่าธุรกรรมจะได้กำไร",
+            "en": "A guarantee that a transaction will profit"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "หน่วยวัดงานประมวลผลที่ใช้ในการทำงานบนบล็อกเชน",
+            "en": "A measure used to account for the computational work of executing blockchain operations"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "สำเนาสำรองของ recovery phrase",
+            "en": "A backup copy of your recovery phrase"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "address รูปแบบหนึ่งของ wallet",
+            "en": "A type of wallet address"
+          }
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": {
+        "th": "gas วัดงานประมวลผลของการทำงานบน EVM และผู้ใช้จ่ายค่าธรรมเนียมตาม gas ที่ใช้และราคาของ gas",
+        "en": "Gas measures computational work for EVM operations, and users pay network fees based on the gas consumed and its price."
+      },
+      "hint": {
+        "th": "คิดว่า gas คือค่าประมวลผล ไม่ใช่ข้อมูลสำรองหรือการรับประกันกำไร",
+        "en": "Think of gas as paying for computation, not as an asset backup or profit guarantee."
+      }
+    },
+    {
+      "id": "l07q02",
+      "prompt": {
+        "th": "ธุรกรรมที่ล้มเหลวหลังเริ่มประมวลผลแล้ว ยังอาจใช้ gas และเสียค่าธรรมเนียม",
+        "en": "A transaction that fails after execution begins may still consume gas and charge a network fee."
+      },
+      "options": [
+        {
+          "id": "true",
+          "text": {
+            "th": "จริง",
+            "en": "True"
+          }
+        },
+        {
+          "id": "false",
+          "text": {
+            "th": "เท็จ",
+            "en": "False"
+          }
+        }
+      ],
+      "correctOptionId": "true",
+      "explanation": {
+        "th": "ค่า gas จ่ายให้กับงานประมวลผลที่เครือข่ายทำไปแล้ว ธุรกรรมที่ล้มเหลวจึงยังใช้ gas และเสียค่าธรรมเนียมได้",
+        "en": "EVM gas fees pay for computation performed by the network, so a failed execution can still consume gas and incur a fee."
+      },
+      "hint": {
+        "th": "เครือข่ายอาจทำงานประมวลผลไปแล้ว แม้ผลลัพธ์สุดท้ายจะล้มเหลว",
+        "en": "The network may have already done computational work even if the final result fails."
+      }
+    },
+    {
+      "id": "l07q03",
+      "prompt": {
+        "th": "บน Avalanche C-Chain จ่ายค่าธรรมเนียมธุรกรรมด้วยสินทรัพย์ใด?",
+        "en": "What asset is used to pay transaction fees on Avalanche C-Chain?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "รหัสผ่าน wallet",
+            "en": "A wallet password"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "โทเคนใดก็ได้โดยอัตโนมัติ ไม่ต้องแปลงหรือใช้กลไกพิเศษ",
+            "en": "Any token automatically, with no conversion or special mechanism"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "AVAX",
+            "en": "AVAX"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "BTC",
+            "en": "BTC"
+          }
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": {
+        "th": "ค่าธรรมเนียมธุรกรรมบน Avalanche C-Chain คิดเป็น AVAX",
+        "en": "Avalanche C-Chain transaction fees are denominated in AVAX."
+      },
+      "hint": {
+        "th": "ใช้สินทรัพย์หลักของ Avalanche สำหรับรูปแบบค่าธรรมเนียมพื้นฐานบน C-Chain",
+        "en": "Use the native asset of Avalanche for the basic C-Chain fee model."
+      }
+    },
+    {
+      "id": "l07q04",
+      "prompt": {
+        "th": "หน้าธุรกรรมใน block explorer แสดง 'Status: Success' จำนวนเงิน และค่าธรรมเนียมธุรกรรม explorer กำลังบอกอะไรคุณ?",
+        "en": "A block-explorer transaction page shows 'Status: Success', a value, and a transaction fee. What is the explorer telling you?"
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "th": "explorer เป็นผู้ย้ายเงินเอง",
+            "en": "The explorer itself moved the funds"
+          }
+        },
+        {
+          "id": "b",
+          "text": {
+            "th": "ตอนนี้ explorer แก้ไขธุรกรรมได้",
+            "en": "The transaction can now be edited by the explorer"
+          }
+        },
+        {
+          "id": "c",
+          "text": {
+            "th": "private key ถูกเปิดเผยต่อสาธารณะ",
+            "en": "The private key is publicly visible"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "เครือข่ายบันทึกธุรกรรมนี้ว่าสำเร็จ และหน้านี้แสดงรายละเอียดบนบล็อกเชน",
+            "en": "The network recorded the transaction as successful and the page is displaying its on-chain details"
+          }
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": {
+        "th": "block explorer แสดงข้อมูลธุรกรรมบนบล็อกเชน เช่น สถานะ จำนวนเงิน ผู้ส่ง ผู้รับ และค่าธรรมเนียม แต่ไม่ได้ควบคุมธุรกรรม",
+        "en": "Block explorers display on-chain transaction data such as status, value, sender, recipient, and fees; they do not control the transaction."
+      },
+      "hint": {
+        "th": "explorer เป็นเครื่องมือดูข้อมูลบล็อกเชน ไม่ใช่ผู้ประมวลผลหรือแก้ไขธุรกรรม",
+        "en": "An explorer is a viewer of blockchain data, not the authority that executes or edits it."
+      }
+    }
+  ]
+}

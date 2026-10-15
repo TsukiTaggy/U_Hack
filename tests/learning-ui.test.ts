@@ -9,9 +9,9 @@ import { lessons, localizedText } from "@/lib/learning";
 describe("LessonPath", () => {
   it("exposes current, completed, and locked lessons accessibly", () => {
     const items: LessonPathItem[] = [
-      { id: "1", title: "บทที่หนึ่ง", status: "completed", selected: false },
-      { id: "2", title: "บทที่สอง", status: "current", selected: true },
-      { id: "3", title: "บทที่สาม", status: "locked", selected: false },
+      { id: "1", chapter: "พื้นฐาน", title: "บทที่หนึ่ง", status: "completed", selected: false },
+      { id: "2", chapter: "พื้นฐาน", title: "บทที่สอง", status: "current", selected: true },
+      { id: "3", chapter: "ความปลอดภัย", title: "บทที่สาม", status: "locked", selected: false },
     ];
 
     const markup = renderToStaticMarkup(
@@ -23,6 +23,9 @@ describe("LessonPath", () => {
     expect(markup).toContain("เรียนจบแล้ว");
     expect(markup).toContain("ยังไม่ปลดล็อก");
     expect(markup).toMatch(/<button[^>]*disabled[^>]*>[^<]*<span[^>]*>3<\/span>/);
+    expect(markup.match(/<h3/g)).toHaveLength(2);
+    expect(markup.indexOf("พื้นฐาน")).toBeLessThan(markup.indexOf("บทที่หนึ่ง"));
+    expect(markup.indexOf("ความปลอดภัย")).toBeLessThan(markup.indexOf("บทที่สาม"));
   });
 });
 
@@ -39,6 +42,7 @@ describe("LessonPanel", () => {
     );
 
     expect(markup).toContain(localizedText(lesson.title, "th"));
+    expect(markup).toContain(`${localizedText(lesson.chapter.title, "th")} · บทที่ ${lesson.id}`);
     expect(markup).toContain(localizedText(lesson.lesson, "th"));
     expect(markup).toContain(localizedText(lesson.keyPoints[0], "th"));
     expect(markup).toContain("เริ่มทำแบบทดสอบ");

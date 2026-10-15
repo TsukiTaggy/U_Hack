@@ -1,135 +1,211 @@
 {
   "id": "4",
+  "chapter": {
+    "id": "basics",
+    "title": {
+      "th": "พื้นฐานบล็อกเชน",
+      "en": "Blockchain basics"
+    }
+  },
   "title": {
-    "th": "รับมือ Social Engineering",
-    "en": "Respond to social engineering"
+    "th": "Smart contract เครือข่าย และ testnet",
+    "en": "Smart contracts, networks, and testnets"
   },
   "summary": {
-    "th": "สังเกตการกดดันด้วยความเร่งด่วน อำนาจ ความกลัว และรางวัล แล้วหยุดเพื่อตรวจสอบ",
-    "en": "Recognize pressure through urgency, authority, fear, and rewards, then pause to verify."
+    "th": "รู้จักโปรแกรมที่อยู่บนบล็อกเชน และเหตุผลที่ SafeStart ให้ฝึกบน Avalanche Fuji testnet",
+    "en": "Meet programs that live on a blockchain, and why SafeStart has you practise on the Avalanche Fuji testnet."
   },
   "lesson": {
-    "th": "Social engineering ใช้ความรู้สึกแทนการเจาะระบบ ผู้โจมตีอาจอ้างเป็นหัวหน้า เจ้าหน้าที่ หรือเพื่อน แล้วสร้างความเร่งด่วน ความกลัว หรือรางวัลเพื่อให้คุณทำก่อนคิด สัญญาณสำคัญคือการห้ามตรวจสอบ การขอให้เก็บเป็นความลับ หรือการเปลี่ยนช่องทางและข้อมูลรับเงินกะทันหัน วิธีรับมือคือหยุด ไม่เปิดเผยข้อมูลหรือเซ็นรายการ และยืนยันตัวตนผ่านช่องทางอื่นที่คุณรู้ว่าเชื่อถือได้ เช่น โทรกลับหมายเลขเดิมหรือเปิดเว็บไซต์ทางการเอง",
-    "en": "Social engineering attacks emotions instead of software. An attacker may impersonate a manager, support agent, or friend and use urgency, fear, or rewards to make you act before thinking. Warning signs include discouraging verification, demanding secrecy, or suddenly changing the channel or payment details. Pause, do not reveal information or sign anything, and verify identity through a separate channel you already trust, such as calling a known number or opening the official site yourself."
+    "th": "Smart contract คือโปรแกรมที่ติดตั้ง (deploy) ไว้ที่ address หนึ่งบนบล็อกเชน ฟังก์ชันของมันจะทำงานเมื่อผู้ใช้ส่งธุรกรรมเข้ามาเรียกใช้ นอกจากเครือข่ายหลัก (mainnet) ที่มีมูลค่าจริงแล้ว ยังมี testnet ซึ่งเป็นเครือข่ายแยกสำหรับฝึกและทดสอบโดยไม่เสี่ยงเงินบน mainnet SafeStart ใช้ Avalanche Fuji testnet ซึ่ง C-Chain รองรับ EVM คุณจึงฝึกด้วย test AVAX แทน AVAX จริง แต่ละเครือข่ายมีบัญชีแยกประเภท (ledger) ของตัวเอง address 0x เดียวกันใช้ได้บนหลายเครือข่าย EVM แต่ยอดเงินและประวัติธุรกรรมบนเครือข่ายหนึ่งจะไม่ตามไปอีกเครือข่าย",
+    "en": "A smart contract is a program deployed at a blockchain address. Its functions run when users interact with it through transactions. Besides main networks (mainnets) that hold real value, there are testnets: separate networks for practising and testing without putting mainnet funds at risk. SafeStart uses the Avalanche Fuji testnet, whose C-Chain is EVM-compatible, so you practise with test AVAX instead of real AVAX. Each network keeps its own ledger. The same 0x address can be used on two EVM networks, but its balance and transaction history on one network do not carry over to the other."
   },
   "keyPoints": [
     {
-      "th": "ความเร่งด่วน อำนาจ ความกลัว และรางวัลคือเครื่องมือกดดันที่พบบ่อย",
-      "en": "Urgency, authority, fear, and rewards are common pressure tools."
+      "th": "Smart contract คือโปรแกรมที่อยู่ที่ address บนบล็อกเชน",
+      "en": "A smart contract is a program at a blockchain address."
     },
     {
-      "th": "หยุดก่อนตอบ ส่งข้อมูล หรือเซ็นธุรกรรม",
-      "en": "Pause before replying, sharing information, or signing a transaction."
+      "th": "Testnet ให้ฝึกได้โดยไม่เสี่ยงเงินบน mainnet",
+      "en": "Testnets let you practise without risking mainnet funds."
     },
     {
-      "th": "ยืนยันตัวตนผ่านช่องทางอื่นที่คุณเชื่อถืออยู่แล้ว",
-      "en": "Verify identity through another channel you already trust."
+      "th": "SafeStart ฝึกบน Avalanche Fuji ด้วย test AVAX",
+      "en": "SafeStart practises on Avalanche Fuji with test AVAX."
+    },
+    {
+      "th": "address เดียวกันบนคนละเครือข่ายมียอดเงินแยกกัน",
+      "en": "The same address on different networks has separate balances."
     }
   ],
   "quiz": [
     {
-      "id": "urgent-manager",
+      "id": "l04q01",
       "prompt": {
-        "th": "บัญชีใหม่อ้างว่าเป็นหัวหน้าและสั่งให้โอนด่วนพร้อมห้ามโทรกลับ คุณควรทำอย่างไร?",
-        "en": "A new account claims to be your manager, orders an urgent transfer, and says not to call back. What should you do?"
+        "th": "Smart contract คืออะไร?",
+        "en": "What is a smart contract?"
       },
       "options": [
         {
-          "id": "obey-authority",
+          "id": "a",
           "text": {
-            "th": "ทำตามเพราะผู้ส่งมีอำนาจมากกว่า",
-            "en": "Comply because the sender has more authority."
+            "th": "สัญญากระดาษที่ถูกสแกนอัตโนมัติ",
+            "en": "A paper contract that is automatically scanned"
           }
         },
         {
-          "id": "verify-known-channel",
+          "id": "b",
           "text": {
-            "th": "หยุดและยืนยันกับหัวหน้าผ่านหมายเลขหรือช่องทางเดิมที่รู้จัก",
-            "en": "Pause and verify with the manager through a known number or existing channel."
+            "th": "private key ที่ผู้ใช้ทุกคนใช้ร่วมกัน",
+            "en": "A private key shared by all users"
           }
         },
         {
-          "id": "transfer-less",
+          "id": "c",
           "text": {
-            "th": "โอนจำนวนน้อยลงเพื่อแสดงว่าพยายามทำตามแล้ว",
-            "en": "Transfer a smaller amount to show that you tried to comply."
+            "th": "โปรแกรมที่ติดตั้งไว้ที่ address บนบล็อกเชน และทำงานตามฟังก์ชันที่กำหนด",
+            "en": "A program deployed at a blockchain address that can execute defined functions"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "พนักงานฝ่ายบริการที่อนุมัติการโอน",
+            "en": "A customer-support employee who approves transfers"
           }
         }
       ],
-      "correctOptionId": "verify-known-channel",
+      "correctOptionId": "c",
       "explanation": {
-        "th": "คำสั่งเร่งด่วนพร้อมห้ามตรวจสอบเป็นสัญญาณอันตราย ให้ยืนยันผ่านช่องทางที่ผู้ส่งควบคุมไม่ได้",
-        "en": "An urgent order that blocks verification is a warning sign. Verify through a channel the sender does not control."
+        "th": "Smart contract คือโค้ดโปรแกรมที่ติดตั้งบนบล็อกเชน ผู้ใช้เรียกใช้ฟังก์ชันของมันผ่านธุรกรรม",
+        "en": "A smart contract is program code deployed on-chain; users can interact with its functions through transactions."
+      },
+      "hint": {
+        "th": "มองหาคำตอบที่อธิบายโค้ดที่ทำงานอยู่ที่ address บนบล็อกเชน",
+        "en": "Look for the answer that describes code running at a blockchain address."
       }
     },
     {
-      "id": "reward-pressure",
+      "id": "l04q02",
       "prompt": {
-        "th": "ข้อความว่า “รับ airdrop ภายใน 5 นาที ไม่เช่นนั้นสิทธิ์จะหาย” ใช้กลวิธีใด?",
-        "en": "A message says, “Claim the airdrop within five minutes or lose it.” Which tactic is being used?"
+        "th": "ทำไม testnet จึงเป็นประโยชน์กับมือใหม่ที่กำลังเรียน Web3?",
+        "en": "Why are testnets useful for a beginner learning Web3?"
       },
       "options": [
         {
-          "id": "urgency-reward",
+          "id": "a",
           "text": {
-            "th": "ใช้ความเร่งด่วนและรางวัลให้ตัดสินใจเร็ว",
-            "en": "Urgency and reward pressure to force a quick decision."
+            "th": "เป็นสภาพแวดล้อมแยกสำหรับฝึกใช้บล็อกเชน โดยไม่เสี่ยงเงินบน mainnet",
+            "en": "They provide a separate environment for practicing blockchain interactions without putting mainnet funds at risk"
           }
         },
         {
-          "id": "technical-audit",
+          "id": "b",
           "text": {
-            "th": "การตรวจสอบ smart contract ทางเทคนิค",
-            "en": "A technical smart-contract audit."
+            "th": "ทำให้โทเคนบน mainnet มีมูลค่าเพิ่มขึ้นถาวร",
+            "en": "They permanently increase the value of mainnet tokens"
           }
         },
         {
-          "id": "network-notice",
+          "id": "c",
           "text": {
-            "th": "ประกาศเปลี่ยน network ตามปกติ",
-            "en": "A routine network-change notice."
+            "th": "ทำให้ไม่ต้องใช้ private key",
+            "en": "They make private keys unnecessary"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "รับประกันว่า smart contract ทุกตัวปลอดภัย",
+            "en": "They guarantee every smart contract is safe"
           }
         }
       ],
-      "correctOptionId": "urgency-reward",
+      "correctOptionId": "a",
       "explanation": {
-        "th": "กำหนดเวลาสั้นและรางวัลถูกใช้เพื่อลดเวลาที่คุณจะตรวจสอบความจริง",
-        "en": "A short deadline and reward reduce the time you feel able to spend verifying the claim."
+        "th": "Testnet เป็นเครือข่ายแยกสำหรับทดสอบและฝึก ผู้ใช้และนักพัฒนาจึงลองใช้งานได้โดยไม่เสี่ยงเงินบน mainnet",
+        "en": "Testnets are separate networks used for testing and practice, allowing users and developers to interact without risking mainnet funds."
+      },
+      "hint": {
+        "th": "คิดถึง 'สนามฝึก' ไม่ใช่ 'การรับประกันว่าทุก contract ปลอดภัย'",
+        "en": "Think 'practice environment,' not 'guaranteed safety of every contract.'"
       }
     },
     {
-      "id": "friend-secret",
+      "id": "l04q03",
       "prompt": {
-        "th": "เพื่อนส่งข้อความจากบัญชีเดิมแต่ขอข้อมูลลับแบบผิดปกติ การตอบสนองที่ปลอดภัยคืออะไร?",
-        "en": "A friend messages from their usual account but unusually asks for secret information. What is the safe response?"
+        "th": "SafeStart ใช้เครือข่ายใดสำหรับธุรกรรมฝึกบน Avalanche?",
+        "en": "Which network does SafeStart use for its Avalanche practice transactions?"
       },
       "options": [
         {
-          "id": "share-because-known",
+          "id": "a",
           "text": {
-            "th": "ส่งให้เพราะเป็นบัญชีที่รู้จัก",
-            "en": "Share it because the account is familiar."
+            "th": "สเปรดชีตส่วนตัว",
+            "en": "A private spreadsheet"
           }
         },
         {
-          "id": "ask-security-question",
+          "id": "b",
           "text": {
-            "th": "ถามคำถามเพิ่มในแชตเดียวกันแล้วเชื่อคำตอบ",
-            "en": "Ask another question in the same chat and trust the answer."
+            "th": "Avalanche Fuji Testnet",
+            "en": "Avalanche Fuji Testnet"
           }
         },
         {
-          "id": "withhold-and-verify",
+          "id": "c",
           "text": {
-            "th": "ไม่ส่งข้อมูล และติดต่อเพื่อนผ่านโทรศัพท์หรือช่องทางอื่น",
-            "en": "Do not share it; contact the friend by phone or another channel."
+            "th": "Ethereum Mainnet",
+            "en": "Ethereum Mainnet"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "Bitcoin Mainnet",
+            "en": "Bitcoin Mainnet"
           }
         }
       ],
-      "correctOptionId": "withhold-and-verify",
+      "correctOptionId": "b",
       "explanation": {
-        "th": "บัญชีที่คุ้นเคยอาจถูกยึด การยืนยันผ่านช่องทางอื่นช่วยแยกเพื่อนจริงออกจากผู้ควบคุมบัญชี",
-        "en": "A familiar account can be compromised. A separate channel distinguishes your friend from whoever controls the account."
+        "th": "Fuji คือเครือข่ายทดสอบสาธารณะของ Avalanche และ C-Chain ของ Fuji รองรับ EVM SafeStart จึงใช้ test AVAX บน Fuji ฝึกแทน AVAX บน mainnet",
+        "en": "Fuji is Avalanche's public test network, and its C-Chain is EVM-compatible. SafeStart uses test AVAX there for practice rather than mainnet AVAX."
+      },
+      "hint": {
+        "th": "ภารกิจของ SafeStart ออกแบบมาให้ใช้สภาพแวดล้อมทดสอบของ Avalanche",
+        "en": "SafeStart's missions are designed around Avalanche's test environment."
+      }
+    },
+    {
+      "id": "l04q04",
+      "prompt": {
+        "th": "ถ้าใช้ address บัญชี EVM เดียวกันบนสองเครือข่ายที่แยกกัน ยอดเงินและประวัติธุรกรรมจะตามไปอีกเครือข่ายโดยอัตโนมัติ",
+        "en": "If the same EVM account address is used on two independent networks, its balance and transaction history automatically carry over between those networks."
+      },
+      "options": [
+        {
+          "id": "true",
+          "text": {
+            "th": "จริง",
+            "en": "True"
+          }
+        },
+        {
+          "id": "false",
+          "text": {
+            "th": "เท็จ",
+            "en": "False"
+          }
+        }
+      ],
+      "correctOptionId": "false",
+      "explanation": {
+        "th": "address หนึ่งใช้ได้บนหลายเครือข่าย EVM แต่ยอดเงินและประวัติธุรกรรมถูกเก็บแยกกันบนแต่ละเครือข่าย",
+        "en": "An account address can be usable across EVM networks, but balances and transaction histories are maintained separately on each independent network."
+      },
+      "hint": {
+        "th": "address เดียวกันไม่ได้แปลว่าเครือข่ายใช้บัญชีแยกประเภทเดียวกัน",
+        "en": "Same address does not mean the networks share the same ledger."
       }
     }
   ]

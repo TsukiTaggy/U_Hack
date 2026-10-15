@@ -2,6 +2,8 @@ import type { LessonId, Locale } from "@/lib/learning";
 
 export type LessonPathItem = {
   id: LessonId;
+  /** Chapter heading shown above the first lesson of each chapter. */
+  chapter?: string;
   title: string;
   status: "locked" | "current" | "completed";
   selected: boolean;
@@ -20,6 +22,17 @@ const statusCopy = {
   },
 } as const;
 
+function groupByChapter(items: LessonPathItem[]) {
+  const groups: { chapter: string; items: LessonPathItem[] }[] = [];
+  for (const item of items) {
+    const chapter = item.chapter ?? "";
+    const last = groups.at(-1);
+    if (last && last.chapter === chapter) last.items.push(item);
+    else groups.push({ chapter, items: [item] });
+  }
+  return groups;
+}
+
 export function LessonPath({
   items,
   locale,
@@ -34,14 +47,19 @@ export function LessonPath({
       aria-label="Learning path"
       className="rounded-3xl border border-[var(--border-subtle)] bg-white p-5 shadow-sm dark:bg-zinc-950"
     >
+      {groupByChapter(items).map((group, groupIndex) => (
+        <section key={group.chapter || groupIndex} className={groupIndex > 0 ? "mt-6" : ""} aria-label={group.chapter || undefined}>
+          {group.chapter && (
+            <h3 className="mb-3 px-3 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">{group.chapter}</h3>
+          )}
       <ol className="space-y-3">
-        {items.map((item, index) => {
+        {group.items.map((item, index) => {
           const disabled = item.status === "locked";
           const status = statusCopy[locale][item.status];
 
           return (
             <li key={item.id} className="relative">
-              {index < items.length - 1 && (
+              {index < group.items.length - 1 && (
                 <span
                   aria-hidden="true"
                   className="absolute left-[1.35rem] top-11 h-[calc(100%-2rem)] w-px bg-[var(--border-subtle)]"
@@ -79,6 +97,8 @@ export function LessonPath({
           );
         })}
       </ol>
+        </section>
+      ))}
     </nav>
   );
 }

@@ -2,6 +2,7 @@
 
 **Date:** 2026-10-15
 **Status:** Draft for written review
+**Update 2026-10-16:** the course grew to 13 lessons in three chapters with four questions each and hints after wrong answers; storage moved to `safestart.learning.v2`. `docs/architecture.md` describes the current course.
 **Branch:** `codex/lesson-learning-ui`
 
 ## Goal

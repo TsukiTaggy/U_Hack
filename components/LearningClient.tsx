@@ -38,12 +38,12 @@ const copy = {
     eyebrow: "SAFESTART LEARNING CENTER",
     titleLead: "เรียนรู้ก่อน",
     titleAccent: "ลงมือจริง",
-    intro: "บทเรียนสั้น ๆ ที่ช่วยให้คุณสังเกตความเสี่ยง ตัดสินใจช้าลง และปกป้องกระเป๋าของตัวเอง",
+    intro: "13 บทเรียนสั้น ๆ ตั้งแต่พื้นฐานบล็อกเชน การใช้ wallet ไปจนถึงการรับมือมิจฉาชีพ ช่วยให้คุณสังเกตความเสี่ยงและปกป้องกระเป๋าของตัวเอง",
     testnet: "เรียนได้โดยไม่ต้องเชื่อม wallet",
     pathTitle: "เส้นทางการเรียนรู้",
     pathSubtitle: "เรียนตามลำดับและปลดล็อกบทถัดไปเมื่อทำแบบทดสอบผ่าน",
     completedTitle: "จบบทเรียนแล้ว",
-    completedBody: "คุณตอบถูกครบทั้ง 3 ข้อและปลดล็อกบทถัดไปแล้ว",
+    completedBody: "คุณตอบถูกครบทุกข้อและปลดล็อกบทถัดไปแล้ว",
     courseCompletedTitle: "เรียนครบทั้งหลักสูตรแล้ว",
     courseCompletedBody: "คุณสามารถกลับไปทบทวนบทเรียนหรือทำแบบทดสอบซ้ำได้ทุกเมื่อ",
     nextLesson: "ไปบทถัดไป",
@@ -55,12 +55,12 @@ const copy = {
     eyebrow: "SAFESTART LEARNING CENTER",
     titleLead: "Learn before you",
     titleAccent: "act",
-    intro: "Short lessons that help you spot risk, slow down decisions, and protect your wallet.",
+    intro: "13 short lessons, from blockchain basics and using a wallet to handling scams, that help you spot risk and protect your wallet.",
     testnet: "No wallet connection required",
     pathTitle: "Learning path",
     pathSubtitle: "Follow the lessons in order and unlock the next one by passing its quiz.",
     completedTitle: "Lesson completed",
-    completedBody: "You answered all three questions correctly and unlocked the next lesson.",
+    completedBody: "You answered every question correctly and unlocked the next lesson.",
     courseCompletedTitle: "Course completed",
     courseCompletedBody: "You can review any lesson or retake its quiz whenever you want.",
     nextLesson: "Continue to next lesson",
@@ -111,6 +111,7 @@ export default function LearningClient() {
     () =>
       lessons.map((lesson) => ({
         id: lesson.id,
+        chapter: localizedText(lesson.chapter.title, locale),
         title: localizedText(lesson.title, locale),
         status: isLessonCompleted(progress, lesson.id)
           ? "completed"
@@ -240,7 +241,8 @@ export default function LearningClient() {
         </header>
 
         <div className="grid items-start gap-6 lg:grid-cols-[300px_minmax(0,1fr)]">
-          <aside className="lg:sticky lg:top-20">
+          {/* On phones the lesson comes first and the 13-lesson path follows it. */}
+          <aside className="order-last lg:sticky lg:top-20 lg:order-none lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
             <LessonPath items={pathItems} locale={locale} onSelect={selectLesson} />
           </aside>
 

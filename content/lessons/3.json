@@ -1,135 +1,211 @@
 {
   "id": "3",
+  "chapter": {
+    "id": "basics",
+    "title": {
+      "th": "พื้นฐานบล็อกเชน",
+      "en": "Blockchain basics"
+    }
+  },
   "title": {
-    "th": "ตรวจธุรกรรมก่อนเซ็น",
-    "en": "Review a transaction before signing"
+    "th": "ธุรกรรม บล็อก และฉันทามติ",
+    "en": "Transactions, blocks, and consensus"
   },
   "summary": {
-    "th": "อ่าน network, recipient, amount และสิทธิ์ที่ธุรกรรมร้องขอก่อนกดยืนยัน",
-    "en": "Read the network, recipient, amount, and requested permissions before confirming."
+    "th": "ธุรกรรมคือคำสั่งที่ลงลายเซ็น บล็อกจัดลำดับประวัติ และฉันทามติทำให้ทุกเครื่องเห็นตรงกัน",
+    "en": "A transaction is a signed instruction, blocks order the history, and consensus keeps every computer in agreement."
   },
   "lesson": {
-    "th": "หน้าต่างยืนยันของ wallet คือจุดสุดท้ายที่คุณหยุดธุรกรรมได้ ก่อนเซ็นให้ตรวจ network, address ผู้รับ, จำนวน และ action ที่ร้องขอทุกครั้ง การส่งสินทรัพย์คือการย้ายจำนวนที่ระบุ ส่วน approve คือการให้ contract ใช้ token ของคุณ และ unlimited approval อาจเปิดสิทธิ์ให้ใช้ได้มากกว่าธุรกรรมครั้งนี้ หากรายละเอียดไม่ตรงกับสิ่งที่ตั้งใจ อย่าเดาและอย่ารีบ ให้กดปฏิเสธ ตรวจข้อมูลต้นทาง แล้วเริ่มใหม่เมื่อมั่นใจ",
-    "en": "The wallet confirmation screen is the final place to stop a transaction. Before signing, check the network, recipient address, amount, and requested action every time. Sending moves the stated amount, while an approval lets a contract spend your tokens; an unlimited approval may grant more access than this single transaction needs. If any detail does not match your intent, do not guess or rush. Reject it, verify the source information, and start again only when confident."
+    "th": "บนเครือข่าย EVM อย่าง Avalanche C-Chain ธุรกรรมคือคำสั่งที่บัญชีลงลายเซ็นด้วยการเข้ารหัส เมื่อเครือข่ายประมวลผล คำสั่งนั้นสามารถเปลี่ยนสถานะของบล็อกเชนได้ เช่น ย้ายยอดเงิน บล็อกทำหน้าที่รวมธุรกรรมเข้าเป็นประวัติที่เรียงลำดับ เพื่อให้ผู้เข้าร่วมทุกคนมีข้อมูลตรงกัน กลไกฉันทามติ (consensus) ช่วยให้คอมพิวเตอร์อิสระจำนวนมากเห็นพ้องกันเรื่องสถานะและลำดับของธุรกรรม การส่ง (broadcast) ธุรกรรมเป็นเพียงการส่งคำขอไปยังเครือข่าย ไม่ได้รับประกันว่าจะสำเร็จ ธุรกรรมยังล้มเหลวได้ตอนประมวลผล เช่น ผิดกฎของ contract หรือ gas ไม่พอ",
+    "en": "On an EVM network such as Avalanche C-Chain, a transaction is an instruction that an account signs with cryptography. When the network executes it, it can change the blockchain's state, for example by moving a balance. Blocks batch transactions into the chain's ordered history so every participant stays in sync. A consensus mechanism lets the many independent computers agree on that state and on the order of transactions. Broadcasting a transaction only sends your request to the network; it does not guarantee success. A transaction can still fail when it runs, for example if it breaks a contract's rules or does not have enough gas."
   },
   "keyPoints": [
     {
-      "th": "ตรวจ network, recipient, amount และ action ทุกครั้ง",
-      "en": "Check the network, recipient, amount, and action every time."
+      "th": "ธุรกรรมคือคำสั่งที่ลงลายเซ็นและเปลี่ยนสถานะของบล็อกเชนได้",
+      "en": "A transaction is a signed instruction that can change blockchain state."
     },
     {
-      "th": "approve คือการให้สิทธิ์ contract ใช้ token ไม่ใช่การส่งธรรมดา",
-      "en": "An approval grants a contract permission to spend tokens; it is not a normal transfer."
+      "th": "บล็อกรวมธุรกรรมเป็นประวัติที่เรียงลำดับ",
+      "en": "Blocks batch transactions into an ordered history."
     },
     {
-      "th": "ข้อมูลไม่ตรงกับความตั้งใจให้ปฏิเสธ แล้วตรวจใหม่จากต้นทาง",
-      "en": "Reject details that do not match your intent, then verify from the source."
+      "th": "ฉันทามติทำให้เครือข่ายเห็นพ้องเรื่องสถานะและลำดับธุรกรรม",
+      "en": "Consensus lets the network agree on state and transaction order."
+    },
+    {
+      "th": "ส่งธุรกรรมแล้วไม่ได้แปลว่าจะสำเร็จเสมอ",
+      "en": "Broadcasting a transaction does not guarantee it succeeds."
     }
   ],
   "quiz": [
     {
-      "id": "wrong-recipient",
+      "id": "l03q01",
       "prompt": {
-        "th": "wallet แสดง address ผู้รับไม่ตรงกับ address ที่คุณตรวจไว้ ควรทำอย่างไร?",
-        "en": "The wallet shows a recipient address different from the one you verified. What should you do?"
+        "th": "ธุรกรรมบนเครือข่าย EVM คืออะไร?",
+        "en": "What is a blockchain transaction on an EVM network?"
       },
       "options": [
         {
-          "id": "sign-small",
+          "id": "a",
           "text": {
-            "th": "เซ็นก่อนถ้าจำนวนเงินไม่มาก",
-            "en": "Sign if the amount is small."
+            "th": "คำขอรีเซ็ตรหัสผ่าน",
+            "en": "A password reset request"
           }
         },
         {
-          "id": "reject-and-check",
+          "id": "b",
           "text": {
-            "th": "ปฏิเสธธุรกรรมและตรวจ address จากต้นทางอีกครั้ง",
-            "en": "Reject the transaction and verify the address from the source again."
+            "th": "คำสั่งที่บัญชีลงลายเซ็นด้วยการเข้ารหัส และเปลี่ยนสถานะของบล็อกเชนได้",
+            "en": "A cryptographically signed instruction from an account that can change blockchain state"
           }
         },
         {
-          "id": "trust-interface",
+          "id": "c",
           "text": {
-            "th": "เชื่อหน้าเว็บเพราะเป็นผู้สร้างธุรกรรมให้",
-            "en": "Trust the website because it created the transaction."
+            "th": "ภาพหน้าจอยอดเงินใน wallet",
+            "en": "A screenshot of a wallet balance"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "ข้อความที่เครือข่ายเชื่อทันทีโดยไม่ตรวจสอบ",
+            "en": "A message that is automatically trusted without validation"
           }
         }
       ],
-      "correctOptionId": "reject-and-check",
+      "correctOptionId": "b",
       "explanation": {
-        "th": "address ที่ไม่ตรงคือเหตุผลให้หยุดทันที เพราะธุรกรรมที่เซ็นและส่งแล้วอาจย้อนกลับไม่ได้",
-        "en": "A mismatched address is a reason to stop immediately because a signed and submitted transaction may be irreversible."
+        "th": "Ethereum นิยามธุรกรรมว่าเป็นคำสั่งที่บัญชีลงลายเซ็นด้วยการเข้ารหัส ซึ่งอัปเดตสถานะของเครือข่าย",
+        "en": "Ethereum defines transactions as cryptographically signed instructions from accounts that update network state."
+      },
+      "hint": {
+        "th": "มองหาตัวเลือกที่มีทั้งคำสั่งที่ลงลายเซ็นและการเปลี่ยนสถานะ",
+        "en": "Focus on the choice involving a signed instruction and a state change."
       }
     },
     {
-      "id": "unlimited-approval",
+      "id": "l03q02",
       "prompt": {
-        "th": "Unlimited approval หมายถึงอะไร?",
-        "en": "What does an unlimited approval mean?"
+        "th": "หน้าที่หลักอย่างหนึ่งของบล็อกคืออะไร?",
+        "en": "What is one main role of a block?"
       },
       "options": [
         {
-          "id": "free-gas",
+          "id": "a",
           "text": {
-            "th": "ธุรกรรมนี้ไม่ต้องจ่ายค่า gas",
-            "en": "This transaction has no gas fee."
+            "th": "เก็บ recovery phrase ของผู้ใช้",
+            "en": "To store a user's Secret Recovery Phrase"
           }
         },
         {
-          "id": "one-transfer",
+          "id": "b",
           "text": {
-            "th": "contract ส่งได้เฉพาะจำนวนที่เห็นครั้งนี้",
-            "en": "The contract can move only the amount shown this time."
+            "th": "แทนที่ wallet ทุกตัวในเครือข่าย",
+            "en": "To replace every wallet on the network"
           }
         },
         {
-          "id": "broad-spend-permission",
+          "id": "c",
           "text": {
-            "th": "contract อาจได้รับสิทธิ์ใช้ token ได้มากกว่าธุรกรรมครั้งนี้",
-            "en": "The contract may receive permission to spend more tokens than this one transaction requires."
+            "th": "รับประกันว่าธุรกรรมที่ส่งมาทุกรายการจะสำเร็จ",
+            "en": "To guarantee that every submitted transaction succeeds"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "รวมข้อมูลธุรกรรมให้เป็นส่วนหนึ่งของประวัติที่เรียงลำดับของบล็อกเชน",
+            "en": "To batch transaction data into part of the blockchain's ordered history"
           }
         }
       ],
-      "correctOptionId": "broad-spend-permission",
+      "correctOptionId": "d",
       "explanation": {
-        "th": "Unlimited approval เป็นสิทธิ์การใช้ token ในวงกว้าง จึงต้องตรวจ contract และขอบเขตสิทธิ์ก่อนเซ็น",
-        "en": "An unlimited approval is broad token-spending permission, so verify the contract and scope before signing."
+        "th": "บล็อกรวมธุรกรรมและการเปลี่ยนสถานะเข้าเป็นประวัติของบล็อกเชน เพื่อให้ผู้เข้าร่วมมีข้อมูลตรงกัน",
+        "en": "Blocks group transactions and state updates into the blockchain's history so participants can stay synchronized."
+      },
+      "hint": {
+        "th": "ลองนึกว่าบล็อกเป็นกล่องที่บรรจุประวัติร่วมของเครือข่าย",
+        "en": "Think of a block as a container in the network's shared history."
       }
     },
     {
-      "id": "network-mismatch",
+      "id": "l03q03",
       "prompt": {
-        "th": "คุณตั้งใจทำรายการบน Fuji แต่ wallet แสดง network อื่น ควรเลือกอะไร?",
-        "en": "You intend to act on Fuji, but the wallet shows another network. What should you choose?"
+        "th": "กลไกฉันทามติช่วยแก้ปัญหาอะไร?",
+        "en": "What problem does a consensus mechanism solve?"
       },
       "options": [
         {
-          "id": "reject-network",
+          "id": "a",
           "text": {
-            "th": "ปฏิเสธ ตรวจ network ที่ต้องการ แล้วเริ่มรายการใหม่",
-            "en": "Reject it, verify the intended network, and start the transaction again."
+            "th": "แปลงโทเคนทุกตัวเป็นเหรียญหลัก",
+            "en": "It converts every token into the native coin"
           }
         },
         {
-          "id": "sign-anyway",
+          "id": "b",
           "text": {
-            "th": "เซ็นได้เพราะ address เดียวกันใช้ได้ทุก network",
-            "en": "Sign because the same address works on every network."
+            "th": "ซ่อนธุรกรรมทั้งหมดจากผู้เข้าร่วมเครือข่าย",
+            "en": "It hides all transactions from network participants"
           }
         },
         {
-          "id": "ignore-network",
+          "id": "c",
           "text": {
-            "th": "ตรวจเฉพาะจำนวนเงินก็เพียงพอ",
-            "en": "Checking only the amount is enough."
+            "th": "ช่วยให้ผู้เข้าร่วมเครือข่ายที่กระจายกันอยู่เห็นพ้องเรื่องสถานะและลำดับธุรกรรม",
+            "en": "It helps distributed network participants agree on the blockchain's state and transaction ordering"
+          }
+        },
+        {
+          "id": "d",
+          "text": {
+            "th": "ตั้งรหัสผ่าน wallet ให้ผู้ใช้ทุกคน",
+            "en": "It chooses a wallet password for every user"
           }
         }
       ],
-      "correctOptionId": "reject-network",
+      "correctOptionId": "c",
       "explanation": {
-        "th": "network เป็นส่วนหนึ่งของความตั้งใจของธุรกรรม หากไม่ตรงควรหยุดและเริ่มใหม่หลังตรวจสอบ",
-        "en": "The network is part of the transaction intent. If it does not match, stop and restart after verification."
+        "th": "กลไกฉันทามติคือกฎและแรงจูงใจที่ทำให้ node ที่กระจายกันอยู่เห็นพ้องกันเรื่องสถานะของบล็อกเชน",
+        "en": "Consensus mechanisms provide the protocols and incentives that allow distributed nodes to agree on blockchain state."
+      },
+      "hint": {
+        "th": "คำสำคัญคือ 'เห็นพ้อง' คอมพิวเตอร์จำนวนมากต้องเห็นตรงกันเรื่องอะไร?",
+        "en": "The important word is 'agree': what must many computers agree about?"
+      }
+    },
+    {
+      "id": "l03q04",
+      "prompt": {
+        "th": "การส่ง (broadcast) ธุรกรรมรับประกันว่าธุรกรรมจะสำเร็จ",
+        "en": "Broadcasting a transaction guarantees that it will succeed."
+      },
+      "options": [
+        {
+          "id": "true",
+          "text": {
+            "th": "จริง",
+            "en": "True"
+          }
+        },
+        {
+          "id": "false",
+          "text": {
+            "th": "เท็จ",
+            "en": "False"
+          }
+        }
+      ],
+      "correctOptionId": "false",
+      "explanation": {
+        "th": "การส่งธุรกรรมไม่ได้รับประกันว่าจะประมวลผลสำเร็จ ธุรกรรมอาจล้มเหลวได้ และสภาพเครือข่ายหรือกฎการประมวลผลมีผลต่อการถูกบรรจุและผลลัพธ์",
+        "en": "Submitting a transaction does not guarantee successful execution; transactions may fail, and network conditions or execution rules can affect inclusion and outcome."
+      },
+      "hint": {
+        "th": "การส่งคำขอไปยังเครือข่าย กับการประมวลผลสำเร็จ เป็นคนละขั้นตอนกัน",
+        "en": "Sending a request to the network and successfully executing it are two different steps."
       }
     }
   ]
