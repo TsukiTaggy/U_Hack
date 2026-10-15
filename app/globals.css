@@ -419,7 +419,7 @@ a {
 :root {
   --mesh-ink: currentColor;
   --mesh-ink-2: #E84142; /* Avalanche red */
-  --mesh-ink-3: #ffffff; /* White */
+  --mesh-ink-3: var(--foreground);
 }
 
 .fx-mesh {
@@ -427,7 +427,7 @@ a {
   background:
     radial-gradient(circle at 18% 28%, var(--mesh-ink-2) 0 12%, transparent 28%),
     radial-gradient(circle at 78% 24%, var(--mesh-ink-3) 0 14%, transparent 30%),
-    radial-gradient(circle at 44% 82%, #ffffff 0 10%, transparent 24%),
+    radial-gradient(circle at 44% 82%, var(--foreground) 0 10%, transparent 24%),
     linear-gradient(110deg, var(--mesh-ink-2), var(--mesh-ink-3));
   background-size: 180% 180%, 170% 170%, 160% 160%, 220% 100%;
   -webkit-background-clip: text;
@@ -644,7 +644,7 @@ a {
 
 /* Title Gradient - Red to White */
 .title-gradient {
-  background: linear-gradient(to right, #E84142 20%, #ffffff 80%);
+  background: linear-gradient(to right, #E84142 20%, var(--foreground) 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

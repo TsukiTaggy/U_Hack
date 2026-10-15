@@ -81,7 +81,8 @@ export default function Home() {
         </div>
 
         {/* Sponsor Grid Section - Inside Hero */}
-        <div className="absolute bottom-0 left-0 right-0 z-10">
+        <p className="sr-only">Technology partners: ElevenLabs and Avalanche.</p>
+        <div aria-hidden="true" className="absolute bottom-0 left-0 right-0 z-10">
           {/* Row 1 - Scroll Right */}
           <div className="relative bg-zinc-950/80 backdrop-blur-sm border-t border-zinc-800 overflow-hidden">
             <div className="sponsor-scroll whitespace-nowrap">
@@ -244,13 +245,13 @@ export default function Home() {
             <AnimatedSection animation="slide-right" delay={200}>
               <div className="space-y-3">
                 <div className="text-4xl font-bold">
-                  100%
+                  2
                 </div>
                 <div className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-                  AI-powered
+                  Practice modes
                 </div>
                 <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                  AI reads your real on-chain data to coach you, scam you, and explain every transaction.
+                  Use ElevenLabs voice by default or switch to text while the coach reads Fuji transactions.
                 </p>
               </div>
             </AnimatedSection>
