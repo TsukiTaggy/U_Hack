@@ -75,7 +75,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-4">
-                <Link href="/play" className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-semibold text-zinc-900 hover:bg-zinc-100">
+                <Link href="/learn" className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-semibold text-zinc-900 hover:bg-zinc-100">
                   Start practising <span aria-hidden="true">→</span>
                 </Link>
                 <Link href="/play" className="inline-flex items-center rounded-xl border border-zinc-700 px-6 py-3.5 font-semibold text-white hover:border-zinc-500 hover:bg-zinc-900">
