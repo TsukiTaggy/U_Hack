@@ -25,11 +25,13 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-12 sm:px-8">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <div className="mb-4 flex items-center gap-2 text-lg font-bold">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--avalanche-red)] text-sm font-bold text-white">
-                S
-              </span>
-              SafeStart
+            <div className="mb-4 flex items-center gap-3">
+              <img 
+                src="/img/SafeStart-logo.svg" 
+                alt="SafeStart Logo" 
+                className="h-8 w-8"
+              />
+              <span className="text-lg font-bold">SafeStart</span>
             </div>
             <p className="text-sm text-[var(--text-muted)]">
               AI crypto safety coach for beginners.

@@ -7,30 +7,30 @@ import { StatsSection } from "@/components/StatsSection";
 const features = [
   {
     title: "AI scam simulator",
-    description: "Take a practice call from an AI scammer that adapts its tactics as you reply. Learn to spot red flags before they cost you.",
+    description: "Take a practice voice or text call from an AI scammer that adapts its tactics as you reply.",
     icon: "🎭",
   },
   {
     title: "AI coach agent",
-    description: "Ask why a transfer failed. The coach reads your real transactions on Fuji and explains what happened in plain language.",
+    description: "Ask why a transfer failed. The coach reads your real Fuji transactions and explains what happened.",
     icon: "🤖",
   },
   {
     title: "Real testnet practice",
-    description: "Send AVAX, pay gas fees, and face an approval trap on Avalanche Fuji testnet. Real blockchain, no real money at risk.",
+    description: "Send test AVAX and inspect gas fees on Avalanche Fuji. Real blockchain behavior, no real funds.",
     icon: "⚡",
   },
   {
     title: "On-chain certificate",
-    description: "Complete all missions to receive a non-transferable certificate on Fuji. Proof you know how to stay safe.",
+    description: "Complete the available missions and receive a non-transferable safety certificate on Fuji.",
     icon: "🎓",
   },
 ];
 
 const missionHighlights = [
-  { number: "5", label: "Core Missions", description: "From scam calls to gas fees" },
+  { number: "4", label: "Live Missions", description: "Scam calls, transfers, and gas fees" },
   { number: "100%", label: "Testnet Only", description: "No real funds at risk" },
-  { number: "0", label: "Sign-ups Required", description: "Use a guest wallet instantly" },
+  { number: "Core", label: "Wallet", description: "Connect your existing wallet on Fuji" },
 ];
 
 export default function Home() {
@@ -60,7 +60,7 @@ export default function Home() {
               <div className="flex flex-wrap items-center gap-4">
                 <Link
                   href="/play"
-                  className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-base font-semibold text-zinc-900 transition-all hover:bg-zinc-100"
+                  className="btn-primary"
                 >
                   Start practising
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,7 +69,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/play"
-                  className="inline-flex items-center gap-2 rounded-xl border border-zinc-700 px-6 py-3.5 text-base font-semibold text-white transition-all hover:border-zinc-600 hover:bg-zinc-900"
+                  className="btn-secondary"
                 >
                   View missions
                 </Link>
@@ -171,7 +171,7 @@ export default function Home() {
 
       {/* Features Bento Grid - Avalanche Style */}
       <Section noPadding>
-        <div className="mx-auto max-w-6xl px-6 pt-8 pb-16 sm:px-8 sm:pt-12 sm:pb-24 lg:pb-32">
+        <div className="mx-auto max-w-6xl px-6 pt-16 pb-16 sm:px-8 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-32">
           <AnimatedSection animation="fade-up">
             <SectionHeader
               title="Learn by doing, fail safely, stay secure"
@@ -185,16 +185,16 @@ export default function Home() {
               <AnimatedSection key={feature.title} animation="scale" delay={i * 100}>
                 <BentoCard span={i < 2 ? "1" : "1"}>
                   <div className="flex h-full flex-col gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-100 text-2xl dark:bg-zinc-900">
-                      {feature.icon}
-                    </div>
                     <div className="flex flex-1 flex-col gap-2">
-                      <h3 className="text-xl font-semibold">{feature.title}</h3>
-                      <p className="text-[var(--text-muted)] leading-relaxed">
+                      <h3 className="text-xl font-semibold text-white">{feature.title}</h3>
+                      <p className="text-zinc-400 leading-relaxed text-sm">
                         {feature.description}
                       </p>
                     </div>
                   </div>
+                  <span className="absolute bottom-3 right-3 text-[10px] font-medium text-white uppercase tracking-wider underline decoration-double">
+                    Mission Test
+                  </span>
                 </BentoCard>
               </AnimatedSection>
             ))}
@@ -268,7 +268,7 @@ export default function Home() {
             </p>
             <Link
               href="/play"
-              className="inline-flex items-center gap-2 rounded-xl bg-zinc-900 px-8 py-4 text-lg font-semibold text-white transition-all hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100"
+              className="btn-primary"
             >
               Launch SafeStart
               <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

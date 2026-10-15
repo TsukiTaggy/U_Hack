@@ -14,9 +14,8 @@ export function BentoCard({ children, className = "", span = "1" }: BentoCardPro
   }[span];
 
   return (
-    <div
-      className={`group rounded-3xl border border-[var(--border-subtle)] bg-white p-8 transition-all duration-300 hover:border-zinc-300 dark:bg-zinc-950 dark:hover:border-zinc-700 ${spanClass} ${className}`}
-    >
+    <div className={`group animated-card ${spanClass} ${className}`}>
+      <div className="animated-card-border"></div>
       {children}
     </div>
   );
@@ -29,7 +28,7 @@ interface BentoGridProps {
 
 export function BentoGrid({ children, className = "" }: BentoGridProps) {
   return (
-    <div className={`grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 ${className}`}>
+    <div className={`grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 ${className}`}>
       {children}
     </div>
   );

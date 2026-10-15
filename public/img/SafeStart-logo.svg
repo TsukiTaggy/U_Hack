@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-label="SafeStart abstract S logo">
+  <defs>
+    <linearGradient id="top" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF494D"/>
+      <stop offset="1" stop-color="#EF202B"/>
+    </linearGradient>
+    <linearGradient id="fold" x1="0" y1="0" x2="1" y2="0.7">
+      <stop offset="0" stop-color="#4B1017"/>
+      <stop offset="1" stop-color="#B91E28"/>
+    </linearGradient>
+    <linearGradient id="bottom" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF333E"/>
+      <stop offset="1" stop-color="#D81524"/>
+    </linearGradient>
+  </defs>
+  <!-- An original angular folded S emblem; transparent background, no wordmark. -->
+  <path d="M 70 111 Q 70 105 77 101 L 219 34 Q 228 30 228 39 L 228 88 Q 228 93 222 96 L 80 164 Q 70 169 70 159 Z" fill="url(#top)"/>
+  <path d="M 80 164 L 151 130 L 223 163 Q 228 166 228 174 L 228 211 L 151 245 L 151 192 Z" fill="url(#fold)"/>
+  <path d="M 70 239 Q 70 233 77 229 L 219 162 Q 228 157 228 167 L 228 213 Q 228 219 222 222 L 80 290 Q 70 295 70 284 Z" fill="url(#bottom)"/>
+</svg>

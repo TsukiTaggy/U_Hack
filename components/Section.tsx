@@ -10,7 +10,7 @@ interface SectionProps {
 
 export function Section({ children, className = "", id, wide = false, noPadding = false }: SectionProps) {
   const maxWidth = wide ? "max-w-7xl" : "max-w-6xl";
-  const padding = noPadding ? "" : "px-6 py-16 sm:px-8 sm:py-24 lg:py-32";
+  const padding = noPadding ? "" : "px-6 py-12 sm:px-8 sm:py-16 lg:py-20";
 
   return (
     <section id={id} className={`w-full ${className}`}>
@@ -32,7 +32,7 @@ export function SectionHeader({ title, subtitle, align = "left" }: SectionHeader
   
   return (
     <div className={`mb-8 max-w-5xl space-y-4 sm:mb-12 ${alignClass}`}>
-      <h2 className="text-3xl font-bold tracking-tight whitespace-nowrap sm:text-4xl lg:text-5xl">
+      <h2 className="text-3xl font-bold tracking-tight whitespace-nowrap sm:text-4xl lg:text-5xl title-gradient">
         {title}
       </h2>
       {subtitle && (

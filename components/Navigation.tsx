@@ -1,21 +1,41 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+
+  // Load theme from localStorage on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+    
+    setTheme(initialTheme);
+    document.documentElement.classList.toggle('dark', initialTheme === 'dark');
+  }, []);
+
+  // Toggle theme
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+  };
 
   return (
     <nav className="sticky top-0 z-50 border-b border-zinc-800/50 bg-black/40 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center px-6 py-3 sm:px-8">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-          <div className="flex h-8 w-8 items-center justify-center">
-            <svg className="h-6 w-6 text-[var(--avalanche-red)]" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L2 19.5h20L12 2zm0 4l7 13H5l7-13z"/>
-            </svg>
-          </div>
+        <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-80">
+          <img 
+            src="/img/SafeStart-logo.svg" 
+            alt="SafeStart Logo" 
+            className="h-8 w-8"
+          />
+          <span className="text-xl font-bold text-white">SafeStart</span>
         </Link>
 
         {/* Desktop Navigation Links */}
@@ -28,32 +48,29 @@ export function Navigation() {
           </Link>
         </div>
 
-        {/* Right Side - Search & Actions */}
+        {/* Right Side - Actions */}
         <div className="hidden items-center gap-4 ml-auto md:flex">
-          {/* Search Bar */}
-          <div className="flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900/50 px-3 py-1.5 text-sm">
-            <svg className="h-4 w-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <span className="text-zinc-500">SEARCH</span>
-            <kbd className="ml-4 rounded border border-zinc-700 bg-zinc-800 px-1.5 py-0.5 text-xs text-zinc-400">CTRL</kbd>
-            <kbd className="rounded border border-zinc-700 bg-zinc-800 px-1.5 py-0.5 text-xs text-zinc-400">K</kbd>
-          </div>
-
           {/* Theme Toggle */}
-          <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-700 bg-zinc-900/50 text-zinc-400 transition-colors hover:text-white">
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
+          <button 
+            onClick={toggleTheme}
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-700 bg-zinc-900/50 text-zinc-400 transition-colors hover:text-white"
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? (
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            ) : (
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            )}
           </button>
-
-          {/* User Avatar */}
-          <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500"></div>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-zinc-300"
+          className="ml-auto md:hidden text-zinc-300"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -85,6 +102,26 @@ export function Navigation() {
             >
               Missions
             </Link>
+            <button 
+              onClick={toggleTheme}
+              className="flex items-center gap-2 text-sm font-medium text-zinc-300 transition-colors hover:text-white"
+            >
+              {theme === 'dark' ? (
+                <>
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                  Light Mode
+                </>
+              ) : (
+                <>
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                  </svg>
+                  Dark Mode
+                </>
+              )}
+            </button>
           </div>
         </div>
       )}
