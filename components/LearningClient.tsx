@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { LearningQuiz } from "@/components/LearningQuiz";
+import { LessonCoach } from "@/components/LessonCoach";
 import { LessonPanel } from "@/components/LessonPanel";
 import { LessonPath, type LessonPathItem } from "@/components/LessonPath";
 import { Section } from "@/components/Section";
@@ -246,8 +247,13 @@ export default function LearningClient() {
             <LessonPath items={pathItems} locale={locale} onSelect={selectLesson} />
           </aside>
 
+          <div className="min-w-0 space-y-6">
           {phase === "lesson" && (
-            <LessonPanel lesson={activeLesson} locale={locale} review={completed} onStartQuiz={startQuiz} />
+            <>
+              <LessonPanel lesson={activeLesson} locale={locale} review={completed} onStartQuiz={startQuiz} />
+              {/* key resets the coach's answer when the learner opens another lesson */}
+              <LessonCoach key={activeLesson.id} lesson={activeLesson} locale={locale} />
+            </>
           )}
 
           {phase === "quiz" && (
@@ -298,6 +304,7 @@ export default function LearningClient() {
               </div>
             </section>
           )}
+          </div>
         </div>
       </Section>
     </main>

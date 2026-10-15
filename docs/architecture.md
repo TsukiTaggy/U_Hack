@@ -53,6 +53,8 @@ Each lesson has four multiple-choice or true/false questions answerable from its
 
 `lib/learning.ts` owns the lesson schema, localization fallback and quiz evaluation. `lib/learning-progress.ts` owns parsing, sequential unlock rules and resilient browser storage under `safestart.learning.v2` (v1 belonged to the earlier four-lesson numbering and is not reused). This progress is a learning aid only: it never creates a pass receipt, affects certificate readiness or replaces any check in `lib/verify.ts`.
 
+Each lesson has an AI lesson tutor (`components/LessonCoach.tsx` → `/api/learn-coach`). It needs no wallet and has no tools. `lib/learn-coach.ts` builds its prompt from the open lesson's text and key points only; quiz questions, options and answers are never sent, and the tutor is told to give hints instead of naming a correct option. Quiz results stay with `lib/learning.ts`.
+
 ## Missions and verification
 
 | # | Learner action | Deterministic check (`lib/verify.ts`) | AI role |
@@ -74,6 +76,7 @@ All LLM calls go through `lib/llm.ts` (OpenAI-compatible API, primary then fallb
 
 | Component | Route | Input | Output | Notes |
 |---|---|---|---|---|
+| Lesson tutor | `/api/learn-coach` | Lesson id + learner question + language | Answer text | No tools; lesson text only, no quiz answers; learner text in an untrusted block |
 | Coach agent | `/api/coach` | Learner question + address + mission id | Answer text + list of tool calls made | Tool-calling loop, max 5 tool calls per turn |
 | Transaction explainer | `/api/explain-tx` | Unsigned tx `{ to, data, value, knownRecipients? }` | One-sentence explanation + risk level, `source` (`ai` or `rules`) and, for AVAX transfers, `recipient` (`known`, `look-alike` or `new`, plus differing positions) | Risk level comes from rules in code (`lib/send.ts`, `lib/tools.ts`); AI only explains |
 | Scammer (text mode) | `/api/scam/turn` | Persona id + transcript | Next scammer line | Max 8 turns; persona from `content/scam-personas.json` |
@@ -103,6 +106,7 @@ Learner text, scam transcripts and any chain data passed to an LLM are wrapped i
 | Route | Method | Purpose |
 |---|---|---|
 | `/api/coach` | POST | Coach agent turn |
+| `/api/learn-coach` | POST | Lesson tutor answer on `/learn` |
 | `/api/explain-tx` | POST | Explain a transaction before signing |
 | `/api/scam/turn` | POST | Text-mode scammer reply |
 | `/api/scam/evaluate` | POST | Evaluate a scam transcript |
