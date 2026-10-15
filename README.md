@@ -2,7 +2,7 @@
 
 Practise the costliest crypto mistakes on Avalanche Fuji testnet, with AI that scams you, coaches you and reads your real transactions — before you ever touch real money.
 
-**Demo:** https://u-hack-mu.vercel.app · missions at [`/play`](https://u-hack-mu.vercel.app/play) · lessons at [`/learn`](https://u-hack-mu.vercel.app/learn)
+**Demo:** https://safestart-uhack.vercel.app · missions at [`/play`](https://safestart-uhack.vercel.app/play) · lessons at [`/learn`](https://safestart-uhack.vercel.app/learn)
 **Track:** U-Hackathon 2026 · AI Track
 
 ## What it does
