@@ -3,7 +3,7 @@ import { privateKeyToAccount } from "viem/accounts";
 import { avalancheFuji } from "viem/chains";
 import { FUJI_RPC_URL } from "./config";
 
-// Server only. The team wallet that deploys contracts, mints certificates and tops up guest wallets.
+// Server only. The team wallet that deploys contracts and can mint certificates.
 // Testnet only — never put a key that holds real funds here.
 
 export function minterClient() {

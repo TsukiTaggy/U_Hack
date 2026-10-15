@@ -9,7 +9,7 @@ import m4 from "@/content/missions/4.json";
 import { publicClient } from "@/lib/chain";
 import { addresses, addressUrl, txUrl } from "@/lib/config";
 import { addressChoices, seedFromAddress } from "@/lib/decoys";
-import { connectInjected, hasInjectedWallet, loadOrCreateGuest, sendAvax, walletChainId, type Wallet } from "@/lib/wallet";
+import { connectCore, sendAvax, walletChainId, type Wallet } from "@/lib/wallet";
 
 type Receipt = { address: string; missionId: string; passedAt: number; evidence: string; sig: string };
 type Turn = { role: "scammer" | "learner"; text: string };
@@ -151,13 +151,6 @@ export default function PlayClient() {
     });
 
   // ---------- Mission 2: test AVAX ----------
-  const topUp = () =>
-    run("topup", async () => {
-      if (!wallet) throw new Error("Connect a wallet first.");
-      await post("/api/guest-topup", { address: wallet.address });
-      await refreshBalance();
-    });
-
   const check2 = () =>
     run("check2", async () => {
       if (!wallet) throw new Error("Connect a wallet first.");
@@ -215,6 +208,7 @@ export default function PlayClient() {
   const [steps, setSteps] = useState<Step[]>([]);
   const ask = (q?: string) =>
     run("coach", async () => {
+      if (!wallet) throw new Error("Connect your Core wallet first.");
       const text = (q ?? question).trim();
       if (!text) return;
       setSteps([]);
@@ -247,20 +241,17 @@ export default function PlayClient() {
         <section className="rounded-2xl border border-zinc-200 p-5 dark:border-zinc-800">
           {wallet ? (
             <div className="flex flex-wrap items-center gap-3 text-sm">
-              <span className="font-medium">{wallet.kind === "guest" ? "Guest wallet" : "Your wallet"}</span>
+              <span className="font-medium">Core wallet</span>
               <a className="font-mono underline" href={addressUrl(wallet.address)} target="_blank" rel="noreferrer">{short(wallet.address)}</a>
               <span>{balance ? `${Number(balance).toFixed(4)} AVAX` : "…"}</span>
               <button className={btnGhost} onClick={() => void refreshBalance()}>Refresh</button>
-              {wallet.kind === "guest" && <span className="text-xs text-zinc-500">Testnet only. Never send real funds to this wallet.</span>}
             </div>
           ) : (
             <div className="flex flex-wrap gap-3">
-              <button className={btn} disabled={!!busy || !hasInjectedWallet()} onClick={() => run("connect", async () => setWallet(await connectInjected()))}>
-                Connect Core / MetaMask
+              <button className={btn} disabled={!!busy} onClick={() => run("connect", async () => setWallet(await connectCore()))}>
+                Connect Core wallet
               </button>
-              <button className={btnGhost} disabled={!!busy} onClick={() => setWallet(loadOrCreateGuest())}>
-                Try with a guest wallet
-              </button>
+              <span className="self-center text-sm text-zinc-500">Core Extension required. Enable Testnet mode before connecting.</span>
             </div>
           )}
         </section>
@@ -301,10 +292,10 @@ export default function PlayClient() {
           <p className="mb-2 text-sm text-zinc-600 dark:text-zinc-400">{m2.lesson}</p>
           <p className="mb-3 text-sm font-medium">{m2.task}</p>
           <div className="flex flex-wrap gap-2">
-            {wallet?.kind === "guest" ? (
-              <button className={btn} disabled={!!busy} onClick={topUp}>{busy === "topup" ? "Sending…" : "Top up guest wallet"}</button>
-            ) : (
+            {wallet ? (
               <a className={btn} href={FAUCET_URL} target="_blank" rel="noreferrer">Open Avalanche faucet</a>
+            ) : (
+              <span className="self-center text-sm text-zinc-500">Connect Core wallet first.</span>
             )}
             <button className={btnGhost} disabled={!wallet || !!busy} onClick={check2}>Check my balance</button>
           </div>
@@ -362,13 +353,13 @@ export default function PlayClient() {
         <p className="text-xs text-zinc-500">The coach reads your real Fuji transactions before answering.</p>
         <div className="flex flex-wrap gap-2">
           {["Why did my mission 3 fail?", "How much gas did I pay?", "What is in my wallet?"].map((q) => (
-            <button key={q} className="rounded-full border border-zinc-300 px-2 py-1 text-xs dark:border-zinc-700" disabled={!!busy} onClick={() => { setQuestion(q); void ask(q); }}>
+            <button key={q} className="rounded-full border border-zinc-300 px-2 py-1 text-xs dark:border-zinc-700" disabled={!wallet || !!busy} onClick={() => { setQuestion(q); void ask(q); }}>
               {q}
             </button>
           ))}
         </div>
-        <textarea className={input} rows={3} value={question} onChange={(e) => setQuestion(e.target.value)} placeholder="Ask about your wallet or a transaction…" />
-        <button className={btn} disabled={!!busy || !question.trim()} onClick={() => ask()}>{busy === "coach" ? "Thinking…" : "Ask"}</button>
+        <textarea className={input} rows={3} value={question} onChange={(e) => setQuestion(e.target.value)} disabled={!wallet} placeholder={wallet ? "Ask about your wallet or a transaction…" : "Connect Core wallet first…"} />
+        <button className={btn} disabled={!wallet || !!busy || !question.trim()} onClick={() => ask()}>{busy === "coach" ? "Thinking…" : "Ask"}</button>
         {steps.length > 0 && (
           <ol className="space-y-1 text-xs text-zinc-500">
             {steps.map((s, i) => (

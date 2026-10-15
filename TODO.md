@@ -31,24 +31,23 @@ Done when: the Vercel URL loads, all three contracts show on the Fuji explorer, 
 
 Code is written and verified on a local chain (see `PROJECT.md` Current State). Remaining work is running it for real.
 
-- [x] `lib/chain.ts`, `lib/config.ts`, `lib/abi.ts`, `lib/wallet.ts` (connect, switch to Fuji, guest wallet).
-- [x] `/api/guest-topup` (0.05 test AVAX if balance < 0.02, rate-limited).
+- [x] `lib/chain.ts`, `lib/config.ts`, `lib/abi.ts`, `lib/wallet.ts` (Core wallet connect, switch to Fuji).
 - [x] `lib/verify.ts` for missions 1–5; `lib/decoys.ts`; `lib/receipt.ts`; unit tests.
 - [x] `lib/tools.ts` (all six read-only tools); `/api/coach`; tool calls shown as steps in the UI.
 - [x] `/api/scam/turn` (text scammer) and `/api/scam/evaluate` (zod-validated JSON, fail closed).
 - [x] `content/missions/1–4.json` and `content/scam-personas.json` (2 personas).
-- [ ] WEB3 — On Fuji with real env vars: guest wallet top-up → mission 2 → mission 3 pass on `/play`.
+- [ ] WEB3 — On Fuji with real env vars: Core wallet + faucet → mission 2 → mission 3 pass on `/play`.
 - [ ] AI — Coach explains the mission 3 transaction with a real LLM; tune the system prompt in `app/api/coach/route.ts` if answers are weak.
 - [ ] OPS — Rewrite mission text in `content/` (Thai and English) and add a third scam persona.
 
-Done when: on the deployed URL a fresh guest wallet passes missions 2 and 3, and the coach explains the mission 3 transaction using live chain data.
+Done when: on the deployed URL a fresh Core wallet passes missions 2 and 3, and the coach explains the mission 3 transaction using live chain data.
 
 ## M2 · Core loop — Thu 16:30–18:00
 
 - [x] Mission 1 (text call + evaluator), mission 4 check, `/api/mint` with full re-check, certificate link — all on `/play`.
 - [ ] VOICE — Play the scam call with the real LLM; tune `lib/scam.ts` prompts so the caller adapts and ends properly.
 - [ ] FRONTEND — Polish `/play` (layout, mission map/progress, Thai UI text, mobile). Logic stays in `lib/`.
-- [ ] OPS — End-to-end test on the deployed URL with a fresh guest wallet and one real wallet; log bugs below.
+- [ ] OPS — End-to-end test on the deployed URL with fresh Core wallets; log bugs below.
 - [ ] OPS — Update "Current State" in `PROJECT.md`.
 
 Done when: missions 1–4 → certificate works end-to-end on the public URL. Leave the venue by 18:00.
@@ -75,7 +74,7 @@ Done when: missions 1–5, report and certificate run on the deployed URL.
 ## M4 · Freeze & submit — Fri 12:30–14:00
 
 - [ ] Everyone — 12:30 feature freeze; bug fixes only.
-- [ ] OPS — End-to-end test with 3 fresh guest wallets and 1 real wallet on the deployed URL.
+- [ ] OPS — End-to-end test with 3 fresh Core wallets on the deployed URL.
 - [ ] OPS — Record a 2–3 minute backup video of the full flow.
 - [ ] WEB3 — README: demo URL, contract explorer links, how to run, partner tech used. Repo is public.
 - [ ] OPS — Pitch deck link (Google Drive or deck site) set to "Anyone with the link can view". Required for submission even though only finalists present on stage.
@@ -85,7 +84,7 @@ Done when: missions 1–5, report and certificate run on the deployed URL.
 ## If selected as a finalist — announced Fri 17:00, demos at 20:00
 
 - [ ] 3-minute live demo script; rehearse 3 times.
-- [ ] Pre-fund 5 guest wallets; keep the backup video ready; phone hotspot.
+- [ ] Keep a funded Core wallet and backup video ready; phone hotspot.
 
 ---
 

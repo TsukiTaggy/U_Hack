@@ -18,10 +18,10 @@ People new to crypto lose money on their first mistakes: sending to a look-alike
 
 ## Success Criteria
 
-- A first-time user with no wallet completes missions 1–4 and receives a certificate on the deployed site in under 10 minutes, without signing up anywhere.
+- A first-time user with a Core wallet on Fuji completes missions 1–4 and receives a certificate on the deployed site in under 10 minutes, without signing up anywhere.
 - The coach agent answers "why did my transaction fail / where did my money go" correctly from live Fuji data, calling tools rather than guessing.
 - Every pass/fail decision is reproducible from chain data or a stored structured evaluation.
-- The deployed demo runs the full flow without crashing on 3 fresh guest wallets in a row.
+- The deployed demo runs the full flow without crashing on 3 fresh Core wallets in a row.
 
 ## Target Users
 
@@ -36,7 +36,7 @@ In scope:
 - AI scam simulator (voice via ElevenLabs, text fallback) with a separate AI evaluator.
 - AI transaction explainer shown before signing.
 - AI-generated personal safety report.
-- Browser wallet connection (Core or MetaMask) and an in-browser guest wallet.
+- Browser connection to a Core wallet on Fuji; the website never creates or stores learner wallets.
 - Non-transferable certificate contract on Fuji.
 
 Out of scope:
@@ -52,7 +52,7 @@ Milestone: M0 Setup → M2 Core loop (Thursday 15 Oct)
 Objective: missions 1–4 and certificate mint work end-to-end on the public deployment by 18:00.
 Completion criteria:
 - Contracts deployed on Fuji; addresses set in env vars and the README.
-- Deployed URL completes missions 1–4 and mints a certificate with a fresh guest wallet.
+- Deployed URL completes missions 1–4 with a fresh Core wallet; certificate mint follows the selected demo path.
 
 Active tasks: see `TODO.md`.
 
@@ -63,7 +63,7 @@ Evidence: 25 unit tests; lint, type check and production build pass; end-to-end 
 
 Working (local chain):
 - Mission checks 2, 3, 4 with signed pass receipts; look-alike address rejected.
-- Guest wallet top-up (capped) and certificate mint with full re-check; second mint refused; forged receipts refused.
+- Certificate mint with full re-check; second mint refused; forged receipts refused.
 - Explain-before-sign risk rules (unlimited approval to the trap = high).
 
 Partial:
@@ -77,7 +77,7 @@ Not implemented:
 
 ```
 Browser (Next.js pages)
- ├─ wallet: Core/MetaMask on Fuji, or in-browser guest wallet (viem)
+ ├─ wallet: Core wallet on Fuji (injected EIP-1193 provider)
  ├─ sends learner transactions directly to Fuji
  └─ calls API routes
 API routes (Next.js, server)
@@ -86,7 +86,6 @@ API routes (Next.js, server)
  ├─ /api/scam/*       AI scammer turns (text) + AI evaluator → structured JSON
  ├─ /api/verify/[id]  deterministic mission checks → signed pass receipt
  ├─ /api/mint         re-checks everything, then mints certificate
- ├─ /api/guest-topup  small test AVAX for guest wallets (capped)
  └─ /api/unlocks      Tokenomist data for the bonus mission (cached)
 Avalanche Fuji C-Chain
  └─ TestUSDC, FakeAirdrop, SafeStartCert (contracts/SafeStart.sol)
@@ -144,7 +143,7 @@ Details: `docs/architecture.md`
 
 - Web app on Next.js + viem, because wallet connection and signing must run in the browser.
 - No database: progress is derived from chain data plus signed pass receipts.
-- Guest wallet with a small capped top-up, so judges can finish without installing a wallet or signing up for a faucet.
+- Core wallet connection is required; learners get test AVAX from the Avalanche Fuji faucet.
 - U-Bot is not part of the product; the team uses it only as a development helper. Consequence: the 5% "U-Bot integration" criterion (U-Bot as a core part of the experience) is not targeted.
 - Not tied to any company's wallet or app; works with any EVM wallet on Fuji.
 
@@ -153,7 +152,7 @@ Details: `docs/architecture.md`
 | Service | Purpose | Required | Fallback |
 |---|---|---:|---|
 | Avalanche Fuji RPC | Read chain, send transactions | Yes | Alternative public RPC |
-| Avalanche faucet | Test AVAX for real wallets | No | Guest wallet top-up |
+| Avalanche faucet | Test AVAX for learner wallets | Yes | None; learner must fund the Core wallet |
 | LLM (primary) | Coach agent, explainer, scammer, evaluator, report | Yes | Fallback provider |
 | ElevenLabs | Voice scam call, coach voice | No | Text scam chat |
 | Tokenomist API | Bonus mission data | No | Cached JSON snapshot |
@@ -173,7 +172,7 @@ Setup: `docs/setup.md`
 
 - Free LLM tool calling may be unreliable → test both providers early; keep deterministic fallbacks.
 - Fuji congestion or RPC outage during the demo → pending states, retry, backup video.
-- Minter wallet runs out of test AVAX → monitor balance; cap top-ups.
+- Learner Core wallet has no test AVAX → show faucet path and block mission verification until funded.
 - ElevenLabs agent may not support Thai well → English voice, Thai text.
 
 ## Open Questions
@@ -186,5 +185,6 @@ Setup: `docs/setup.md`
 
 - Architecture: `docs/architecture.md`
 - Setup: `docs/setup.md`
+- Decision log: `docs/decisions.md`
 - Tasks: `TODO.md`
 - Agent rules: `AGENTS.md`

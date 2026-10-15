@@ -7,7 +7,7 @@
 | # | สิ่งที่ต้องมี | ใครทำ | ลิงก์ |
 |---|---|---|---|
 | 1 | ลงทะเบียนทีมและรอผู้จัดอนุมัติ | OPS | https://hub.team1.network/ |
-| 2 | Node.js 20+, Git, VS Code, กระเป๋า Core หรือ MetaMask | ทุกคน | https://nodejs.org |
+| 2 | Node.js 20+, Git, VS Code, กระเป๋า Core | ทุกคน | https://nodejs.org |
 | 3 | กระเป๋าทีม (minter) บน Fuji + AVAX ทดสอบ | WEB3 | https://build.avax.network/console/primary-network/faucet |
 | 4 | Deploy สัญญา 3 ตัวผ่าน Remix | WEB3 | https://remix.ethereum.org |
 | 5 | โปรเจกต์ Next.js + GitHub + Vercel | WEB3 | https://vercel.com |
@@ -27,7 +27,7 @@
 1. Node.js LTS (20 ขึ้นไป) จาก https://nodejs.org
 2. Git จาก https://git-scm.com (Windows จะได้ Git Bash มาด้วย)
 3. VS Code
-4. ส่วนขยายกระเป๋าบน Chrome: Core หรือ MetaMask
+4. ส่วนขยายกระเป๋าบน Chrome: Core
 
 ตรวจว่าติดตั้งแล้ว:
 
@@ -54,7 +54,7 @@ git --version
 ### กระเป๋าทีม (minter)
 
 - สร้างบัญชีใหม่ในกระเป๋า ตั้งชื่อ "SafeStart Minter" ใช้กับ testnet เท่านั้น ห้ามมีเงินจริง
-- บัญชีนี้ใช้ deploy สัญญา, mint ใบรับรอง และเติม AVAX ให้ Guest wallet
+- บัญชีนี้ใช้ deploy สัญญาและ mint ใบรับรองเท่านั้น
 - Private key ของบัญชีนี้ใส่ได้ที่เดียวคือ `MINTER_PRIVATE_KEY` ใน `.env.local` และ Vercel ห้ามส่งในแชต ห้าม commit
 
 ### รับ AVAX ทดสอบ
@@ -104,7 +104,7 @@ npm run lint
 npm run build
 ```
 
-ถ้ายังไม่ได้ใส่ LLM key หน้า coach จะแจ้งว่า "unavailable" ซึ่งเป็นพฤติกรรมที่ตั้งใจไว้ ส่วนภารกิจ 2–4 และการ mint ทำงานได้ทันทีที่ใส่ที่อยู่สัญญาและ `MINTER_PRIVATE_KEY`
+ถ้ายังไม่ได้ใส่ LLM key หน้า coach จะแจ้งว่า "unavailable" ซึ่งเป็นพฤติกรรมที่ตั้งใจไว้ ผู้ใช้ต้องเชื่อม Core wallet บน Fuji และมี test AVAX เองก่อนทำภารกิจ 2–4 ส่วนการ mint อัตโนมัติต้องมี `MINTER_PRIVATE_KEY`; demo ที่เลือกใช้ Core สามารถ mint ผ่าน Remix แทนได้
 
 `RECEIPT_SECRET` สร้างได้ด้วย:
 

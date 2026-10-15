@@ -13,7 +13,7 @@ Practise the costliest crypto mistakes on Avalanche Fuji testnet, with AI that s
 - **On-chain missions** — connect a wallet, get test AVAX, avoid a look-alike address, read your own gas fee, survive an unlimited-approval trap.
 - **Certificate** — a non-transferable NFT on Fuji for learners who pass.
 
-No sign-up needed: the guest wallet runs in the browser on testnet.
+Connect a Core wallet on Avalanche Fuji to use the app. The website never creates or stores a wallet for the learner.
 
 ## Partner technology
 
@@ -39,6 +39,6 @@ cp .env.example .env.local   # fill in values
 npm run dev
 ```
 
-Full setup: `docs/setup.md` · Architecture: `docs/architecture.md` · Project context: `PROJECT.md`
+Full setup: `docs/setup.md` · Architecture: `docs/architecture.md` · Decisions: `docs/decisions.md` · Project context: `PROJECT.md`
 
 Testnet only. Educational content, not financial advice.

@@ -1,31 +1,49 @@
 "use client";
 
-import { createWalletClient, custom, http, type Address, type EIP1193Provider, type Hash, type WalletClient } from "viem";
-import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
+import { createWalletClient, custom, type Address, type EIP1193Provider, type Hash, type WalletClient } from "viem";
 import { avalancheFuji } from "viem/chains";
-import { FUJI_CHAIN_ID, FUJI_RPC_URL } from "./config";
+import { FUJI_CHAIN_ID } from "./config";
 
-// Browser wallet layer: an injected wallet (Core / MetaMask) or a guest wallet whose key
-// lives only in this browser's localStorage. Guest keys are never sent to the server.
+// Browser wallet layer: the learner must connect an injected Core wallet on Fuji.
 
-export type WalletKind = "injected" | "guest";
-export type Wallet = { kind: WalletKind; address: Address; client: WalletClient };
+export type Wallet = { kind: "injected"; address: Address; client: WalletClient };
 
-const GUEST_KEY = "safestart.guestKey";
+type EIP6963ProviderDetail = {
+  info: { rdns: string };
+  provider: EIP1193Provider;
+};
+
+export type CoreProviderTarget = {
+  avalanche?: EIP1193Provider;
+  addEventListener: (type: string, listener: EventListener) => void;
+  removeEventListener: (type: string, listener: EventListener) => void;
+  dispatchEvent: (event: Event) => boolean;
+};
 
 declare global {
   interface Window {
+    avalanche?: EIP1193Provider;
     ethereum?: EIP1193Provider;
   }
 }
 
-export function hasInjectedWallet(): boolean {
-  return typeof window !== "undefined" && !!window.ethereum;
+export function detectCoreProvider(target: CoreProviderTarget = window): EIP1193Provider | undefined {
+  let announced: EIP1193Provider | undefined;
+  const onAnnouncement: EventListener = (event) => {
+    const detail = (event as CustomEvent<EIP6963ProviderDetail>).detail;
+    if (detail?.info.rdns === "app.core.extension") announced = detail.provider;
+  };
+
+  target.addEventListener("eip6963:announceProvider", onAnnouncement);
+  target.dispatchEvent(new Event("eip6963:requestProvider"));
+  target.removeEventListener("eip6963:announceProvider", onAnnouncement);
+  return announced ?? target.avalanche;
 }
 
-export async function connectInjected(): Promise<Wallet> {
-  if (!window.ethereum) throw new Error("No browser wallet found. Install Core or MetaMask, or use the guest wallet.");
-  const client = createWalletClient({ chain: avalancheFuji, transport: custom(window.ethereum) });
+export async function connectCore(): Promise<Wallet> {
+  const provider = detectCoreProvider();
+  if (!provider) throw new Error("No Core wallet found. Install or unlock Core Extension, then try again.");
+  const client = createWalletClient({ chain: avalancheFuji, transport: custom(provider) });
   const [address] = await client.requestAddresses();
   await ensureFuji(client);
   return { kind: "injected", address, client };
@@ -41,29 +59,8 @@ async function ensureFuji(client: WalletClient) {
   }
 }
 
-export function loadOrCreateGuest(): Wallet {
-  let key: `0x${string}` | null = null;
-  try {
-    const saved = localStorage.getItem(GUEST_KEY);
-    if (saved && /^0x[0-9a-fA-F]{64}$/.test(saved)) key = saved as `0x${string}`;
-  } catch {
-    // storage unavailable: use a session-only key
-  }
-  if (!key) {
-    key = generatePrivateKey();
-    try {
-      localStorage.setItem(GUEST_KEY, key);
-    } catch {
-      // ignore
-    }
-  }
-  const account = privateKeyToAccount(key);
-  const client = createWalletClient({ account, chain: avalancheFuji, transport: http(FUJI_RPC_URL) });
-  return { kind: "guest", address: account.address, client };
-}
-
 export async function walletChainId(wallet: Wallet): Promise<number> {
-  return wallet.kind === "guest" ? FUJI_CHAIN_ID : wallet.client.getChainId();
+  return wallet.client.getChainId();
 }
 
 /** Send AVAX on Fuji only. viem throws if the wallet is on another chain. */

@@ -20,7 +20,7 @@ export default function Home() {
         <Link href="/play" className="inline-block rounded-xl bg-zinc-900 px-5 py-3 font-medium text-white dark:bg-zinc-100 dark:text-zinc-900">
           Start practising
         </Link>
-        <p className="text-sm text-zinc-500">No sign-up needed: use a guest wallet, or connect Core / MetaMask.</p>
+        <p className="text-sm text-zinc-500">Connect your Core wallet on Avalanche Fuji to start. The site never creates or stores a wallet for you.</p>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         {features.map((f) => (

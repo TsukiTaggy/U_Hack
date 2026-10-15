@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import "./globals.css";
 
 // System fonts only: no build-time font download, so builds work offline and on venue Wi-Fi.
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
   description: "Practise crypto safety on Avalanche Fuji testnet with an AI coach, an AI scam simulator and real transactions.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col">{children}</body>

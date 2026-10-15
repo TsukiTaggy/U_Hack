@@ -21,7 +21,7 @@ In code use `avalancheFuji` from `viem/chains`.
 | Pages | `app/page.tsx`, `app/play/page.tsx`, `components/PlayClient.tsx` | Landing page; mission flow with wallet panel, missions 1–4, certificate and coach panel |
 | Config | `lib/config.ts` | Chain ID, RPC, explorer links, contract addresses from `NEXT_PUBLIC_*` |
 | ABIs | `lib/abi.ts` | Human-readable ABIs for the three contracts |
-| Wallet layer | `lib/wallet.ts` | Connect injected wallet, switch to Fuji, create/load guest wallet, send AVAX |
+| Wallet layer | `lib/wallet.ts` | Connect Core wallet, switch to Fuji, send AVAX |
 | Chain client | `lib/chain.ts` | viem public client for Fuji |
 | Agent tools | `lib/tools.ts` | Read-only functions the coach agent can call; rule-based risk for decoded calls |
 | LLM client | `lib/llm.ts` | OpenAI-compatible client, primary + fallback, tool-call loop, JSON mode with zod |
@@ -39,7 +39,7 @@ In code use `avalancheFuji` from `viem/chains`.
 | # | Learner action | Deterministic check (`lib/verify.ts`) | AI role |
 |---|---|---|---|
 | 1 | Connect wallet on Fuji, then take a practice "support call" | `chainId === 43113`; scam evaluation has `sharedSecret === false` and `followedLink === false` | AI scammer adapts tactics; AI evaluator returns the scam evaluation JSON |
-| 2 | Get test AVAX (faucet for real wallets, top-up for guest wallets) | `getBalance(address) > 0` | Coach explains testnet and gas; agent diagnoses if balance is zero |
+| 2 | Get test AVAX from the Avalanche Fuji faucet | `getBalance(address) > 0` | Coach explains testnet and gas; agent diagnoses if balance is zero |
 | 3 | Send 0.01 AVAX to the correct address chosen from look-alikes | Receipt `status === "success"`, `from === learner`, `to === tutorAddress`, `value >= 0.01 AVAX` | Writes the scenario message; if wrong, agent opens the real tx and shows which characters differ |
 | 4 | Answer how much gas the mission 3 tx cost | `abs(answer - gasUsed * effectiveGasPrice) <= 1%` | Agent reads the receipt and explains the fee |
 | 5 | Face a "free tUSDC" site asking for unlimited approval | `allowance(learner, FakeAirdrop) === 0` after the trap was shown; records whether learner approved | Explain-before-sign card; if approved, guides the revoke |
@@ -89,7 +89,6 @@ Learner text, scam transcripts and any chain data passed to an LLM are wrapped i
 | `/api/scam/evaluate` | POST | Evaluate a scam transcript |
 | `/api/verify/[mission]` | POST | Run a mission check, return a pass receipt |
 | `/api/mint` | POST | Final checks, mint certificate |
-| `/api/guest-topup` | POST | Send 0.05 test AVAX to a guest wallet whose balance is below 0.02 |
 | `/api/unlocks` | GET | Cached Tokenomist upcoming unlocks |
 | `/api/report` | POST | Personal safety report |
 | `/api/board` | GET | Certificate count and recent mission-3 transactions read from chain |
@@ -104,9 +103,9 @@ Source: `contracts/SafeStart.sol` (Solidity ^0.8.24, EVM version cancun, OpenZep
 
 The team minter wallet deploys and owns all three. Its private key lives only in server environment variables.
 
-## Guest wallet
+## Wallet requirement
 
-Created in the browser with viem (`generatePrivateKey`, `privateKeyToAccount`), stored in `localStorage`, never sent to the server, labelled "testnet only". `/api/guest-topup` funds it from the team wallet with a small capped amount so judges can finish without a faucet sign-up.
+The learner must connect an existing Core wallet through the injected EIP-1193 provider and switch to Avalanche Fuji. The website never generates, imports, stores, or funds a learner wallet. The learner obtains test AVAX from the Avalanche Fuji faucet before Mission 2.
 
 ## Environment variables
 
