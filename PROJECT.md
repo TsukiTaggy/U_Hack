@@ -64,11 +64,12 @@ Evidence: 34 unit tests; lint, type check and production webpack build pass; end
 Working (local chain):
 - Mission checks 2, 3, 4 with signed pass receipts; look-alike address rejected.
 - Certificate mint with full re-check; second mint refused; forged receipts refused.
-- Explain-before-sign risk rules (unlimited approval to the trap = high).
+- Explain-before-sign risk rules (unlimited approval to the trap = high; AVAX transfer to a look-alike of a previously used address = high, first-time address = medium).
 - ElevenLabs voice practice is configured through a server-only signed-URL route; voice is the default mode and text is the fallback.
 - Core wallet connection and the Fuji mission flow are working on the deployed demo.
 
 Partial:
+- Missions 3–4 interactive flow (branch `missions-ui`, 2026-10-15): practice chat, labelled simulated wallet history with look-alike transfers, explain-before-sign card with gas-reserve check, receipt-based fee breakdown, landing-style `/play`. Evidence: 42 unit tests, lint, typecheck and production build pass; UI checked at desktop, phone and dark mode with a simulated wallet and mocked Fuji RPC. Not yet run with a real Core wallet on Fuji or with the real LLM.
 - Coach agent tool loop, text scam call and scam evaluator: mechanics verified with a mock LLM only.
 - Frontend landing page and shared navigation are integrated from `frontend`; desktop DOM verification passed locally, with deployed browser validation still pending.
 - `/play` page: missions 1–4, coach panel, certificate and Core wallet/Fuji flow are working; broader multi-wallet smoke testing remains.
@@ -120,7 +121,7 @@ Detailed design: `docs/architecture.md`
 
 ## Canonical Data Formats
 
-- Mission definition: `content/missions/<id>.json` — `{ id, title, lesson, task, verify: { type, params } }`
+- Mission definition: `content/missions/<id>.json` — `{ id, title, lesson, task, verify: { type, params } }` — optional extras: `story` (mission 3 practice chat and history labels), `hint` (mission 4)
 - Scam evaluation: `{ sharedSecret: boolean, followedLink: boolean, verifiedViaOfficialChannel: boolean, tacticsSeen: string[], feedback: string }`
 - Pass receipt: `{ address, missionId, passedAt, evidence, sig }` — `sig` is an HMAC over the other fields with `RECEIPT_SECRET`.
 
