@@ -59,18 +59,19 @@ Active tasks: see `TODO.md`.
 ## Current State
 
 Last verified: 2026-10-15
-Evidence: 34 unit tests; lint, type check and production webpack build pass; end-to-end API test (23 checks) against a local chain with chain ID 43113 running the real contracts; AI routes exercised against a mock OpenAI-compatible server. Not yet run end-to-end on Fuji or the deployed site.
+Evidence: 34 unit tests; lint, type check and production webpack build pass; end-to-end API test (23 checks) against a local chain with chain ID 43113 running the real contracts; AI routes exercised against a mock OpenAI-compatible server. The authenticated ElevenLabs agent is published, capped at 120 seconds, and dashboard-tested; deployed Fuji/browser smoke testing remains pending.
 
 Working (local chain):
 - Mission checks 2, 3, 4 with signed pass receipts; look-alike address rejected.
 - Certificate mint with full re-check; second mint refused; forged receipts refused.
 - Explain-before-sign risk rules (unlimited approval to the trap = high).
+- ElevenLabs voice practice is configured through a server-only signed-URL route; voice is the default mode and text is the fallback.
 
 Partial:
 - Coach agent tool loop, text scam call and scam evaluator: mechanics verified with a mock LLM only.
 - Frontend landing page and shared navigation are integrated from `frontend`; desktop DOM verification passed locally, with deployed browser validation still pending.
 - `/play` page: missions 1–4, coach panel and certificate; not yet tested in a browser with a real wallet.
-- ElevenLabs private-agent voice flow: signed URL route, Voice/Text toggle and transcript-to-evaluator integration are implemented; a full microphone call still needs testing on the deployed site with Core wallet connected.
+- ElevenLabs private-agent voice flow: signed URL route, Voice/Text toggle, published authenticated agent, 120-second limit and transcript-to-evaluator integration are implemented; a full microphone call still needs testing on the deployed site with Core wallet connected.
 
 Not implemented:
 - Mission 5 page and route, personal safety report, bonus mission (Tokenomist), live board.

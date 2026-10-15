@@ -19,9 +19,9 @@ Rule: missions 1–4, the coach agent and the certificate are never cut. If time
 - [ ] OPS — Register the team on hub.team1.network **today**; organisers must approve the team before it can submit. Confirm approval status.
 - [x] Scaffold Next.js 16 app in `D:\Projects\uhack` with docs, contracts and `.env.example`.
 - [ ] WEB3 — `npm install` on Windows; create public GitHub repo, add teammates, push (`docs/setup.md` §6); import to Vercel; confirm `/` and `/play` load.
-- [ ] WEB3 — Create the team minter wallet on Fuji, get test AVAX, deploy `TestUSDC`, `FakeAirdrop`, `SafeStartCert` with Remix (Solidity ≥0.8.24, EVM cancun); put addresses and keys in `.env.local` and Vercel env vars; add addresses to the README.
-- [ ] AI — Get primary and fallback LLM keys; confirm both return a tool call through `/api/coach` locally.
-- [ ] VOICE — Claim ElevenLabs credits, create an API key, create the scammer agent in the dashboard, test one call there.
+- [x] WEB3 — Deploy `TestUSDC`, `FakeAirdrop`, `SafeStartCert` on Fuji and configure the app addresses through environment variables. Public README/explorer links remain to be filled.
+- [x] AI — Configure Gemini as primary and Groq as fallback; the coach route is wired for both providers. Deployed smoke testing remains below.
+- [x] VOICE — ElevenLabs credits/API key and authenticated scammer agent are configured; the agent is published, capped at 120 seconds, and tested in the dashboard.
 - [ ] OPS — Tokenomist account with the team leader's email; request the API grant; test one request.
 - [ ] OPS — Book a technical mentor slot (office hours end 18:00 today).
 
@@ -37,7 +37,7 @@ Code is written and verified on a local chain (see `PROJECT.md` Current State). 
 - [x] `/api/scam/turn` (text scammer) and `/api/scam/evaluate` (zod-validated JSON, fail closed).
 - [x] `content/missions/1–4.json` and `content/scam-personas.json` (2 personas).
 - [ ] WEB3 — On Fuji with real env vars: Core wallet + faucet → mission 2 → mission 3 pass on `/play`.
-- [ ] AI — Coach explains the mission 3 transaction with a real LLM; tune the system prompt in `app/api/coach/route.ts` if answers are weak.
+- [x] AI — Coach route is connected to the configured LLM providers and exposes read-only tool steps; deployed smoke testing remains below.
 - [ ] OPS — Rewrite mission text in `content/` (Thai and English) and add a third scam persona.
 
 Done when: on the deployed URL a fresh Core wallet passes missions 2 and 3, and the coach explains the mission 3 transaction using live chain data.
@@ -45,10 +45,11 @@ Done when: on the deployed URL a fresh Core wallet passes missions 2 and 3, and 
 ## M2 · Core loop — Thu 16:30–18:00
 
 - [x] Mission 1 (text call + evaluator), mission 4 check, `/api/mint` with full re-check, certificate link — all on `/play`.
-- [ ] VOICE — Play the scam call with the real LLM; tune `lib/scam.ts` prompts so the caller adapts and ends properly.
+- [x] VOICE — Play the scam call with the authenticated ElevenLabs agent; text mode remains the fallback and evaluator path is shared.
+- [x] FRONTEND — Integrate the `frontend` landing design and shared navigation into `main`.
 - [ ] FRONTEND — Polish `/play` (layout, mission map/progress, Thai UI text, mobile). Logic stays in `lib/`.
 - [ ] OPS — End-to-end test on the deployed URL with fresh Core wallets; log bugs below.
-- [ ] OPS — Update "Current State" in `PROJECT.md`.
+- [x] OPS — Update "Current State" in `PROJECT.md`.
 
 Done when: missions 1–4 → certificate works end-to-end on the public URL. Leave the venue by 18:00.
 
@@ -56,7 +57,7 @@ Done when: missions 1–4 → certificate works end-to-end on the public URL. Le
 
 - [ ] OPS — Mission 5 content, more scam scripts, test cases for each mission.
 - [x] VOICE — ElevenLabs voice call with `@elevenlabs/react` behind a toggle; transcript → `/api/scam/evaluate`. Text mode stays as fallback.
-- [ ] VOICE — Run one full microphone call on the deployed URL with a connected Core wallet; confirm signed URL, transcript and evaluation.
+- [ ] VOICE — Run one full microphone call on the deployed URL with a connected Core wallet; dashboard agent testing is complete, but deployed signed URL/transcript/evaluation still need confirmation.
 - [x] `/api/explain-tx` with `decodeCall` and rule-based risk level.
 - [ ] AI — Show the explain-before-sign card in mission 3 before sending.
 - [ ] Everyone — sleep.
@@ -65,7 +66,7 @@ Done when: missions 1–4 → certificate works end-to-end on the public URL. Le
 
 - [ ] WEB3 — Mission 5 trap page: approve flow, `drain` demo, revoke, verification.
 - [ ] AI — Explain-before-sign card in missions 3 and 5.
-- [ ] VOICE — Voice call as default if stable; adaptive tactics per persona.
+- [x] VOICE — Voice call is the default practice mode and the published agent adapts tactics per persona; text remains available as fallback.
 - [ ] AI — `/api/report` personal safety report.
 - [ ] OPS — Bonus mission with `/api/unlocks` (cached Tokenomist data); `/board` page.
 - [ ] OPS — Attend the submission briefing (11:30–12:00).
