@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typewriter Effect Test</title>
+  <style>
+    :root {
+      --avalanche-red: #E84142;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 4rem;
+      background: #ffffff;
+      color: #0a0a0a;
+    }
+
+    h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .red {
+      color: var(--avalanche-red);
+    }
+
+    /* Typewriter effect */
+    .fx-typewriter {
+      box-sizing: content-box;
+      font: inherit;
+      letter-spacing: inherit;
+      color: currentColor;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 18ch;
+      border-right: 0.15em solid var(--avalanche-red);
+      animation: fx-type 4s steps(18) infinite,
+                 fx-caret 0.65s steps(1) infinite;
+      display: inline-block;
+      vertical-align: bottom;
+    }
+
+    @keyframes fx-type {
+      0%, 10%   { width: 0; }
+      60%, 100% { width: 18ch; }
+    }
+
+    @keyframes fx-caret {
+      50% { border-color: transparent; }
+    }
+
+    .info {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #f5f5f5;
+      border-radius: 8px;
+      font-size: 0.875rem;
+    }
+
+    .info strong {
+      color: var(--avalanche-red);
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    Make your first crypto mistakes 
+    <span class="red">here</span>, 
+    <span class="fx-typewriter">not with real money</span>.
+  </h1>
+
+  <div class="info">
+    <p><strong>Animation Details:</strong></p>
+    <ul>
+      <li>Text: "not with real money" (18 characters)</li>
+      <li>Duration: 4 seconds per cycle</li>
+      <li>Typing: 0-2.4s (60% of cycle)</li>
+      <li>Display: 2.4-4s (40% of cycle)</li>
+      <li>Caret: Avalanche red, blinks every 0.65s</li>
+      <li>Loop: Infinite</li>
+    </ul>
+    <p><strong>What you should see:</strong></p>
+    <ol>
+      <li>Text types character by character</li>
+      <li>Red vertical caret blinks</li>
+      <li>Animation pauses briefly when complete</li>
+      <li>Restarts and loops</li>
+    </ol>
+  </div>
+
+  <script>
+    console.log('Typewriter test loaded');
+    console.log('Animation should be running on .fx-typewriter element');
+  </script>
+</body>
+</html>

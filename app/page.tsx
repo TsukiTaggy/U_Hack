@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { BentoCard, BentoGrid } from "@/components/BentoGrid";
 import { Section, SectionHeader } from "@/components/Section";
-import { StatsGrid, StatCard } from "@/components/StatCard";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { StatsSection } from "@/components/StatsSection";
 
 const features = [
   {
@@ -167,51 +167,39 @@ export default function Home() {
       </section>
 
       {/* Stats Section - Avalanche Style */}
-      <Section className="border-y border-[var(--border-subtle)] bg-zinc-50 dark:bg-zinc-900/30">
-        <AnimatedSection animation="fade-in">
-          <StatsGrid>
-            {missionHighlights.map((stat, i) => (
-              <AnimatedSection key={stat.label} animation="fade-up" delay={i * 100}>
-                <StatCard
-                  value={stat.number}
-                  label={stat.label}
-                  description={stat.description}
-                  highlight={stat.number === "100%"}
-                />
-              </AnimatedSection>
-            ))}
-          </StatsGrid>
-        </AnimatedSection>
-      </Section>
+      <StatsSection stats={missionHighlights} />
 
       {/* Features Bento Grid - Avalanche Style */}
-      <Section>
-        <AnimatedSection animation="fade-up">
-          <SectionHeader
-            title="Learn by doing. Fail safely. Stay secure."
-            subtitle="Four AI-powered ways to build real crypto safety skills on Avalanche testnet."
-          />
-        </AnimatedSection>
-        
-        <BentoGrid>
-          {features.map((feature, i) => (
-            <AnimatedSection key={feature.title} animation="scale" delay={i * 100}>
-              <BentoCard span={i < 2 ? "1" : "1"}>
-                <div className="flex h-full flex-col gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-100 text-2xl dark:bg-zinc-900">
-                    {feature.icon}
+      <Section noPadding>
+        <div className="mx-auto max-w-6xl px-6 pt-8 pb-16 sm:px-8 sm:pt-12 sm:pb-24 lg:pb-32">
+          <AnimatedSection animation="fade-up">
+            <SectionHeader
+              title="Learn by doing, fail safely, stay secure"
+              subtitle="Four AI-powered ways to build real crypto safety skills on Avalanche testnet."
+              align="center"
+            />
+          </AnimatedSection>
+          
+          <BentoGrid>
+            {features.map((feature, i) => (
+              <AnimatedSection key={feature.title} animation="scale" delay={i * 100}>
+                <BentoCard span={i < 2 ? "1" : "1"}>
+                  <div className="flex h-full flex-col gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-100 text-2xl dark:bg-zinc-900">
+                      {feature.icon}
+                    </div>
+                    <div className="flex flex-1 flex-col gap-2">
+                      <h3 className="text-xl font-semibold">{feature.title}</h3>
+                      <p className="text-[var(--text-muted)] leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex flex-1 flex-col gap-2">
-                    <h3 className="text-xl font-semibold">{feature.title}</h3>
-                    <p className="text-[var(--text-muted)] leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              </BentoCard>
-            </AnimatedSection>
-          ))}
-        </BentoGrid>
+                </BentoCard>
+              </AnimatedSection>
+            ))}
+          </BentoGrid>
+        </div>
       </Section>
 
       {/* How It Works Section */}
