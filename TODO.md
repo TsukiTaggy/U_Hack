@@ -19,7 +19,7 @@ Rule: missions 1–4 and the coach agent are never cut. The certificate is optio
 - [ ] OPS — Register the team on hub.team1.network **today**; organisers must approve the team before it can submit. Confirm approval status.
 - [x] Scaffold Next.js 16 app in `D:\Projects\uhack` with docs, contracts and `.env.example`.
 - [x] WEB3 — Public GitHub repo is pushed, the app is imported to Vercel, and `/` plus `/play` load.
-- [x] WEB3 — Deploy `TestUSDC`, `FakeAirdrop`, `SafeStartCert` on Fuji and configure the app addresses through environment variables. Public README/explorer links remain to be filled.
+- [x] WEB3 — Deploy `TestUSDC`, `FakeAirdrop`, `SafeStartCert` on Fuji and configure the app addresses through environment variables. README lists the addresses with explorer links.
 - [x] AI — Configure Gemini as primary and Groq as fallback; the coach route is wired for both providers. Deployed smoke testing remains below.
 - [x] VOICE — ElevenLabs credits/API key and authenticated scammer agent are configured; the agent is published, capped at 120 seconds, and tested in the dashboard.
 - [ ] OPS — Tokenomist account with the team leader's email; request the API grant; test one request.
@@ -84,7 +84,7 @@ Done when: missions 1–5, report and certificate run on the deployed URL.
 - [ ] Everyone — 12:30 feature freeze; bug fixes only.
 - [ ] OPS — End-to-end test with 3 fresh Core wallets on the deployed URL.
 - [ ] OPS — Record a 2–3 minute backup video of the full flow.
-- [ ] WEB3 — README: demo URL, contract explorer links, how to run, partner tech used. Repo is public.
+- [x] WEB3 — README: demo URL, contract explorer links, how to run, partner tech used (2026-10-16). Repo is public.
 - [ ] OPS — Pitch deck link (Google Drive or deck site) set to "Anyone with the link can view". Required for submission even though only finalists present on stage.
 - [ ] OPS — Submit on hub.team1.network by 13:30 (repo, demo website, deck). Updates are allowed until 14:00.
 - [ ] WEB3 — `git tag submission-v1` on the submitted commit.
