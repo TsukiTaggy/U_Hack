@@ -1,0 +1,7 @@
+{
+  "id": "2",
+  "title": "Get test AVAX",
+  "lesson": "Testnets use free coins with no real value, so you can practise safely. Every transaction pays a small fee (gas) in AVAX, so a wallet needs some AVAX before it can do anything.",
+  "task": "Get free test AVAX: use the Avalanche faucet for your own wallet, or press 'Top up' if you use the guest wallet.",
+  "verify": { "type": "balance-above-zero", "params": {} }
+}

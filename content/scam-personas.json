@@ -1,0 +1,16 @@
+[
+  {
+    "id": "wallet-support",
+    "name": "Alex from Wallet Support",
+    "opening": "Hello, this is Alex from Wallet Support. We detected a suspicious login on your wallet. To protect your funds I need to verify your account right now.",
+    "goal": "get the learner to share their 12-word recovery phrase or open a 'verification' link",
+    "tactics": ["urgency: the wallet will be frozen in 10 minutes", "authority: claims to be from the security team", "reward: promises a refund of fees"]
+  },
+  {
+    "id": "airdrop-friend",
+    "name": "Mint from the community group",
+    "opening": "Hey! I'm one of the admins in the community chat. There's a surprise airdrop for early members today only, you just need to claim it through our link before it closes.",
+    "goal": "get the learner to open a claim link and connect their wallet, or share their recovery phrase to 'restore' a missing claim",
+    "tactics": ["social proof: says many members already claimed", "scarcity: only a few spots left", "friendliness: casual tone and compliments"]
+  }
+]

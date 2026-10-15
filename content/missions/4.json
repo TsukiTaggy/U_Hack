@@ -1,0 +1,7 @@
+{
+  "id": "4",
+  "title": "Read your own fee",
+  "lesson": "The fee (gas) is paid on top of what you send, and it changes with network demand. You can always check the exact fee of a transaction on the block explorer.",
+  "task": "Open your mission 3 transaction on the explorer and enter how much AVAX you paid as the transaction fee.",
+  "verify": { "type": "fee-answer", "params": { "tolerancePct": 1 } }
+}

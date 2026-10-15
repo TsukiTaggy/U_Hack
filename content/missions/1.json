@@ -1,0 +1,7 @@
+{
+  "id": "1",
+  "title": "The support call",
+  "lesson": "Real support teams never ask for your recovery phrase, private key or a 'verification' link. Anyone who does is a scammer, no matter how urgent or official they sound.",
+  "task": "Connect your wallet on Avalanche Fuji, then take a practice call from 'Wallet Support'. Do not share any secret and do not open their link.",
+  "verify": { "type": "scam-evaluation", "params": { "chainId": 43113 } }
+}

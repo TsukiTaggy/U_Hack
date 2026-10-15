@@ -1,0 +1,7 @@
+{
+  "id": "3",
+  "title": "Send to the right person",
+  "lesson": "Scammers create addresses that start and end like one you trust, hoping you copy the wrong one from your history. Always compare the whole address, not just the first and last characters.",
+  "task": "Your tutor asked you to send 0.01 AVAX. Pick the tutor's real address from the list and send it.",
+  "verify": { "type": "tx-to-tutor", "params": { "minAvax": "0.01" } }
+}
