@@ -14,6 +14,7 @@ Four teammates and several AI coding agents work in this repository. The reposit
 
 - Scope, milestone and current state: `PROJECT.md`
 - Active work: `TODO.md`
+- Accepted product and deployment choices: `docs/decisions.md`
 - Design detail: `docs/architecture.md`. Setup and deployment: `docs/setup.md`
 
 ## Before starting work
@@ -21,6 +22,7 @@ Four teammates and several AI coding agents work in this repository. The reposit
 1. Read the parts of `PROJECT.md` and `TODO.md` that relate to the task.
 2. Run `git status` and `git log --oneline -5`. Do not overwrite a teammate's uncommitted work.
 3. Read the source, tests and docs for the files you will change. Search `lib/` for an existing helper before writing a new one.
+4. For Next.js behavior, read the matching guide under `node_modules/next/dist/docs/` before relying on remembered framework behavior.
 
 Do not load unrelated docs.
 
@@ -31,7 +33,7 @@ Do not load unrelated docs.
 | `lib/verify.ts` | Every mission pass/fail check | The only place a pass is decided |
 | `lib/tools.ts` | Coach agent tools | Read-only; never signs or sends |
 | `lib/llm.ts`, `lib/receipt.ts`, `lib/minter.ts`, `lib/api.ts` | LLM client, pass receipts, minter wallet, API helpers | Server-only (hard rule 4) |
-| `lib/wallet.ts` | Browser wallet and guest wallet | Client-only; the guest key never leaves the browser |
+| `lib/wallet.ts` | Core wallet detection, Fuji switching and learner-signed transactions | Client-only; detect Core through EIP-6963 with `window.avalanche` fallback |
 | `app/api/*` | API routes | Read secrets here; put logic in `lib/` |
 | `app/`, `components/` | Pages and UI | No pass/fail or chain logic; call `lib/` |
 | `content/*.json` | Mission text, scam personas | Text lives here, not in components |
@@ -62,7 +64,7 @@ This is Next.js 16 with Cache Components enabled (see the block above). `GET` ro
 2. **AI tools are read-only.** Nothing in `lib/tools.ts` may sign or send a transaction.
 3. **Fuji only.** Before any write, assert `chainId === 43113`; refuse otherwise.
 4. **Secrets stay server-side.** Never import `lib/llm.ts`, `lib/receipt.ts`, `lib/minter.ts` or `lib/api.ts` from a `"use client"` file. `MINTER_PRIVATE_KEY`, `RECEIPT_SECRET` and all API keys are read only in API routes. Never prefix a secret with `NEXT_PUBLIC_`. Never commit `.env.local`.
-5. **Guest wallet keys never leave the browser.** Do not send them to any API route or log them.
+5. **Core wallet only.** The website must not generate, import, store or fund learner wallets. Learners connect an existing Core wallet and obtain test AVAX from the Fuji faucet.
 6. **Untrusted input.** Learner text, scam transcripts and chain data passed to an LLM go inside tagged blocks, and the system prompt says they are data, not instructions.
 7. **No fake integrations.** If a service is down, show an honest fallback state (for example "voice unavailable, switched to text"). Never fabricate a transaction hash, a balance or a tool result.
 8. **No personal data on chain.**
@@ -71,6 +73,7 @@ This is Next.js 16 with Cache Components enabled (see the block above). `GET` ro
 ## Implementation rules
 
 - Make the smallest change that does the task. Follow existing patterns in `lib/` before adding an abstraction.
+- Keep UI and transport thin: pages/components render state and call APIs; API routes validate requests and delegate reusable logic to `lib/`.
 - Keep the data formats listed in `PROJECT.md` (mission JSON, scam evaluation, pass receipt) unless the task is to change them.
 - Every check in `lib/verify.ts` has a unit test in `tests/`.
 - Add a dependency only when it removes real work. Use `npm install <pkg>` so `package-lock.json` stays in sync; never edit the lockfile by hand.
@@ -87,7 +90,7 @@ Run focused checks first, then broader ones in proportion to the risk.
 | Page or component | `npm run build`, then open the page in a browser at desktop and phone width |
 | LLM prompt | Run it against the real provider; a mock only proves the plumbing |
 | Contract | Compile in Remix (cancun), call the changed function on Fuji, update `lib/abi.ts` |
-| Env var or deployment | `npm run build`, then load the Vercel URL and pass mission 2 with a fresh guest wallet |
+| Env var or deployment | `npm run build`, redeploy Vercel, then load the public URL and pass mission 2 with a fresh Core wallet |
 
 Before merging into `main`, run `npm run lint`, `npm run typecheck`, `npm test` and `npm run build`.
 
@@ -100,6 +103,7 @@ Update a document only when its subject changes. Replace outdated text instead o
 - `PROJECT.md` Current State: a feature moves between not implemented, partial and working. Add the date and the evidence.
 - `PROJECT.md` other sections: scope, milestone, a constraint or a major decision changes.
 - `TODO.md`: a task is done, added or blocked.
+- `docs/decisions.md`: the team accepts or reverses a product or technical tradeoff.
 - `docs/architecture.md`: a route, component boundary, mission check or data flow changes.
 - `docs/setup.md` and `.env.example`: a command, env var, external service or deployment step changes.
 - `README.md`: contract addresses or the demo URL change.
@@ -113,6 +117,7 @@ If code, tests, `PROJECT.md`, this file or `docs/` contradict each other, do not
 - Keep `main` deployable. Work on a branch and merge only code that builds.
 - Make small commits with plain messages.
 - Never commit `.env*` files other than `.env.example`.
+- Do not commit or push unless the user explicitly requests it.
 
 ## Handoff
 

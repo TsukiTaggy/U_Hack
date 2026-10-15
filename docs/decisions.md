@@ -33,7 +33,9 @@
 - มี text scam flow เป็น fallback เสมอ
 - `NEXT_PUBLIC_ELEVENLABS_AGENT_ID` เป็นค่าที่เปิดเผยได้สำหรับการระบุ agent
 - `ELEVENLABS_API_KEY` เป็น secret และห้ามใส่ใน client หรือ commit
-- ณ จุดบันทึกนี้ repository ยังไม่ได้ฝัง ElevenLabs Agent เข้า `/play` โดยตรง; งานนี้เป็น integration ระยะถัดไป ไม่บล็อก core demo
+- `/play` ฝัง ElevenLabs Agent ผ่าน `@elevenlabs/react` แล้ว โดยใช้ voice เป็นค่าเริ่มต้นและมี text fallback
+- Agent เปิด authentication; server ขอ signed URL ด้วย `ELEVENLABS_API_KEY` แล้วส่ง URL อายุสั้นให้ browser
+- Transcript จาก voice ใช้ evaluator ตัวเดียวกับ text flow; UI ไม่ตัดสินผลเอง
 
 ### 5. Receipt security
 
@@ -62,5 +64,5 @@
 2. ทดสอบ `/play` ด้วย Core wallet จริงบน Fuji: connect → mission 1–4 → verify
 3. ทดสอบ Coach ด้วย Gemini และ fallback ด้วย Groq
 4. ทดสอบ certificate path ที่เลือกไว้: manual mint ผ่าน Remix แล้วตรวจบนหน้าเว็บ
-5. ค่อยทำ ElevenLabs Agent integration ใน `/play`; ถ้าไม่เสถียรให้ใช้ text mode ต่อ
+5. ทดสอบ ElevenLabs voice บน deployed URL ด้วย Core wallet จริง; ถ้าไมค์หรือบริการไม่พร้อมให้ใช้ text mode
 6. ทำ end-to-end smoke test ด้วย wallet ใหม่หลายใบ แล้ว freeze demo build

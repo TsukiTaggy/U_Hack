@@ -55,7 +55,8 @@ Done when: missions 1–4 → certificate works end-to-end on the public URL. Le
 ## Thursday night — remote, stop by 23:00
 
 - [ ] OPS — Mission 5 content, more scam scripts, test cases for each mission.
-- [ ] VOICE — ElevenLabs voice call with `@elevenlabs/react` behind a toggle; transcript → `/api/scam/evaluate`. Text mode stays as fallback.
+- [x] VOICE — ElevenLabs voice call with `@elevenlabs/react` behind a toggle; transcript → `/api/scam/evaluate`. Text mode stays as fallback.
+- [ ] VOICE — Run one full microphone call on the deployed URL with a connected Core wallet; confirm signed URL, transcript and evaluation.
 - [x] `/api/explain-tx` with `decodeCall` and rule-based risk level.
 - [ ] AI — Show the explain-before-sign card in mission 3 before sending.
 - [ ] Everyone — sleep.

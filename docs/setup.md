@@ -133,7 +133,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ## 7. LLM key (หลัก + สำรอง)
 
 - **Gemini:** สร้าง key ที่ https://aistudio.google.com/apikey ใส่ `LLM_API_KEY` และคัดลอกชื่อโมเดล Flash ล่าสุดจาก AI Studio ใส่ `LLM_MODEL`
-- **Groq (สำรอง):** สร้าง key ที่ https://console.groq.com/keys ใส่ `LLM_FALLBACK_API_KEY`
+- **Groq (สำรอง):** สร้าง key ที่ https://console.groq.com/keys ใส่ `LLM_FALLBACK_API_KEY` และใช้ `LLM_FALLBACK_MODEL=openai/gpt-oss-120b`
 - Free tier อาจนำ prompt ไปใช้ฝึกโมเดล ห้ามส่งข้อมูลส่วนตัวจริง
 
 ทดสอบ (เปลี่ยน `KEY` และ `MODEL`):
@@ -145,18 +145,19 @@ curl -s https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
 
 curl -s https://api.groq.com/openai/v1/chat/completions \
   -H "Authorization: Bearer KEY" -H "Content-Type: application/json" \
-  -d '{"model":"llama-3.3-70b-versatile","messages":[{"role":"user","content":"Say hi"}]}'
+  -d '{"model":"openai/gpt-oss-120b","messages":[{"role":"user","content":"Say hi"}]}'
 ```
 
 ## 8. ElevenLabs
 
 1. รับเครดิตฟรีตามลิงก์ "How to claim free credits" ในชีตข้อมูลของงาน (ผู้เข้าร่วมได้ Creator tier 1 เดือน)
-2. สร้าง API key ใน dashboard ใส่ `ELEVENLABS_API_KEY`
-3. สร้าง Agent สำหรับสายมิจฉาชีพจำลอง ใส่ system prompt ด้านล่าง เลือกเสียง และตั้งความยาวสายสูงสุดประมาณ 2 นาที
-4. ทดลองคุยใน dashboard ให้ได้ก่อน แล้วคัดลอก Agent ID ใส่ `NEXT_PUBLIC_ELEVENLABS_AGENT_ID`
-5. ทดสอบว่าภาษาไทยใช้ได้ดีแค่ไหน ถ้าไม่ดีให้ใช้เสียงภาษาอังกฤษ
+2. สร้าง restricted API key ให้ `ElevenAgents: Write` แล้วใส่ `ELEVENLABS_API_KEY`; endpoint อื่นใช้ `No Access`
+3. สร้าง Agent สำหรับสายมิจฉาชีพจำลอง ใส่ system prompt ด้านล่าง เลือกเสียง และตั้ง Maximum conversation duration เป็น 120 วินาที
+4. เปิด authentication ของ Agent แล้วกด Publish
+5. ทดลองคุยใน dashboard ให้ได้ก่อน แล้วคัดลอก Agent ID ใส่ `NEXT_PUBLIC_ELEVENLABS_AGENT_ID`
+6. ทดสอบว่าภาษาไทยใช้ได้ดีแค่ไหน ถ้าไม่ดีให้ใช้เสียงภาษาอังกฤษ
 
-ถ้าตั้ง agent เป็น public ใครมี Agent ID ก็ใช้เครดิตได้ ตั้งจำกัดความยาวสายไว้เสมอ
+แอปขอ signed URL ผ่าน server route จึงห้ามใส่ `ELEVENLABS_API_KEY` ในตัวแปร `NEXT_PUBLIC_*`. ตั้งจำกัดความยาวสายไว้เสมอเพื่อลดการใช้เครดิต
 
 ตัวอย่าง system prompt:
 

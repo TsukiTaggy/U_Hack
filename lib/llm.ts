@@ -10,14 +10,23 @@ import type { z } from "zod";
 
 type Provider = { name: string; client: OpenAI; model: string };
 
+const RETIRED_GROQ_MODELS: Record<string, string> = {
+  "llama-3.3-70b-versatile": "openai/gpt-oss-120b",
+};
+
+export function resolveModel(baseURL: string | undefined, model: string): string {
+  if (baseURL?.replace(/\/+$/, "") !== "https://api.groq.com/openai/v1") return model;
+  return RETIRED_GROQ_MODELS[model] ?? model;
+}
+
 function providers(): Provider[] {
   const list: Provider[] = [];
   const { LLM_BASE_URL, LLM_API_KEY, LLM_MODEL, LLM_FALLBACK_BASE_URL, LLM_FALLBACK_API_KEY, LLM_FALLBACK_MODEL } = process.env;
   if (LLM_API_KEY && LLM_MODEL) {
-    list.push({ name: "primary", model: LLM_MODEL, client: new OpenAI({ apiKey: LLM_API_KEY, baseURL: LLM_BASE_URL, timeout: 25_000, maxRetries: 0 }) });
+    list.push({ name: "primary", model: resolveModel(LLM_BASE_URL, LLM_MODEL), client: new OpenAI({ apiKey: LLM_API_KEY, baseURL: LLM_BASE_URL, timeout: 25_000, maxRetries: 0 }) });
   }
   if (LLM_FALLBACK_API_KEY && LLM_FALLBACK_MODEL) {
-    list.push({ name: "fallback", model: LLM_FALLBACK_MODEL, client: new OpenAI({ apiKey: LLM_FALLBACK_API_KEY, baseURL: LLM_FALLBACK_BASE_URL, timeout: 25_000, maxRetries: 0 }) });
+    list.push({ name: "fallback", model: resolveModel(LLM_FALLBACK_BASE_URL, LLM_FALLBACK_MODEL), client: new OpenAI({ apiKey: LLM_FALLBACK_API_KEY, baseURL: LLM_FALLBACK_BASE_URL, timeout: 25_000, maxRetries: 0 }) });
   }
   if (list.length === 0) throw new Error("No LLM provider configured. Set LLM_API_KEY and LLM_MODEL.");
   return list;

@@ -59,7 +59,7 @@ Active tasks: see `TODO.md`.
 ## Current State
 
 Last verified: 2026-10-15
-Evidence: 25 unit tests; lint, type check and production build pass; end-to-end API test (23 checks) against a local chain with chain ID 43113 running the real contracts; AI routes exercised against a mock OpenAI-compatible server. Not yet run on Fuji, with a real LLM, or deployed.
+Evidence: 34 unit tests; lint, type check and production webpack build pass; end-to-end API test (23 checks) against a local chain with chain ID 43113 running the real contracts; AI routes exercised against a mock OpenAI-compatible server. Not yet run end-to-end on Fuji or the deployed site.
 
 Working (local chain):
 - Mission checks 2, 3, 4 with signed pass receipts; look-alike address rejected.
@@ -69,9 +69,10 @@ Working (local chain):
 Partial:
 - Coach agent tool loop, text scam call and scam evaluator: mechanics verified with a mock LLM only.
 - `/play` page: missions 1–4, coach panel and certificate; not yet tested in a browser with a real wallet.
+- ElevenLabs private-agent voice flow: signed URL route, Voice/Text toggle and transcript-to-evaluator integration are implemented; a full microphone call still needs testing on the deployed site with Core wallet connected.
 
 Not implemented:
-- Mission 5 page and route, voice call (ElevenLabs), personal safety report, bonus mission (Tokenomist), live board.
+- Mission 5 page and route, personal safety report, bonus mission (Tokenomist), live board.
 
 ## Architecture Summary
 
@@ -84,6 +85,7 @@ API routes (Next.js, server)
  ├─ /api/coach        AI agent + read-only chain tools
  ├─ /api/explain-tx   decode calldata (viem) + AI plain-language explanation
  ├─ /api/scam/*       AI scammer turns (text) + AI evaluator → structured JSON
+ ├─ /api/elevenlabs/* server-only signed URL for the private voice agent
  ├─ /api/verify/[id]  deterministic mission checks → signed pass receipt
  ├─ /api/mint         re-checks everything, then mints certificate
  └─ /api/unlocks      Tokenomist data for the bonus mission (cached)

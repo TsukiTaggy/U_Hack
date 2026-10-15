@@ -26,6 +26,8 @@ In code use `avalancheFuji` from `viem/chains`.
 | Agent tools | `lib/tools.ts` | Read-only functions the coach agent can call; rule-based risk for decoded calls |
 | LLM client | `lib/llm.ts` | OpenAI-compatible client, primary + fallback, tool-call loop, JSON mode with zod |
 | Scam prompts | `lib/scam.ts` | Personas, transcript validation, scammer and evaluator prompts |
+| Voice client | `components/VoicePracticeCall.tsx`, `lib/voice.ts` | ElevenLabs WebSocket session, microphone state, transcript normalization |
+| ElevenLabs client | `lib/elevenlabs.ts` | Server-only signed URL request for the private agent |
 | Verification | `lib/verify.ts` | Deterministic pass/fail for every mission |
 | Receipts | `lib/receipt.ts` | HMAC sign/verify pass receipts |
 | Minter | `lib/minter.ts` | Server wallet client from `MINTER_PRIVATE_KEY` |
@@ -87,6 +89,7 @@ Learner text, scam transcripts and any chain data passed to an LLM are wrapped i
 | `/api/explain-tx` | POST | Explain a transaction before signing |
 | `/api/scam/turn` | POST | Text-mode scammer reply |
 | `/api/scam/evaluate` | POST | Evaluate a scam transcript |
+| `/api/elevenlabs/signed-url` | POST | Return a short-lived signed WebSocket URL for the private ElevenLabs agent |
 | `/api/verify/[mission]` | POST | Run a mission check, return a pass receipt |
 | `/api/mint` | POST | Final checks, mint certificate |
 | `/api/unlocks` | GET | Cached Tokenomist upcoming unlocks |
@@ -110,3 +113,5 @@ The learner must connect an existing Core wallet through the injected EIP-1193 p
 ## Environment variables
 
 See `.env.example`. Secrets never use the `NEXT_PUBLIC_` prefix.
+
+`ELEVENLABS_API_KEY` is read only by `/api/elevenlabs/signed-url`. The browser receives a short-lived signed URL, never the API key. `NEXT_PUBLIC_ELEVENLABS_AGENT_ID` is public configuration. Voice is the default Mission 1 mode; text remains available when microphone or ElevenLabs access fails.

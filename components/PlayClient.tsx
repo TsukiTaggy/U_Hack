@@ -9,7 +9,9 @@ import m4 from "@/content/missions/4.json";
 import { publicClient } from "@/lib/chain";
 import { addresses, addressUrl, txUrl } from "@/lib/config";
 import { addressChoices, seedFromAddress } from "@/lib/decoys";
+import type { VoiceTurn } from "@/lib/voice";
 import { connectCore, sendAvax, walletChainId, type Wallet } from "@/lib/wallet";
+import VoicePracticeCall from "@/components/VoicePracticeCall";
 
 type Receipt = { address: string; missionId: string; passedAt: number; evidence: string; sig: string };
 type Turn = { role: "scammer" | "learner"; text: string };
@@ -117,6 +119,8 @@ export default function PlayClient() {
   const [reply, setReply] = useState("");
   const [callDone, setCallDone] = useState(false);
   const [feedback, setFeedback] = useState("");
+  const [callMode, setCallMode] = useState<"voice" | "text">("voice");
+  const [voiceActive, setVoiceActive] = useState(false);
 
   const startCall = () =>
     run("call", async () => {
@@ -137,18 +141,27 @@ export default function PlayClient() {
       if (res.done) setCallDone(true);
     });
 
-  const endCall = () =>
+  const evaluateCall = (transcript: VoiceTurn[]) =>
     run("evaluate", async () => {
       if (!wallet) throw new Error("Connect a wallet first.");
       const res = await post<{ passed: boolean; reason: string; evaluation?: { feedback: string; tacticsSeen: string[] }; receipt?: Receipt }>(
         "/api/scam/evaluate",
-        { address: wallet.address, chainId: await walletChainId(wallet), transcript: turns },
+        { address: wallet.address, chainId: await walletChainId(wallet), transcript },
       );
       setCallDone(true);
       const tactics = res.evaluation?.tacticsSeen?.length ? ` Tactics used: ${res.evaluation.tacticsSeen.join(", ")}.` : "";
       setFeedback(`${res.passed ? "✅" : "❌"} ${res.reason}${tactics} ${res.evaluation?.feedback ?? ""}`);
       addReceipt(res.receipt);
     });
+
+  const endCall = () => evaluateCall(turns);
+
+  const selectCallMode = (mode: "voice" | "text") => {
+    setCallMode(mode);
+    setTurns([]);
+    setCallDone(false);
+    setFeedback("");
+  };
 
   // ---------- Mission 2: test AVAX ----------
   const check2 = () =>
@@ -262,13 +275,30 @@ export default function PlayClient() {
           <p className="mb-2 text-sm text-zinc-600 dark:text-zinc-400">{m1.lesson}</p>
           <p className="mb-3 text-sm font-medium">{m1.task}</p>
           <div className="mb-3 flex flex-wrap gap-2">
-            <select className="rounded-lg border border-zinc-300 bg-transparent px-2 text-sm dark:border-zinc-700" value={personaId} onChange={(e) => setPersonaId(e.target.value)} aria-label="Caller">
-              <option value="wallet-support">Wallet support call</option>
-              <option value="airdrop-friend">Community airdrop</option>
-            </select>
-            <button className={btn} disabled={!wallet || !!busy} onClick={startCall}>{turns.length ? "Restart call" : "Answer the call"}</button>
-            {turns.length > 1 && <button className={btnGhost} disabled={!!busy} onClick={endCall}>End call &amp; get feedback</button>}
+            <button className={callMode === "voice" ? btn : btnGhost} disabled={voiceActive || !!busy} onClick={() => selectCallMode("voice")}>Voice</button>
+            <button className={callMode === "text" ? btn : btnGhost} disabled={voiceActive || !!busy} onClick={() => selectCallMode("text")}>Text</button>
           </div>
+          {callMode === "voice" ? (
+            <VoicePracticeCall
+              disabled={!wallet || !!busy}
+              onActiveChange={setVoiceActive}
+              onTranscriptChange={setTurns}
+              onFinish={evaluateCall}
+              onFallback={(reason) => {
+                setCallMode("text");
+                setMessage(`${reason} Switched to text practice.`);
+              }}
+            />
+          ) : (
+            <div className="mb-3 flex flex-wrap gap-2">
+              <select className="rounded-lg border border-zinc-300 bg-transparent px-2 text-sm dark:border-zinc-700" value={personaId} onChange={(e) => setPersonaId(e.target.value)} aria-label="Caller">
+                <option value="wallet-support">Wallet support call</option>
+                <option value="airdrop-friend">Community airdrop</option>
+              </select>
+              <button className={btn} disabled={!wallet || !!busy} onClick={startCall}>{turns.length ? "Restart call" : "Answer the call"}</button>
+              {turns.length > 1 && <button className={btnGhost} disabled={!!busy} onClick={endCall}>End call &amp; get feedback</button>}
+            </div>
+          )}
           {turns.length > 0 && (
             <div className="space-y-2 rounded-xl bg-zinc-50 p-3 text-sm dark:bg-zinc-900">
               <p className="text-xs text-zinc-500">Practice call — the caller is an AI playing a scammer.</p>
@@ -277,7 +307,7 @@ export default function PlayClient() {
                   <b>{t.role === "scammer" ? "Caller" : "You"}:</b> {t.text}
                 </p>
               ))}
-              {!callDone && (
+              {!callDone && callMode === "text" && (
                 <div className="flex gap-2">
                   <input className={input} value={reply} onChange={(e) => setReply(e.target.value)} onKeyDown={(e) => e.key === "Enter" && sendReply()} placeholder="Your reply…" />
                   <button className={btn} disabled={!!busy} onClick={sendReply}>Send</button>
