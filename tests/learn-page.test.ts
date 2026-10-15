@@ -2,7 +2,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import LearnPage, { metadata } from "@/app/learn/page";
-import { Navigation } from "@/components/Navigation";
+import { homeActions, primaryNavigation } from "@/lib/site-navigation";
 
 describe("learning route", () => {
   it("renders a Thai-first standalone learning main without wallet props", () => {
@@ -18,11 +18,19 @@ describe("learning route", () => {
 });
 
 describe("shared navigation", () => {
-  it("keeps Home and Missions while exposing Learn in the rendered navigation", () => {
-    const markup = renderToStaticMarkup(createElement(Navigation));
+  it("maps product navigation to the live routes", () => {
+    expect(primaryNavigation).toEqual([
+      { label: "Home", href: "/" },
+      { label: "Learn", href: "/learn" },
+      { label: "Missions", href: "/play" },
+    ]);
+  });
 
-    expect(markup).toContain('href="/"');
-    expect(markup).toContain('href="/play"');
-    expect(markup.match(/href="\/learn"/g)).toHaveLength(1);
+  it("maps landing actions to learning and missions", () => {
+    expect(homeActions).toEqual({
+      learn: { label: "Start practising", href: "/learn" },
+      missions: { label: "View missions", href: "/play" },
+      launch: { label: "Launch SafeStart", href: "/play" },
+    });
   });
 });

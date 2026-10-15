@@ -1,18 +1,45 @@
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 
-export function Section({ children, className = "" }: { children: ReactNode; className?: string }) {
+interface SectionProps {
+  children: ReactNode;
+  className?: string;
+  id?: string;
+  wide?: boolean;
+  noPadding?: boolean;
+}
+
+export function Section({ children, className = "", id, wide = false, noPadding = false }: SectionProps) {
+  const maxWidth = wide ? "max-w-7xl" : "max-w-6xl";
+  const padding = noPadding ? "" : "px-6 py-12 sm:px-8 sm:py-16 lg:py-20";
+
   return (
-    <section className={`px-6 py-16 sm:px-8 sm:py-20 ${className}`}>
-      <div className="mx-auto w-full max-w-6xl">{children}</div>
+    <section id={id} className={`w-full ${className}`}>
+      <div className={`mx-auto ${maxWidth} ${padding}`}>
+        {children}
+      </div>
     </section>
   );
 }
 
-export function SectionHeader({ title, subtitle }: { title: string; subtitle: string }) {
+interface SectionHeaderProps {
+  title: string;
+  subtitle?: string;
+  align?: "left" | "center";
+}
+
+export function SectionHeader({ title, subtitle, align = "left" }: SectionHeaderProps) {
+  const alignClass = align === "center" ? "text-center mx-auto" : "";
+
   return (
-    <header className="mb-10 max-w-3xl space-y-3">
-      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
-      <p className="text-base leading-relaxed text-[var(--text-muted)] sm:text-lg">{subtitle}</p>
-    </header>
+    <div className={`mb-8 max-w-5xl space-y-4 sm:mb-12 ${alignClass}`}>
+      <h2 className="title-gradient text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+        {title}
+      </h2>
+      {subtitle && (
+        <p className="text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-xl">
+          {subtitle}
+        </p>
+      )}
+    </div>
   );
 }

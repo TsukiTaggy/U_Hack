@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { primaryNavigation } from "@/lib/site-navigation";
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -10,24 +12,16 @@ export function Navigation() {
     <nav className="sticky top-0 z-50 border-b border-zinc-800 bg-black/95 text-white backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 sm:px-8">
         <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-          <div className="flex h-8 w-8 items-center justify-center">
-            <svg className="h-6 w-6 text-[var(--avalanche-red)]" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L2 19.5h20L12 2zm0 4l7 13H5l7-13z"/>
-            </svg>
-          </div>
+          <Image src="/img/SafeStart-logo.svg" alt="" width={32} height={32} />
           <span className="font-semibold tracking-tight">SafeStart</span>
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
-          <Link href="/" className="text-sm font-medium text-zinc-300 transition-colors hover:text-white">
-            Home
-          </Link>
-          <Link href="/play" className="text-sm font-medium text-zinc-300 transition-colors hover:text-white">
-            Missions
-          </Link>
-          <Link href="/learn" className="text-sm font-medium text-zinc-300 transition-colors hover:text-white">
-            Learn
-          </Link>
+          {primaryNavigation.map((item) => (
+            <Link key={item.href} href={item.href} className="text-sm font-medium text-zinc-300 transition-colors hover:text-white">
+              {item.label}
+            </Link>
+          ))}
         </div>
 
         <button
@@ -49,27 +43,16 @@ export function Navigation() {
       {mobileMenuOpen && (
         <div className="border-t border-zinc-800/50 bg-black/60 backdrop-blur-xl px-6 py-4 md:hidden">
           <div className="flex flex-col gap-4">
-            <Link
-              href="/"
-              className="text-sm font-medium text-zinc-300 transition-colors hover:text-white"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Home
-            </Link>
-            <Link
-              href="/play"
-              className="text-sm font-medium text-zinc-300 transition-colors hover:text-white"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Missions
-            </Link>
-            <Link
-              href="/learn"
-              className="text-sm font-medium text-zinc-300 transition-colors hover:text-white"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Learn
-            </Link>
+            {primaryNavigation.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-sm font-medium text-zinc-300 transition-colors hover:text-white"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
         </div>
       )}

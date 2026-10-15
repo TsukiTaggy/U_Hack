@@ -1,15 +1,35 @@
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 
-export function BentoGrid({ children }: { children: ReactNode }) {
-  return <div className="grid gap-5 md:grid-cols-2">{children}</div>;
+interface BentoCardProps {
+  children: ReactNode;
+  className?: string;
+  span?: "1" | "2" | "full";
 }
 
-export function BentoCard({ children, span = "1" }: { children: ReactNode; span?: "1" | "2" | "full" }) {
-  const spanClass = span === "1" ? "" : "md:col-span-2";
+export function BentoCard({ children, className = "", span = "1" }: BentoCardProps) {
+  const spanClass = {
+    "1": "col-span-1",
+    "2": "sm:col-span-2",
+    "full": "col-span-full",
+  }[span];
 
   return (
-    <article className={`h-full rounded-3xl border border-[var(--border-subtle)] bg-white p-7 shadow-sm dark:bg-zinc-950 ${spanClass}`}>
+    <div className={`group animated-card ${spanClass} ${className}`}>
+      <div className="animated-card-border"></div>
       {children}
-    </article>
+    </div>
+  );
+}
+
+interface BentoGridProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export function BentoGrid({ children, className = "" }: BentoGridProps) {
+  return (
+    <div className={`grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 ${className}`}>
+      {children}
+    </div>
   );
 }

@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/no-img-element -- The looping marquee needs bare local images so duplicate sets keep identical inline sizing. */
 import Link from "next/link";
-import { AnimatedSection } from "@/components/AnimatedSection";
 import { BentoCard, BentoGrid } from "@/components/BentoGrid";
 import { Section, SectionHeader } from "@/components/Section";
-import { StatCard, StatsGrid } from "@/components/StatCard";
+import { AnimatedSection } from "@/components/AnimatedSection";
+import { StatsSection } from "@/components/StatsSection";
+import { homeActions } from "@/lib/site-navigation";
 
 const features = [
   {
@@ -21,131 +23,259 @@ const features = [
     icon: "⚡",
   },
   {
-    title: "On-chain certificate",
-    description: "Complete the available missions and receive a non-transferable safety certificate on Fuji.",
+    title: "Guided safety lessons",
+    description: "Follow 13 Thai-first lessons before practising the same risks with your connected Core wallet.",
     icon: "🎓",
   },
 ];
 
 const missionHighlights = [
-  { value: "4", label: "Live Missions", description: "Scam calls, transfers, and gas fees" },
-  { value: "100%", label: "Testnet Only", description: "No real funds at risk" },
-  { value: "Core", label: "Wallet", description: "Connect your existing wallet on Fuji" },
+  { number: "4", label: "Live Missions", description: "Scam calls, transfers, and gas fees" },
+  { number: "100%", label: "Testnet Only", description: "No real funds at risk" },
+  { number: "Core", label: "Wallet", description: "Connect your existing wallet on Fuji" },
 ];
-
-const partners = ["ElevenLabs", "Avalanche", "ElevenLabs", "Avalanche"];
-
-function PartnerRow({ reverse = false }: { reverse?: boolean }) {
-  return (
-    <div className="overflow-hidden border-t border-zinc-800 bg-zinc-950/80 backdrop-blur-sm">
-      <div className={`${reverse ? "sponsor-scroll-reverse" : "sponsor-scroll"} whitespace-nowrap`}>
-        {[0, 1].map((set) => (
-          <div key={set} className="inline-flex" aria-hidden={set === 1}>
-            {partners.map((partner, index) => (
-              <span
-                key={`${set}-${partner}-${index}`}
-                className="sponsor-cell inline-flex min-w-[200px] items-center justify-center px-12 py-5 text-sm font-semibold uppercase tracking-[0.2em] text-zinc-300"
-              >
-                {partner}
-              </span>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export default function Home() {
   return (
     <main className="flex-1">
+      {/* Hero Section - Avalanche Style with Rain Effect */}
       <section className="relative flex flex-col overflow-hidden bg-black">
-        <div className="hero-rain absolute inset-0" aria-hidden="true" />
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-48 pt-12 sm:px-8 sm:pb-52 sm:pt-16 lg:pb-56 lg:pt-20">
+        {/* Rain Animation Background */}
+        <div className="hero-rain absolute inset-0" aria-hidden="true"></div>
+
+        {/* Content */}
+        <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pt-8 pb-48 sm:px-8 sm:pt-12 sm:pb-52 lg:pt-16 lg:pb-56">
           <AnimatedSection animation="fade-up">
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-6 lg:gap-8">
               <div className="max-w-5xl space-y-4">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-400">Avalanche Fuji · no real money</p>
                 <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
-                  Make your first crypto mistakes <span className="text-[var(--avalanche-red)]">here</span>,{" "}
+                  Make your first crypto mistakes{" "}
+                  <span className="text-[var(--avalanche-red)]">here</span>,{" "}
                   <span className="fx-typewriter">not with real money</span>.
                 </h1>
+
                 <p className="max-w-3xl text-base leading-relaxed text-zinc-300 sm:text-lg">
-                  SafeStart is an AI safety coach for crypto beginners. Practise with an adaptive scam call, a read-only AI coach, and transactions you sign with Core.
+                  SafeStart is an AI safety coach for crypto beginners. Practise the mistakes that cost people real money—with AI that scams you, coaches you, and reads your own transactions.
                 </p>
               </div>
+
               <div className="flex flex-wrap items-center gap-4">
-                <Link href="/learn" className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-semibold text-zinc-900 hover:bg-zinc-100">
-                  Start practising <span aria-hidden="true">→</span>
+                <Link
+                  href={homeActions.learn.href}
+                  className="btn-primary"
+                >
+                  {homeActions.learn.label}
+                  <svg aria-hidden="true" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
                 </Link>
-                <Link href="/play" className="inline-flex items-center rounded-xl border border-zinc-700 px-6 py-3.5 font-semibold text-white hover:border-zinc-500 hover:bg-zinc-900">
-                  View missions
+                <Link
+                  href={homeActions.missions.href}
+                  className="btn-secondary"
+                >
+                  {homeActions.missions.label}
                 </Link>
               </div>
             </div>
           </AnimatedSection>
         </div>
-        <section className="absolute inset-x-0 bottom-0 z-10" aria-label="Technology partners">
-          <PartnerRow />
-          <PartnerRow reverse />
-        </section>
+
+        {/* Sponsor Grid Section - Inside Hero */}
+        <div className="absolute bottom-0 left-0 right-0 z-10">
+          {/* Row 1 - Scroll Right */}
+          <div className="relative bg-zinc-950/80 backdrop-blur-sm border-t border-zinc-800 overflow-hidden">
+            <div className="sponsor-scroll whitespace-nowrap">
+              {/* First set */}
+              <div className="inline-flex">
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/ElevenLabs%20Logo%20-%20White%20-%201969x256%20-%20zonalogo.com.png" alt="ElevenLabs" className="h-5 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/%E0%B9%82%E0%B8%A5%E0%B9%82%E0%B8%81%E0%B9%89%20Avalanche%20%E0%B8%AA%E0%B8%B5%E0%B8%82%E0%B8%B2%E0%B8%A7%E0%B8%9A%E0%B8%99%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%88%E0%B8%87%E0%B9%83%E0%B8%AA.png" alt="Avalanche" className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/ElevenLabs%20Logo%20-%20White%20-%201969x256%20-%20zonalogo.com.png" alt="ElevenLabs" className="h-5 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/%E0%B9%82%E0%B8%A5%E0%B9%82%E0%B8%81%E0%B9%89%20Avalanche%20%E0%B8%AA%E0%B8%B5%E0%B8%82%E0%B8%B2%E0%B8%A7%E0%B8%9A%E0%B8%99%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%88%E0%B8%87%E0%B9%83%E0%B8%AA.png" alt="Avalanche" className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/ElevenLabs%20Logo%20-%20White%20-%201969x256%20-%20zonalogo.com.png" alt="ElevenLabs" className="h-5 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                </div>
+              </div>
+              {/* Duplicate set for seamless loop */}
+              <div className="inline-flex">
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/ElevenLabs%20Logo%20-%20White%20-%201969x256%20-%20zonalogo.com.png" alt="ElevenLabs" className="h-5 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/%E0%B9%82%E0%B8%A5%E0%B9%82%E0%B8%81%E0%B9%89%20Avalanche%20%E0%B8%AA%E0%B8%B5%E0%B8%82%E0%B8%B2%E0%B8%A7%E0%B8%9A%E0%B8%99%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%88%E0%B8%87%E0%B9%83%E0%B8%AA.png" alt="Avalanche" className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/ElevenLabs%20Logo%20-%20White%20-%201969x256%20-%20zonalogo.com.png" alt="ElevenLabs" className="h-5 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/%E0%B9%82%E0%B8%A5%E0%B9%82%E0%B8%81%E0%B9%89%20Avalanche%20%E0%B8%AA%E0%B8%B5%E0%B8%82%E0%B8%B2%E0%B8%A7%E0%B8%9A%E0%B8%99%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%88%E0%B8%87%E0%B9%83%E0%B8%AA.png" alt="Avalanche" className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/ElevenLabs%20Logo%20-%20White%20-%201969x256%20-%20zonalogo.com.png" alt="ElevenLabs" className="h-5 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Row 2 - Scroll Left (Reverse) */}
+          <div className="relative bg-zinc-950/80 backdrop-blur-sm border-b border-zinc-800 overflow-hidden">
+            <div className="sponsor-scroll-reverse whitespace-nowrap">
+              {/* First set */}
+              <div className="inline-flex">
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/%E0%B9%82%E0%B8%A5%E0%B9%82%E0%B8%81%E0%B9%89%20Avalanche%20%E0%B8%AA%E0%B8%B5%E0%B8%82%E0%B8%B2%E0%B8%A7%E0%B8%9A%E0%B8%99%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%88%E0%B8%87%E0%B9%83%E0%B8%AA.png" alt="Avalanche" className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/ElevenLabs%20Logo%20-%20White%20-%201969x256%20-%20zonalogo.com.png" alt="ElevenLabs" className="h-5 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/%E0%B9%82%E0%B8%A5%E0%B9%82%E0%B8%81%E0%B9%89%20Avalanche%20%E0%B8%AA%E0%B8%B5%E0%B8%82%E0%B8%B2%E0%B8%A7%E0%B8%9A%E0%B8%99%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%88%E0%B8%87%E0%B9%83%E0%B8%AA.png" alt="Avalanche" className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/ElevenLabs%20Logo%20-%20White%20-%201969x256%20-%20zonalogo.com.png" alt="ElevenLabs" className="h-5 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/%E0%B9%82%E0%B8%A5%E0%B9%82%E0%B8%81%E0%B9%89%20Avalanche%20%E0%B8%AA%E0%B8%B5%E0%B8%82%E0%B8%B2%E0%B8%A7%E0%B8%9A%E0%B8%99%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%88%E0%B8%87%E0%B9%83%E0%B8%AA.png" alt="Avalanche" className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                </div>
+              </div>
+              {/* Duplicate set for seamless loop */}
+              <div className="inline-flex">
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/%E0%B9%82%E0%B8%A5%E0%B9%82%E0%B8%81%E0%B9%89%20Avalanche%20%E0%B8%AA%E0%B8%B5%E0%B8%82%E0%B8%B2%E0%B8%A7%E0%B8%9A%E0%B8%99%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%88%E0%B8%87%E0%B9%83%E0%B8%AA.png" alt="Avalanche" className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/ElevenLabs%20Logo%20-%20White%20-%201969x256%20-%20zonalogo.com.png" alt="ElevenLabs" className="h-5 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/%E0%B9%82%E0%B8%A5%E0%B9%82%E0%B8%81%E0%B9%89%20Avalanche%20%E0%B8%AA%E0%B8%B5%E0%B8%82%E0%B8%B2%E0%B8%A7%E0%B8%9A%E0%B8%99%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%88%E0%B8%87%E0%B9%83%E0%B8%AA.png" alt="Avalanche" className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/ElevenLabs%20Logo%20-%20White%20-%201969x256%20-%20zonalogo.com.png" alt="ElevenLabs" className="h-5 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="sponsor-cell inline-flex items-center justify-center py-3 px-12 min-w-[200px]">
+                  <img src="/img/%E0%B9%82%E0%B8%A5%E0%B9%82%E0%B8%81%E0%B9%89%20Avalanche%20%E0%B8%AA%E0%B8%B5%E0%B8%82%E0%B8%B2%E0%B8%A7%E0%B8%9A%E0%B8%99%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%88%E0%B8%87%E0%B9%83%E0%B8%AA.png" alt="Avalanche" className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <Section className="border-y border-[var(--border-subtle)] bg-zinc-50 dark:bg-zinc-900/30">
-        <StatsGrid>
-          {missionHighlights.map((stat, index) => (
-            <AnimatedSection key={stat.label} animation="fade-up" delay={index * 100}>
-              <StatCard {...stat} highlight={stat.value === "100%"} />
-            </AnimatedSection>
-          ))}
-        </StatsGrid>
-      </Section>
+      {/* Stats Section - Avalanche Style */}
+      <StatsSection stats={missionHighlights} />
 
-      <Section>
-        <AnimatedSection animation="fade-up">
-          <SectionHeader title="Learn by doing. Fail safely. Stay secure." subtitle="Four ways to build practical crypto safety skills on Avalanche Fuji." />
-        </AnimatedSection>
-        <BentoGrid>
-          {features.map((feature, index) => (
-            <AnimatedSection key={feature.title} animation="scale" delay={index * 100}>
-              <BentoCard>
-                <div className="flex h-full flex-col gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-100 text-2xl dark:bg-zinc-900">{feature.icon}</div>
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-semibold">{feature.title}</h3>
-                    <p className="leading-relaxed text-[var(--text-muted)]">{feature.description}</p>
+      {/* Features Bento Grid - Avalanche Style */}
+      <Section noPadding>
+        <div className="mx-auto max-w-6xl px-6 pt-16 pb-16 sm:px-8 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-32">
+          <AnimatedSection animation="fade-up">
+            <SectionHeader
+              title="Learn by doing, fail safely, stay secure"
+              subtitle="Four practical ways to build real crypto safety skills on Avalanche testnet."
+              align="center"
+            />
+          </AnimatedSection>
+
+          <BentoGrid>
+            {features.map((feature, i) => (
+              <AnimatedSection key={feature.title} animation="scale" delay={i * 100}>
+                <BentoCard span={i < 2 ? "1" : "1"}>
+                  <div className="flex h-full flex-col gap-4">
+                    <div className="flex flex-1 flex-col gap-2">
+                      <h3 className="text-xl font-semibold text-white">{feature.title}</h3>
+                      <p className="text-zinc-400 leading-relaxed text-sm">
+                        {feature.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </BentoCard>
-            </AnimatedSection>
-          ))}
-        </BentoGrid>
-      </Section>
-
-      <Section className="border-t border-[var(--border-subtle)] bg-zinc-50 dark:bg-zinc-900/30">
-        <SectionHeader title="Fast chain. Safe practice." subtitle="Use a real Core wallet on Fuji while every lesson stays testnet-only." />
-        <div className="grid gap-8 sm:grid-cols-3">
-          {[
-            ["43113", "Fuji chain ID", "The app rejects wallet writes on every other network."],
-            ["4", "Live missions", "Spot scams, fund the wallet, send safely, and read gas."],
-            ["2", "Practice modes", "Use ElevenLabs voice by default or switch to text."],
-          ].map(([value, label, text], index) => (
-            <AnimatedSection key={label} animation="fade-up" delay={index * 100}>
-              <p className="text-4xl font-bold text-[var(--avalanche-red)]">{value}</p>
-              <h3 className="mt-3 text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)]">{label}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{text}</p>
-            </AnimatedSection>
-          ))}
+                  <span className="absolute bottom-3 right-3 text-[10px] font-medium text-white uppercase tracking-wider underline decoration-double">
+                    Mission Test
+                  </span>
+                </BentoCard>
+              </AnimatedSection>
+            ))}
+          </BentoGrid>
         </div>
       </Section>
 
+      {/* How It Works Section */}
+      <Section className="border-t border-[var(--border-subtle)] bg-zinc-50 dark:bg-zinc-900/30">
+        <AnimatedSection animation="fade-up">
+          <SectionHeader
+            title="Final in seconds. No reorgs. No real risk."
+            subtitle="Practice on Avalanche Fuji with the same speed and finality as mainnet, but with test AVAX."
+          />
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <AnimatedSection animation="slide-left" delay={0}>
+              <div className="space-y-3">
+                <div className="text-4xl font-bold text-[var(--avalanche-red)]">
+                  &lt; 0.5s
+                </div>
+                <div className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+                  Transaction finality
+                </div>
+                <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                  Your testnet transactions are final in under half a second. Practice at real-world speeds.
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection animation="fade-up" delay={100}>
+              <div className="space-y-3">
+                <div className="text-4xl font-bold">
+                  4
+                </div>
+                <div className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+                  Safety missions
+                </div>
+                <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                  From spotting scams to reading gas fees. Each mission teaches one costly mistake.
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection animation="slide-right" delay={200}>
+              <div className="space-y-3">
+                <div className="text-4xl font-bold">
+                  100%
+                </div>
+                <div className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+                  AI-powered
+                </div>
+                <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                  AI reads your real on-chain data to coach you, scam you, and explain every transaction.
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </AnimatedSection>
+      </Section>
+
+      {/* CTA Section */}
       <Section>
         <AnimatedSection animation="scale">
-          <div className="rounded-3xl border border-[var(--border-subtle)] bg-gradient-to-br from-white to-zinc-50 p-10 text-center dark:from-zinc-950 dark:to-zinc-900 sm:p-16">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">Ready to practise?</h2>
-            <p className="mx-auto mb-8 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">Connect Core on Fuji, take the support call, and learn each warning sign without risking real funds.</p>
-            <Link href="/play" className="inline-flex items-center gap-2 rounded-xl bg-zinc-900 px-8 py-4 text-lg font-semibold text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100">
-              Launch SafeStart <span aria-hidden="true">→</span>
+          <div className="rounded-3xl border border-[var(--border-subtle)] bg-gradient-to-br from-white to-zinc-50 p-12 text-center dark:from-zinc-950 dark:to-zinc-900 sm:p-16">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+              Ready to practise?
+            </h2>
+            <p className="mx-auto mb-8 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
+              Start with mission 1: take a call from an AI scammer and learn to spot the red flags.
+            </p>
+            <Link
+              href={homeActions.launch.href}
+              className="btn-primary"
+            >
+              {homeActions.launch.label}
+              <svg aria-hidden="true" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
             </Link>
           </div>
         </AnimatedSection>
