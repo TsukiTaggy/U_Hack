@@ -18,7 +18,7 @@ Rule: missions 1–4, the coach agent and the certificate are never cut. If time
 
 - [ ] OPS — Register the team on hub.team1.network **today**; organisers must approve the team before it can submit. Confirm approval status.
 - [x] Scaffold Next.js 16 app in `D:\Projects\uhack` with docs, contracts and `.env.example`.
-- [ ] WEB3 — `npm install` on Windows; create public GitHub repo, add teammates, push (`docs/setup.md` §6); import to Vercel; confirm `/` and `/play` load.
+- [x] WEB3 — Public GitHub repo is pushed, the app is imported to Vercel, and `/` plus `/play` load.
 - [x] WEB3 — Deploy `TestUSDC`, `FakeAirdrop`, `SafeStartCert` on Fuji and configure the app addresses through environment variables. Public README/explorer links remain to be filled.
 - [x] AI — Configure Gemini as primary and Groq as fallback; the coach route is wired for both providers. Deployed smoke testing remains below.
 - [x] VOICE — ElevenLabs credits/API key and authenticated scammer agent are configured; the agent is published, capped at 120 seconds, and tested in the dashboard.
@@ -36,7 +36,7 @@ Code is written and verified on a local chain (see `PROJECT.md` Current State). 
 - [x] `lib/tools.ts` (all six read-only tools); `/api/coach`; tool calls shown as steps in the UI.
 - [x] `/api/scam/turn` (text scammer) and `/api/scam/evaluate` (zod-validated JSON, fail closed).
 - [x] `content/missions/1–4.json` and `content/scam-personas.json` (2 personas).
-- [ ] WEB3 — On Fuji with real env vars: Core wallet + faucet → mission 2 → mission 3 pass on `/play`.
+- [x] WEB3 — On Fuji with real env vars: Core wallet + faucet → mission 2 → mission 3 pass on `/play`.
 - [x] AI — Coach route is connected to the configured LLM providers and exposes read-only tool steps; deployed smoke testing remains below.
 - [ ] OPS — Rewrite mission text in `content/` (Thai and English) and add a third scam persona.
 
@@ -57,7 +57,7 @@ Done when: missions 1–4 → certificate works end-to-end on the public URL. Le
 
 - [ ] OPS — Mission 5 content, more scam scripts, test cases for each mission.
 - [x] VOICE — ElevenLabs voice call with `@elevenlabs/react` behind a toggle; transcript → `/api/scam/evaluate`. Text mode stays as fallback.
-- [ ] VOICE — Run one full microphone call on the deployed URL with a connected Core wallet; dashboard agent testing is complete, but deployed signed URL/transcript/evaluation still need confirmation.
+- [x] VOICE — Full microphone call passed on the deployed URL with a connected Core wallet; signed URL, transcript and evaluation flow confirmed.
 - [x] `/api/explain-tx` with `decodeCall` and rule-based risk level.
 - [ ] AI — Show the explain-before-sign card in mission 3 before sending.
 - [ ] Everyone — sleep.
