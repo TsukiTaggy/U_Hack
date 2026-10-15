@@ -59,7 +59,7 @@ Active tasks: see `TODO.md`.
 ## Current State
 
 Last verified: 2026-10-15
-Evidence: 34 unit tests; lint, type check and production webpack build pass; end-to-end API test (23 checks) against a local chain with chain ID 43113 running the real contracts; AI routes exercised against a mock OpenAI-compatible server. Fuji/Core wallet flow and the authenticated ElevenLabs microphone path have been manually verified on the deployed URL; broader multi-wallet smoke testing remains pending.
+Evidence: 52 unit tests; lint, type check and production build pass; end-to-end API test (23 checks) against a local chain with chain ID 43113 running the real contracts; AI routes exercised against a mock OpenAI-compatible server. The standalone `/learn` flow has been exercised locally at desktop and phone widths, including wrong-answer retry, sequential unlocks, Thai/English copy and persisted progress. Fuji/Core wallet flow and the authenticated ElevenLabs microphone path have been manually verified on the deployed URL; deployed `/learn` verification and broader multi-wallet smoke testing remain pending.
 
 Working (local chain):
 - Mission checks 2, 3, 4 with signed pass receipts; look-alike address rejected.
@@ -71,6 +71,7 @@ Working (local chain):
 Partial:
 - Coach agent tool loop, text scam call and scam evaluator: mechanics verified with a mock LLM only.
 - Frontend landing page and shared navigation are integrated from `frontend`; desktop DOM verification passed locally, with deployed browser validation still pending.
+- `/learn` provides four standalone bilingual safety lessons with three-question quizzes, sequential unlocks and versioned local progress; deployment verification remains pending.
 - `/play` page: missions 1–4, coach panel, certificate and Core wallet/Fuji flow are working; broader multi-wallet smoke testing remains.
 - ElevenLabs private-agent voice flow: signed URL route, Voice/Text toggle, published authenticated agent, 120-second limit and transcript-to-evaluator integration are implemented; a full deployed microphone call has passed.
 
@@ -100,10 +101,10 @@ Detailed design: `docs/architecture.md`
 
 ## Repository Map
 
-- `app/` — pages (`/`, `/play`) and API routes (`app/api/*`)
-- `components/` — client components (`PlayClient.tsx` runs the mission flow)
+- `app/` — pages (`/`, `/play`, `/learn`) and API routes (`app/api/*`)
+- `components/` — client components (`PlayClient.tsx` runs the mission flow; `LearningClient.tsx` runs the standalone learning flow)
 - `lib/` — config, chain client, ABIs, wallet, verification, receipts, decoys, LLM client, agent tools, scam prompts, minter
-- `content/` — mission text and scam personas (JSON)
+- `content/` — mission text, standalone lessons and scam personas (JSON)
 - `contracts/` — Solidity source (ABIs used by the app are in `lib/abi.ts`)
 - `tests/` — unit tests
 - `docs/` — architecture and setup
@@ -121,6 +122,7 @@ Detailed design: `docs/architecture.md`
 ## Canonical Data Formats
 
 - Mission definition: `content/missions/<id>.json` — `{ id, title, lesson, task, verify: { type, params } }`
+- Standalone lesson: `content/lessons/<id>.json` — localized `{ id, title, summary, lesson, keyPoints, quiz }`; quiz completion is browser-only learning progress under `safestart.learning.v1`, never mission pass/fail evidence.
 - Scam evaluation: `{ sharedSecret: boolean, followedLink: boolean, verifiedViaOfficialChannel: boolean, tacticsSeen: string[], feedback: string }`
 - Pass receipt: `{ address, missionId, passedAt, evidence, sig }` — `sig` is an HMAC over the other fields with `RECEIPT_SECRET`.
 

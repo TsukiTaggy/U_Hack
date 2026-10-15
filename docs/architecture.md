@@ -18,7 +18,8 @@ In code use `avalancheFuji` from `viem/chains`.
 
 | Component | Location | Responsibility |
 |---|---|---|
-| Pages | `app/page.tsx`, `app/play/page.tsx`, `components/PlayClient.tsx` | Landing page; mission flow with wallet panel, missions 1–4, certificate and coach panel |
+| Pages | `app/page.tsx`, `app/play/page.tsx`, `app/learn/page.tsx` | Landing page; existing mission route; standalone learning route |
+| Page clients | `components/PlayClient.tsx`, `components/LearningClient.tsx` | Wallet-backed mission flow; browser-only lesson and quiz flow |
 | Config | `lib/config.ts` | Chain ID, RPC, explorer links, contract addresses from `NEXT_PUBLIC_*` |
 | ABIs | `lib/abi.ts` | Human-readable ABIs for the three contracts |
 | Wallet layer | `lib/wallet.ts` | Connect Core wallet, switch to Fuji, send AVAX |
@@ -33,8 +34,14 @@ In code use `avalancheFuji` from `viem/chains`.
 | Minter | `lib/minter.ts` | Server wallet client from `MINTER_PRIVATE_KEY` |
 | Decoys | `lib/decoys.ts` | Look-alike addresses for mission 3 |
 | API helpers | `lib/api.ts` | JSON body parsing, errors, in-memory rate limit |
-| Content | `content/` | Mission text, scam personas |
+| Content | `content/missions/`, `content/lessons/`, `content/scam-personas.json` | Mission text; localized standalone lessons and quizzes; scam personas |
 | Contracts | `contracts/SafeStart.sol` | TestUSDC, FakeAirdrop, SafeStartCert |
+
+## Standalone learning center
+
+`/learn` is separate from the wallet-backed missions on `/play`. It presents four Thai/English safety lessons in sequence: recovery phrase protection, fake links, transaction review and social engineering. Each lesson has three multiple-choice questions whose explanations reference the lesson content directly.
+
+`lib/learning.ts` owns the lesson schema, localization fallback and quiz evaluation. `lib/learning-progress.ts` owns parsing, sequential unlock rules and resilient browser storage under `safestart.learning.v1`. This progress is a learning aid only: it never creates a pass receipt, affects certificate readiness or replaces any check in `lib/verify.ts`.
 
 ## Missions and verification
 

@@ -1,0 +1,136 @@
+{
+  "id": "1",
+  "title": {
+    "th": "ปกป้อง Recovery Phrase",
+    "en": "Protect your recovery phrase"
+  },
+  "summary": {
+    "th": "เรียนรู้ว่าคำ 12–24 คำนี้ควบคุมกระเป๋าของคุณอย่างไร และทำไมจึงห้ามส่งให้ใคร",
+    "en": "Learn why these 12–24 words control your wallet and must never be shared."
+  },
+  "lesson": {
+    "th": "Recovery phrase คือกุญแจสำรองที่สามารถกู้และควบคุมสินทรัพย์ทั้งหมดในกระเป๋าได้ ผู้ที่ได้คำเหล่านี้ไม่ต้องรู้รหัสผ่านอื่นก็สามารถย้ายสินทรัพย์ออกไปได้ เจ้าหน้าที่ช่วยเหลือ เว็บไซต์ และแอปที่ถูกต้องจะไม่ขอให้คุณพิมพ์หรือส่ง recovery phrase หากมีคำขอเช่นนั้น ให้หยุดทันที ปิดช่องทางนั้น และเข้าหาช่องทางทางการด้วยตัวเอง ควรจดคำเหล่านี้แบบออฟไลน์และเก็บในที่ปลอดภัยซึ่งมีเพียงคุณเข้าถึงได้",
+    "en": "A recovery phrase is the backup key that can restore and control every asset in a wallet. Anyone who gets the words can move the assets without another password. Legitimate support staff, websites, and apps will never ask you to type or send the phrase. If anyone asks, stop, close that channel, and reach the official service independently. Record the phrase offline and keep it somewhere secure that only you can access."
+  },
+  "keyPoints": [
+    {
+      "th": "ผู้ที่รู้ recovery phrase สามารถควบคุมกระเป๋าได้ทั้งหมด",
+      "en": "Anyone who knows the recovery phrase can control the whole wallet."
+    },
+    {
+      "th": "ฝ่ายช่วยเหลือที่ถูกต้องจะไม่ขอ recovery phrase",
+      "en": "Legitimate support will never ask for a recovery phrase."
+    },
+    {
+      "th": "เก็บแบบออฟไลน์ในที่ปลอดภัย และอย่าถ่ายหรือส่งผ่านแชต",
+      "en": "Store it offline in a secure place; do not photograph or send it through chat."
+    }
+  ],
+  "quiz": [
+    {
+      "id": "recovery-support-request",
+      "prompt": {
+        "th": "บัญชีที่อ้างว่าเป็นฝ่ายช่วยเหลือขอ recovery phrase เพื่อปลดล็อกกระเป๋า คุณควรทำอย่างไร?",
+        "en": "An account claiming to be support asks for your recovery phrase to unlock the wallet. What should you do?"
+      },
+      "options": [
+        {
+          "id": "send-half",
+          "text": {
+            "th": "ส่งครึ่งหนึ่งก่อนเพื่อทดสอบว่าเป็นเจ้าหน้าที่จริง",
+            "en": "Send half of the words first to test whether they are real support."
+          }
+        },
+        {
+          "id": "refuse-and-verify",
+          "text": {
+            "th": "ไม่ส่ง ปิดการสนทนา และติดต่อช่องทางทางการด้วยตัวเอง",
+            "en": "Do not send it; close the conversation and contact the official channel independently."
+          }
+        },
+        {
+          "id": "send-private-message",
+          "text": {
+            "th": "ส่งทางข้อความส่วนตัวเพราะปลอดภัยกว่าหน้าเว็บ",
+            "en": "Send it in a private message because that is safer than a website."
+          }
+        }
+      ],
+      "correctOptionId": "refuse-and-verify",
+      "explanation": {
+        "th": "ห้ามส่ง recovery phrase ไม่ว่าผู้ขอจะอ้างตัวอย่างไร ให้หยุดและเปิดช่องทางทางการด้วยตัวเอง",
+        "en": "Never send a recovery phrase, regardless of who asks. Stop and open the official channel yourself."
+      }
+    },
+    {
+      "id": "recovery-storage",
+      "prompt": {
+        "th": "วิธีใดเหมาะที่สุดสำหรับเก็บ recovery phrase?",
+        "en": "Which method is safest for storing a recovery phrase?"
+      },
+      "options": [
+        {
+          "id": "offline-secure",
+          "text": {
+            "th": "จดแบบออฟไลน์และเก็บในที่ปลอดภัยที่มีเพียงคุณเข้าถึง",
+            "en": "Write it offline and keep it in a secure place only you can access."
+          }
+        },
+        {
+          "id": "cloud-photo",
+          "text": {
+            "th": "ถ่ายรูปแล้วเก็บใน cloud เพื่อหาได้ง่าย",
+            "en": "Photograph it and store it in the cloud for easy access."
+          }
+        },
+        {
+          "id": "send-to-friend",
+          "text": {
+            "th": "ส่งให้เพื่อนเก็บสำรองในแชต",
+            "en": "Send it to a friend as a backup in chat."
+          }
+        }
+      ],
+      "correctOptionId": "offline-secure",
+      "explanation": {
+        "th": "การเก็บแบบออฟไลน์ลดโอกาสที่บัญชี cloud แชต หรืออุปกรณ์ที่ถูกเจาะจะเปิดเผยคำเหล่านี้",
+        "en": "Offline storage reduces the chance that a compromised cloud account, chat, or device exposes the words."
+      }
+    },
+    {
+      "id": "recovery-website",
+      "prompt": {
+        "th": "เว็บไซต์แจ้งว่ากระเป๋ามีปัญหาและให้กรอก recovery phrase เพื่อซ่อมแซม ขั้นตอนที่ปลอดภัยคืออะไร?",
+        "en": "A website says your wallet is broken and asks for the recovery phrase to repair it. What is the safe response?"
+      },
+      "options": [
+        {
+          "id": "enter-once",
+          "text": {
+            "th": "กรอกครั้งเดียวแล้วเปลี่ยนรหัสผ่านภายหลัง",
+            "en": "Enter it once and change the password afterward."
+          }
+        },
+        {
+          "id": "check-reviews",
+          "text": {
+            "th": "อ่านรีวิวของเว็บก่อน แล้วกรอกถ้าคะแนนดี",
+            "en": "Read reviews first, then enter it if the rating is good."
+          }
+        },
+        {
+          "id": "close-site",
+          "text": {
+            "th": "ปิดเว็บทันที และตรวจสถานะผ่านแอปหรือเว็บไซต์ทางการที่เปิดเอง",
+            "en": "Close the site and check through the official app or a site you open independently."
+          }
+        }
+      ],
+      "correctOptionId": "close-site",
+      "explanation": {
+        "th": "เว็บไซต์ที่ขอ recovery phrase เป็นอันตราย ควรปิดและกลับไปยังช่องทางทางการที่คุณเข้าถึงเอง",
+        "en": "A site asking for a recovery phrase is dangerous. Close it and return to an official channel you reached yourself."
+      }
+    }
+  ]
+}

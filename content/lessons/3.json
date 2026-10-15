@@ -1,0 +1,136 @@
+{
+  "id": "3",
+  "title": {
+    "th": "ตรวจธุรกรรมก่อนเซ็น",
+    "en": "Review a transaction before signing"
+  },
+  "summary": {
+    "th": "อ่าน network, recipient, amount และสิทธิ์ที่ธุรกรรมร้องขอก่อนกดยืนยัน",
+    "en": "Read the network, recipient, amount, and requested permissions before confirming."
+  },
+  "lesson": {
+    "th": "หน้าต่างยืนยันของ wallet คือจุดสุดท้ายที่คุณหยุดธุรกรรมได้ ก่อนเซ็นให้ตรวจ network, address ผู้รับ, จำนวน และ action ที่ร้องขอทุกครั้ง การส่งสินทรัพย์คือการย้ายจำนวนที่ระบุ ส่วน approve คือการให้ contract ใช้ token ของคุณ และ unlimited approval อาจเปิดสิทธิ์ให้ใช้ได้มากกว่าธุรกรรมครั้งนี้ หากรายละเอียดไม่ตรงกับสิ่งที่ตั้งใจ อย่าเดาและอย่ารีบ ให้กดปฏิเสธ ตรวจข้อมูลต้นทาง แล้วเริ่มใหม่เมื่อมั่นใจ",
+    "en": "The wallet confirmation screen is the final place to stop a transaction. Before signing, check the network, recipient address, amount, and requested action every time. Sending moves the stated amount, while an approval lets a contract spend your tokens; an unlimited approval may grant more access than this single transaction needs. If any detail does not match your intent, do not guess or rush. Reject it, verify the source information, and start again only when confident."
+  },
+  "keyPoints": [
+    {
+      "th": "ตรวจ network, recipient, amount และ action ทุกครั้ง",
+      "en": "Check the network, recipient, amount, and action every time."
+    },
+    {
+      "th": "approve คือการให้สิทธิ์ contract ใช้ token ไม่ใช่การส่งธรรมดา",
+      "en": "An approval grants a contract permission to spend tokens; it is not a normal transfer."
+    },
+    {
+      "th": "ข้อมูลไม่ตรงกับความตั้งใจให้ปฏิเสธ แล้วตรวจใหม่จากต้นทาง",
+      "en": "Reject details that do not match your intent, then verify from the source."
+    }
+  ],
+  "quiz": [
+    {
+      "id": "wrong-recipient",
+      "prompt": {
+        "th": "wallet แสดง address ผู้รับไม่ตรงกับ address ที่คุณตรวจไว้ ควรทำอย่างไร?",
+        "en": "The wallet shows a recipient address different from the one you verified. What should you do?"
+      },
+      "options": [
+        {
+          "id": "sign-small",
+          "text": {
+            "th": "เซ็นก่อนถ้าจำนวนเงินไม่มาก",
+            "en": "Sign if the amount is small."
+          }
+        },
+        {
+          "id": "reject-and-check",
+          "text": {
+            "th": "ปฏิเสธธุรกรรมและตรวจ address จากต้นทางอีกครั้ง",
+            "en": "Reject the transaction and verify the address from the source again."
+          }
+        },
+        {
+          "id": "trust-interface",
+          "text": {
+            "th": "เชื่อหน้าเว็บเพราะเป็นผู้สร้างธุรกรรมให้",
+            "en": "Trust the website because it created the transaction."
+          }
+        }
+      ],
+      "correctOptionId": "reject-and-check",
+      "explanation": {
+        "th": "address ที่ไม่ตรงคือเหตุผลให้หยุดทันที เพราะธุรกรรมที่เซ็นและส่งแล้วอาจย้อนกลับไม่ได้",
+        "en": "A mismatched address is a reason to stop immediately because a signed and submitted transaction may be irreversible."
+      }
+    },
+    {
+      "id": "unlimited-approval",
+      "prompt": {
+        "th": "Unlimited approval หมายถึงอะไร?",
+        "en": "What does an unlimited approval mean?"
+      },
+      "options": [
+        {
+          "id": "free-gas",
+          "text": {
+            "th": "ธุรกรรมนี้ไม่ต้องจ่ายค่า gas",
+            "en": "This transaction has no gas fee."
+          }
+        },
+        {
+          "id": "one-transfer",
+          "text": {
+            "th": "contract ส่งได้เฉพาะจำนวนที่เห็นครั้งนี้",
+            "en": "The contract can move only the amount shown this time."
+          }
+        },
+        {
+          "id": "broad-spend-permission",
+          "text": {
+            "th": "contract อาจได้รับสิทธิ์ใช้ token ได้มากกว่าธุรกรรมครั้งนี้",
+            "en": "The contract may receive permission to spend more tokens than this one transaction requires."
+          }
+        }
+      ],
+      "correctOptionId": "broad-spend-permission",
+      "explanation": {
+        "th": "Unlimited approval เป็นสิทธิ์การใช้ token ในวงกว้าง จึงต้องตรวจ contract และขอบเขตสิทธิ์ก่อนเซ็น",
+        "en": "An unlimited approval is broad token-spending permission, so verify the contract and scope before signing."
+      }
+    },
+    {
+      "id": "network-mismatch",
+      "prompt": {
+        "th": "คุณตั้งใจทำรายการบน Fuji แต่ wallet แสดง network อื่น ควรเลือกอะไร?",
+        "en": "You intend to act on Fuji, but the wallet shows another network. What should you choose?"
+      },
+      "options": [
+        {
+          "id": "reject-network",
+          "text": {
+            "th": "ปฏิเสธ ตรวจ network ที่ต้องการ แล้วเริ่มรายการใหม่",
+            "en": "Reject it, verify the intended network, and start the transaction again."
+          }
+        },
+        {
+          "id": "sign-anyway",
+          "text": {
+            "th": "เซ็นได้เพราะ address เดียวกันใช้ได้ทุก network",
+            "en": "Sign because the same address works on every network."
+          }
+        },
+        {
+          "id": "ignore-network",
+          "text": {
+            "th": "ตรวจเฉพาะจำนวนเงินก็เพียงพอ",
+            "en": "Checking only the amount is enough."
+          }
+        }
+      ],
+      "correctOptionId": "reject-network",
+      "explanation": {
+        "th": "network เป็นส่วนหนึ่งของความตั้งใจของธุรกรรม หากไม่ตรงควรหยุดและเริ่มใหม่หลังตรวจสอบ",
+        "en": "The network is part of the transaction intent. If it does not match, stop and restart after verification."
+      }
+    }
+  ]
+}
